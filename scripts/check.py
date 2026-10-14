@@ -13,6 +13,7 @@ Errors (exit 1):
                (em is fine: content sizes are relative to the user's text size)
   token-role   a --basalt-* token defined in src/foundation/ but missing from
                the SPEC.md role table, or listed there but not defined
+               (skipped when the local, untracked SPEC.md is absent)
   unused-token a --basalt-* token defined in src/foundation/ and never read
   undefined    var(--basalt-*) that no module defines
   contrast     a text token below its floor (CONTRAST below) on a surface
@@ -201,16 +202,19 @@ def main(argv):
             err(rel, line, "unused-token", "%s is never read" % name)
 
     # SPEC role table: every foundation token has a row, every row a token.
-    with open(os.path.join(ROOT, "SPEC.md"), encoding="utf-8") as f:
-        spec = f.read()
-    listed = set()
-    for row in re.findall(r"^\|([^|\n]*)\|", spec, re.M):
-        listed.update(re.findall(r"`(--basalt-[\w-]+)`", row))
-    for name, (rel, line) in sorted(defined_foundation.items()):
-        if name not in listed:
-            err(rel, line, "token-role", "%s has no row in the SPEC.md token role table" % name)
-    for name in sorted(listed - set(defined_foundation)):
-        errors.append("SPEC.md: token-role: %s is listed but not defined in src/foundation/" % name)
+    # SPEC.md is a local, untracked design doc; a fresh clone skips this rule.
+    spec_path = os.path.join(ROOT, "SPEC.md")
+    if os.path.isfile(spec_path):
+        with open(spec_path, encoding="utf-8") as f:
+            spec = f.read()
+        listed = set()
+        for row in re.findall(r"^\|([^|\n]*)\|", spec, re.M):
+            listed.update(re.findall(r"`(--basalt-[\w-]+)`", row))
+        for name, (rel, line) in sorted(defined_foundation.items()):
+            if name not in listed:
+                err(rel, line, "token-role", "%s has no row in the SPEC.md token role table" % name)
+        for name in sorted(listed - set(defined_foundation)):
+            errors.append("SPEC.md: token-role: %s is listed but not defined in src/foundation/" % name)
 
     # Contrast floors, per mode.
     for mode in MODES:

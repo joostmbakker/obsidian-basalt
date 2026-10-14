@@ -12,6 +12,8 @@ SRC_DIR="$ROOT/src"
 SANS_FONT="$ROOT/src/fonts/Geist-Variable.woff2"
 MONO_FONT="$ROOT/src/fonts/GeistMono-Variable.woff2"
 SERIF_FONT="$ROOT/src/fonts/BasaltSerif-Variable.woff2"
+GEIST_OFL="$ROOT/src/fonts/OFL.txt"
+SERIF_OFL="$ROOT/src/fonts/OFL-SourceSerif4.txt"
 MANIFEST="$ROOT/manifest.json"
 OUT="$ROOT/theme.css"
 VAULT_THEME="$ROOT/test-vault/.obsidian/themes/Basalt"
@@ -22,7 +24,7 @@ die() {
 }
 
 [ -f "$SRC" ] || die "source not found: $SRC (create src/index.css or set BASALT_SRC)"
-for f in "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$MANIFEST"; do
+for f in "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$GEIST_OFL" "$SERIF_OFL" "$MANIFEST"; do
   [ -f "$f" ] || die "required file missing: $f"
 done
 
@@ -36,9 +38,28 @@ fi
 python3 -I -c '
 import base64, os, re, sys
 
-src, src_dir, sans, mono, serif, out = sys.argv[1:7]
-header = ("/* Basalt — generated from src/ by scripts/build.sh. Do not edit. "
-          "Geist fonts © Vercel, Basalt Serif (Source Serif 4) © Adobe, SIL OFL 1.1 */\n")
+src, src_dir, sans, mono, serif, geist_ofl, serif_ofl, out = sys.argv[1:9]
+
+# theme.css is what users install, so it carries the copyright notices of the fonts
+# and the OFL text (OFL condition 2). Each licence file opens with its notice.
+def read(path):
+    with open(path, encoding="utf-8") as f:
+        return f.read()
+
+def notice(path):
+    return read(path).split("\n\n", 1)[0].strip()
+
+ofl = read(geist_ofl)
+ofl = ofl[ofl.index("-----------------------------------------------------------"):].strip()
+if "*/" in ofl:
+    sys.exit("build.sh: error: licence text contains a comment terminator")
+header = (
+    "/* Basalt — generated from src/ by scripts/build.sh. Do not edit.\n"
+    "   Theme code: MIT License, see LICENSE in the repository.\n\n"
+    "   Embedded fonts, licensed under the SIL Open Font License 1.1 (below):\n"
+    "   - Geist and Geist Mono. " + notice(geist_ofl) + "\n"
+    "   - Basalt Serif, a subset of Source Serif 4 renamed as the OFL requires.\n"
+    "     " + notice(serif_ofl) + "\n\n" + ofl + "\n*/\n")
 IMPORT = re.compile(r"^@import\s+\"([^\"]+)\";\s*$")
 seen = []
 
@@ -89,7 +110,7 @@ for token, path in (("__GEIST_SANS__", sans), ("__GEIST_MONO__", mono),
 
 with open(out, "w", encoding="utf-8") as f:
     f.write(header + css)
-' "$SRC" "$SRC_DIR" "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$OUT"
+' "$SRC" "$SRC_DIR" "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$GEIST_OFL" "$SERIF_OFL" "$OUT"
 
 if [ -d "$ROOT/test-vault/.obsidian" ]; then
   mkdir -p "$VAULT_THEME"
