@@ -10,11 +10,15 @@ tested against 1.14.x on macOS.
 ## Structure
 
 ```
-src/theme.css        authored CSS (edit this)
+src/index.css        build entry: ordered @import list (= cascade order)
+src/foundation/      Style Settings options, fonts, tokens, Obsidian variable mappings
+src/editor/          note content: headings, code, tables, callouts, ...
+src/app/             chrome: workspace, tabs, navigation, controls, overlays, ...
+src/views/           canvas, graph, bases
 src/fonts/           Geist and Geist Mono variable WOFF2 (OFL, see OFL.txt)
 theme.css            build output, do not edit
 manifest.json        Obsidian theme manifest
-scripts/build.sh     src -> theme.css with fonts inlined; refreshes local test-vault copy if present
+scripts/build.sh     src/ -> theme.css with modules and fonts inlined; refreshes local test-vault copy if present
 scripts/install.sh   builds, then installs into a vault
 scripts/preview/     DOM-replica screenshot harness (see Preview harness)
 test-vault/          optional local vault for visual checks (gitignored, not in the repo)
@@ -27,7 +31,8 @@ screenshots/         verification screenshots
 scripts/build.sh
 ```
 
-Replaces `__GEIST_SANS__` and `__GEIST_MONO__` in `src/theme.css` with base64
+Inlines the modules `src/index.css` imports, in order, and replaces
+`__GEIST_SANS__` and `__GEIST_MONO__` (in `src/foundation/fonts.css`) with base64
 WOFF2 data URIs, writes `theme.css` at the repo root, and, when a local
 `test-vault/.obsidian` exists, copies it plus `manifest.json` into
 `test-vault/.obsidian/themes/Basalt/`. Without a local vault the copy is skipped.
