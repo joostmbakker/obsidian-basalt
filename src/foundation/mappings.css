@@ -328,7 +328,7 @@
   --tooltip-color: var(--basalt-text);
   --tooltip-radius: var(--basalt-radius-3);
   --tooltip-font-size: var(--basalt-ui-size-3);
-  --tooltip-shadow: 0 0 0 1px var(--basalt-border-strong), var(--basalt-shadow-float);
+  --tooltip-shadow: var(--basalt-shadow-float);
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: var(--basalt-scrollbar);
   --scrollbar-active-thumb-bg: var(--basalt-scrollbar-active);
