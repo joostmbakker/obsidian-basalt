@@ -87,7 +87,7 @@ settings:
   --basalt-text-strong: #f6f6f4;
   --basalt-text-muted: #a9aaa5;
   --basalt-text-faint: #6b6c68;
-  --basalt-accent: hsl(212 52% 66%);
+  --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
   --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
   --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #ededeb;
@@ -100,6 +100,8 @@ settings:
   --basalt-scrim: rgba(0, 0, 0, 0.45);
   --basalt-neutral-rgb: 169, 170, 165;
 
+  /* Default accent. Obsidian sets these inline on body when the user picks an
+     accent in Settings -> Appearance, so theirs wins. */
   --accent-h: 212;
   --accent-s: 52%;
   --accent-l: 66%;
@@ -150,7 +152,7 @@ settings:
   --basalt-text-strong: #0a0a0a;
   --basalt-text-muted: #5f5f5c;
   --basalt-text-faint: #8a8a86;
-  --basalt-accent: hsl(212 45% 45%);
+  --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
   --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
   --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #141414;
