@@ -1523,6 +1523,14 @@ button.mod-warning:hover {
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-red) 55%, transparent);
 }
 
+button:disabled,
+button:disabled:hover {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--basalt-border);
+}
+
 button:focus-visible,
 button:not(.clickable-icon):focus-visible {
   box-shadow: var(--basalt-focus-ring);
