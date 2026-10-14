@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build Basalt: src/index.css -> theme.css. Inlines the @import'ed modules in order
-# and the Geist fonts as base64 WOFF2. Also refreshes the local, gitignored
+# and the Geist and Basalt Serif fonts as base64 WOFF2. Also refreshes the local, gitignored
 # test-vault copy when test-vault/.obsidian exists. Runs scripts/check.py first.
 # Override the entry with BASALT_SRC=/path/to/file.css (used for testing); its
 # @imports resolve relative to that file.
@@ -11,6 +11,7 @@ SRC="${BASALT_SRC:-$ROOT/src/index.css}"
 SRC_DIR="$ROOT/src"
 SANS_FONT="$ROOT/src/fonts/Geist-Variable.woff2"
 MONO_FONT="$ROOT/src/fonts/GeistMono-Variable.woff2"
+SERIF_FONT="$ROOT/src/fonts/BasaltSerif-Variable.woff2"
 MANIFEST="$ROOT/manifest.json"
 OUT="$ROOT/theme.css"
 VAULT_THEME="$ROOT/test-vault/.obsidian/themes/Basalt"
@@ -21,7 +22,7 @@ die() {
 }
 
 [ -f "$SRC" ] || die "source not found: $SRC (create src/index.css or set BASALT_SRC)"
-for f in "$SANS_FONT" "$MONO_FONT" "$MANIFEST"; do
+for f in "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$MANIFEST"; do
   [ -f "$f" ] || die "required file missing: $f"
 done
 
@@ -35,9 +36,9 @@ fi
 python3 -I -c '
 import base64, os, re, sys
 
-src, src_dir, sans, mono, out = sys.argv[1:6]
+src, src_dir, sans, mono, serif, out = sys.argv[1:7]
 header = ("/* Basalt — generated from src/ by scripts/build.sh. Do not edit. "
-          "Geist fonts © Vercel, SIL OFL 1.1 */\n")
+          "Geist fonts © Vercel, Basalt Serif (Source Serif 4) © Adobe, SIL OFL 1.1 */\n")
 IMPORT = re.compile(r"^@import\s+\"([^\"]+)\";\s*$")
 seen = []
 
@@ -80,14 +81,15 @@ def data_uri(path):
     with open(path, "rb") as f:
         return "data:font/woff2;base64," + base64.b64encode(f.read()).decode("ascii")
 
-for token, path in (("__GEIST_SANS__", sans), ("__GEIST_MONO__", mono)):
+for token, path in (("__GEIST_SANS__", sans), ("__GEIST_MONO__", mono),
+                    ("__BASALT_SERIF__", serif)):
     if token not in css:
         die("placeholder " + token + " not found in " + src)
     css = css.replace(token, data_uri(path))
 
 with open(out, "w", encoding="utf-8") as f:
     f.write(header + css)
-' "$SRC" "$SRC_DIR" "$SANS_FONT" "$MONO_FONT" "$OUT"
+' "$SRC" "$SRC_DIR" "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$OUT"
 
 if [ -d "$ROOT/test-vault/.obsidian" ]; then
   mkdir -p "$VAULT_THEME"

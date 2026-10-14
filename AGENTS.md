@@ -3,7 +3,7 @@
 Dark, minimal Obsidian theme (CSS only, no plugin code). Design contract: `SPEC.md`. Human docs: `README.md`.
 
 ## Commands
-- `scripts/build.sh`: `src/index.css` -> root `theme.css`, inlining its `@import`ed modules in order and the Geist fonts as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Basalt/` only when a local `test-vault/.obsidian` exists (otherwise skipped, never created). Runs `scripts/check.py` first and fails with it. Run it after every CSS change.
+- `scripts/build.sh`: `src/index.css` -> root `theme.css`, inlining its `@import`ed modules in order and the Geist and Basalt Serif fonts as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Basalt/` only when a local `test-vault/.obsidian` exists (otherwise skipped, never created). Runs `scripts/check.py` first and fails with it. Run it after every CSS change.
 - `BASALT_SRC=/path/to/file.css scripts/build.sh`: build from an alternate entry (experiments); its `@import`s resolve relative to it.
 - In Claude Code, `.claude/settings.json` runs `scripts/hooks/post-edit.sh` after every edit to a `src/` CSS module or `SPEC.md`: it rebuilds, and check errors come back as hook feedback. Fix them before moving on.
 - `scripts/install.sh <vault-path>`: build, then copy into a real vault. Writes outside the repo; run it only when the user names the vault.
@@ -13,7 +13,7 @@ Dark, minimal Obsidian theme (CSS only, no plugin code). Design contract: `SPEC.
 ## Gotchas
 - Edit the modules under `src/` (`foundation/`, `editor/`, `app/`, `views/`), never root `theme.css`; the build overwrites it.
 - `src/index.css` lists every module in cascade order; later files win specificity ties. Moving an import can change the look. The build fails on a module it doesn't list.
-- Keep `url("__GEIST_SANS__")` and `url("__GEIST_MONO__")` in `src/foundation/fonts.css`; the build fails when a placeholder is missing.
+- Keep `url("__GEIST_SANS__")`, `url("__GEIST_MONO__")` and `url("__BASALT_SERIF__")` in `src/foundation/fonts.css`; the build fails when a placeholder is missing.
 - Root `theme.css` is generated but committed: Obsidian installs themes from `theme.css` + `manifest.json` at the repo root of the default branch. Rebuild and commit it in the same commit as the `src/` change, so the two never diverge in history.
 - `test-vault/` is local-only and gitignored; it may be absent. Don't commit or recreate it.
 - When present, `test-vault/.obsidian/snippets/*.css` mirror the user's real vault (custom callouts, card styles). Fix the theme so they render; don't edit the snippets to hide a theme bug.

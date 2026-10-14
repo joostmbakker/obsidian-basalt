@@ -138,7 +138,7 @@
 .theme-dark,
 .theme-light {
   /* Font stacks (Settings font choices still win: *-override is untouched) */
-  --basalt-font-serif: "Tiempos Headline", "Test Tiempos Headline", "Source Serif 4", "Newsreader", Georgia, serif;
+  --basalt-font-serif: "Basalt Serif", Georgia, serif;
   --basalt-font-sans: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
   --basalt-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 

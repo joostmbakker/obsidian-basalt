@@ -15,7 +15,7 @@ src/foundation/      Style Settings options, fonts, tokens, Obsidian variable ma
 src/editor/          note content: headings, code, tables, callouts, ...
 src/app/             chrome: workspace, tabs, navigation, controls, overlays, ...
 src/views/           canvas, graph, bases
-src/fonts/           Geist and Geist Mono variable WOFF2 (OFL, see OFL.txt)
+src/fonts/           Geist, Geist Mono and Basalt Serif variable WOFF2 (OFL, see OFL*.txt)
 theme.css            build output, do not edit
 manifest.json        Obsidian theme manifest
 scripts/build.sh     src/ -> theme.css with modules and fonts inlined; refreshes local test-vault copy if present
@@ -35,8 +35,9 @@ scripts/build.sh
 Runs `scripts/check.py` first and stops if it fails: it enforces the rules
 `SPEC.md` marks ✓ (colours only in the token blocks, radius and UI type from
 scales, a SPEC role for every token, text contrast floors). Then it inlines
-the modules `src/index.css` imports, in order, replaces `__GEIST_SANS__` and
-`__GEIST_MONO__` (in `src/foundation/fonts.css`) with base64 WOFF2 data URIs,
+the modules `src/index.css` imports, in order, replaces `__GEIST_SANS__`,
+`__GEIST_MONO__` and `__BASALT_SERIF__` (in `src/foundation/fonts.css`) with
+base64 WOFF2 data URIs,
 writes `theme.css` at the repo root, and, when a local
 `test-vault/.obsidian` exists, copies it plus `manifest.json` into
 `test-vault/.obsidian/themes/Basalt/`. Without a local vault the copy is skipped.
@@ -63,8 +64,11 @@ saved choice takes precedence over the built-in default.
 
 - Geist and Geist Mono are embedded (variable weights) under the SIL Open Font
   License 1.1. See `src/fonts/OFL.txt`.
-- Headings use `Tiempos Headline` if installed, then `Source Serif 4`,
-  `Newsreader`, and Georgia. Tiempos is never embedded.
+- Headings, the inline title and blockquotes use Basalt Serif, embedded: a
+  Latin subset of Source Serif 4 (© Adobe, SIL Open Font License 1.1, weights
+  400–700, optical sizes 16–48). Subsetting makes it a Modified Version and
+  "Source" is a Reserved Font Name, so it ships under its own name. See
+  `src/fonts/OFL-SourceSerif4.txt`.
 - Your own font settings in Obsidian win. The theme does not touch
   `*-override` variables.
 
