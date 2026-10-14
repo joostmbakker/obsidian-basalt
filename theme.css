@@ -336,11 +336,10 @@
   --table-text-color: var(--basalt-text);
 
   /* Callouts: 1.14 uses --callout-color as a colour value, not an rgb triple */
-  --callout-radius: 8px;
-  --callout-padding: 12px 16px;
-  --callout-border-width: 1px;
-  --callout-border-opacity: 0.22;
-  --callout-title-weight: 500;
+  --callout-radius: 0;
+  --callout-padding: 12px 16px 12px 18px;
+  --callout-border-width: 0;
+  --callout-title-weight: 600;
   --callout-blend-mode: normal;
   --callout-default: rgb(var(--basalt-neutral-rgb));
   --callout-quote: rgb(var(--basalt-neutral-rgb));
@@ -808,16 +807,20 @@ a.tag:hover,
 /* Obsidian 1.14 mixes --callout-color as a colour. Registering it makes an
    invalid value (an old "52, 120, 246" triple) inherit the root's
    --callout-default, so such callouts look like a plain note instead of
-   getting a full-text-colour border. */
+   losing their bar and field. */
 @property --callout-color {
   syntax: "<color>";
   inherits: true;
   initial-value: currentcolor;
 }
 
+/* A 4px bar in the callout colour on a 7% field of it, square-cornered.
+   The field is mixed into the page ground (opaque) so nested callouts don't
+   stack their tints. */
 .callout {
-  background-color: color-mix(in srgb, var(--callout-color) 5%, transparent);
-  border-color: color-mix(in srgb, var(--callout-color) 22%, transparent);
+  background-color: color-mix(in srgb, var(--callout-color) 7%, var(--basalt-bg));
+  border: none;
+  border-inline-start: 4px solid var(--callout-color);
 }
 
 .callout-title {
