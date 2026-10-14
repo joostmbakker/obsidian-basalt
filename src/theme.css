@@ -611,6 +611,17 @@ settings:
   letter-spacing: -0.025em;
 }
 
+/* Space below headings. Reading: margins collapse with the next block, so use
+   max() against --p-spacing. Live preview: the next line has no top padding, so the
+   gap lives on the header line itself. */
+.markdown-rendered :is(h1, h2, h3, h4, h5, h6) {
+  margin-block-end: max(var(--p-spacing), 0.6em);
+}
+
+.cm-s-obsidian .cm-line.HyperMD-header {
+  padding-bottom: 0.35em;
+}
+
 .markdown-rendered h4,
 .HyperMD-header-4,
 .cm-header-4 {
