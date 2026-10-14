@@ -2,6 +2,7 @@
 # Build Basalt: src/index.css -> theme.css. Inlines the @import'ed modules in order
 # and the Geist and Basalt Serif fonts as base64 WOFF2. Also refreshes the local, gitignored
 # test-vault copy when test-vault/.obsidian exists. Runs scripts/check.py first.
+# Minifies formatting and ordinary comments; run npm ci once to install build tools.
 # Override the entry with BASALT_SRC=/path/to/file.css (used for testing); its
 # @imports resolve relative to that file.
 set -euo pipefail
@@ -27,6 +28,11 @@ die() {
 for f in "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$GEIST_OFL" "$SERIF_OFL" "$MANIFEST"; do
   [ -f "$f" ] || die "required file missing: $f"
 done
+
+command -v node >/dev/null || die "Node.js 22+ is required; install it and run npm ci"
+[ -d "$ROOT/node_modules/cssnano-preset-lite" ] || die "build dependencies missing; run npm ci"
+TEMP_OUT="$(mktemp "$ROOT/.theme-build.XXXXXX")"
+trap 'rm -f "$TEMP_OUT"' EXIT
 
 # Design-system rules (SPEC.md). Alternate entries are experiments: not checked.
 if [ -z "${BASALT_SRC:-}" ]; then
@@ -110,7 +116,11 @@ for token, path in (("__GEIST_SANS__", sans), ("__GEIST_MONO__", mono),
 
 with open(out, "w", encoding="utf-8") as f:
     f.write(header + css)
-' "$SRC" "$SRC_DIR" "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$GEIST_OFL" "$SERIF_OFL" "$OUT"
+' "$SRC" "$SRC_DIR" "$SANS_FONT" "$MONO_FONT" "$SERIF_FONT" "$GEIST_OFL" "$SERIF_OFL" "$TEMP_OUT"
+
+node "$ROOT/scripts/minify.mjs" "$TEMP_OUT"
+chmod 644 "$TEMP_OUT"
+mv "$TEMP_OUT" "$OUT"
 
 if [ -d "$ROOT/test-vault/.obsidian" ]; then
   mkdir -p "$VAULT_THEME"
