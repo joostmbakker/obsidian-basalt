@@ -539,6 +539,19 @@ settings:
   --graph-node-tag: var(--color-green);
   --graph-node-attachment: var(--color-yellow);
   --graph-line: var(--basalt-border);
+  /* Hover is monochrome (ink): the hovered node and its ring take the
+     strongest text colour, its links the muted one. */
+  --basalt-graph-highlight: var(--basalt-text-strong);
+  --basalt-graph-highlight-line: var(--basalt-text-muted);
+  --basalt-graph-circle: var(--basalt-text-strong);
+  /* Default colours for new colour groups: the soft palette minus green and
+     yellow (tag and attachment nodes), with blue (focused node) last. */
+  --basalt-graph-group-1: var(--color-purple);
+  --basalt-graph-group-2: var(--color-cyan);
+  --basalt-graph-group-3: var(--color-orange);
+  --basalt-graph-group-4: var(--color-pink);
+  --basalt-graph-group-5: var(--color-red);
+  --basalt-graph-group-6: var(--color-blue);
 
   /* Bases */
   --bases-table-header-background: var(--basalt-surface-2);
@@ -1813,6 +1826,133 @@ select:focus,
 
 .graph-view.color-text {
   color: var(--graph-text);
+}
+
+.graph-view.color-fill-highlight {
+  color: var(--basalt-graph-highlight);
+}
+
+.graph-view.color-line-highlight {
+  color: var(--basalt-graph-highlight-line);
+}
+
+.graph-view.color-circle {
+  color: var(--basalt-graph-circle);
+}
+
+.graph-view.color-fill-1 {
+  color: var(--basalt-graph-group-1);
+}
+
+.graph-view.color-fill-2 {
+  color: var(--basalt-graph-group-2);
+}
+
+.graph-view.color-fill-3 {
+  color: var(--basalt-graph-group-3);
+}
+
+.graph-view.color-fill-4 {
+  color: var(--basalt-graph-group-4);
+}
+
+.graph-view.color-fill-5 {
+  color: var(--basalt-graph-group-5);
+}
+
+.graph-view.color-fill-6 {
+  color: var(--basalt-graph-group-6);
+}
+
+/* Graph controls (global and local graph): a floating layer like menus.
+   Closed, the open/animate buttons sit in a small bordered tray. */
+.graph-controls:not(.is-close) {
+  background-color: var(--basalt-surface-1);
+  border: 1px solid var(--basalt-border);
+  border-radius: var(--menu-radius);
+  box-shadow: var(--basalt-shadow-float);
+}
+
+.graph-controls.is-close {
+  padding: 3px;
+  background-color: var(--basalt-surface-1);
+  border-color: var(--basalt-border);
+  border-radius: var(--menu-radius);
+}
+
+.graph-control-section {
+  padding: 6px 12px;
+  border-bottom-color: var(--basalt-line);
+}
+
+.graph-control-section-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--basalt-text-strong);
+}
+
+.graph-controls .setting-item {
+  padding: 5px 0;
+  margin-bottom: 0;
+}
+
+.graph-controls .setting-item-name {
+  color: var(--basalt-text-muted);
+}
+
+.graph-controls .setting-item.mod-slider .setting-item-control {
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+/* Sliders: thin track, ink fill, inverted thumb with a soft accent halo on
+   hover and focus. */
+.graph-controls input[type="range"] {
+  --slider-track-height: 3px;
+  --slider-track-background: var(--basalt-surface-3);
+  --slider-fill-background: var(--basalt-text-muted);
+  --slider-thumb-height: 14px;
+  --slider-thumb-width: 14px;
+  --slider-thumb-y: -5.5px;
+  --slider-thumb-background: var(--basalt-invert-bg);
+  --slider-thumb-background-hover: var(--basalt-invert-bg-hover);
+  --slider-thumb-border-color: transparent;
+  --slider-thumb-shadow: 0 0 0 1px var(--basalt-border-strong);
+  --slider-thumb-shadow-hover: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  --slider-thumb-shadow-active: var(--slider-thumb-shadow-hover);
+  --slider-thumb-shadow-focus: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+}
+
+.graph-color-group input[type="color"]::-webkit-color-swatch {
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--basalt-text-strong) 14%, transparent);
+}
+
+.graph-controls-button,
+.graph-color-group .clickable-icon {
+  color: var(--basalt-text-faint);
+}
+
+.graph-controls-button:hover,
+.graph-color-group .clickable-icon:hover {
+  color: var(--basalt-text);
+}
+
+.graph-controls .tree-item-self:focus-visible,
+.graph-controls .clickable-icon:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--basalt-accent) 45%, transparent);
+}
+
+/* "New group" and "Animate": the inverted primary fill. Text colour is set
+   here because the general button rule above outranks Obsidian's mod-cta. */
+.graph-controls button.mod-cta {
+  color: var(--basalt-invert-fg);
+  background-color: var(--basalt-invert-bg);
+  box-shadow: none;
+}
+
+.graph-controls button.mod-cta:hover {
+  background-color: var(--basalt-invert-bg-hover);
 }
 
 /* --- Bases ----------------------------------------------------------------- */
