@@ -16,6 +16,7 @@ theme.css            build output, do not edit
 manifest.json        Obsidian theme manifest
 scripts/build.sh     src -> theme.css with fonts inlined; refreshes test-vault copy
 scripts/install.sh   builds, then installs into a vault
+scripts/preview/     DOM-replica screenshot harness (see Preview harness)
 test-vault/          fixture vault for visual checks (theme copy is generated)
 screenshots/         verification screenshots
 ```
@@ -56,11 +57,44 @@ Indexed. Without the plugin the default applies.
 - Your own font settings in Obsidian win. The theme does not touch
   `*-override` variables.
 
+## Preview harness
+
+`scripts/preview/preview.mjs` screenshots HTML replicas of Obsidian's DOM for
+the tab bar, graph view and its controls, the find and replace bar, notices,
+and the empty state, with Obsidian's own `app.css` and the built `theme.css`
+loaded, in dark and light mode. Hover and focus states are forced through
+Chrome DevTools (`CSS.forcePseudoState`).
+
+```sh
+scripts/build.sh
+node scripts/preview/preview.mjs /path/to/obsidian/app.css
+# or: OBSIDIAN_APP_CSS=/path/to/app.css node scripts/preview/preview.mjs
+```
+
+Options: `--only graph,find` (fixture ids: `tabbar`, `graph`, `find`,
+`notices`, `empty`), `--modes dark`, `--theme other.css`, `--out dir`,
+`--scale 2`. Output goes to `preview-out/<fixture>/` (gitignored): one board
+per mode (`dark.png`) plus one image per frame (`dark-01.png`).
+
+Notes:
+
+- `app.css` is Obsidian's file. Pass its path; never commit it. Extract it
+  from your Obsidian install (`obsidian.asar`) or the app's DevTools.
+- Needs Playwright installed globally (`npm i -g playwright`, resolved via
+  `npm root -g`) and a Chromium it can launch; set `CHROMIUM_PATH` to use a
+  specific binary.
+- It is a replica, not the app. Layout JS, CodeMirror, plugins and the PixiJS
+  graph don't run: the graph is an SVG drawn with the colours Obsidian would
+  read from its hidden `.graph-view.color-*` elements. Markup that `app.css`
+  doesn't pin down is marked `GUESS:` in `scripts/preview/fixtures.mjs`.
+  Confirm visual changes in Obsidian itself.
+
 ## Verification workflow
 
 1. Run `scripts/build.sh`. It refreshes `test-vault/`.
-2. Open `test-vault/` in Obsidian and select Basalt.
-3. Check dark and light modes, the reading and live-preview views, and the
+2. Optionally run the preview harness for the components it covers.
+3. Open `test-vault/` in Obsidian and select Basalt.
+4. Check dark and light modes, the reading and live-preview views, and the
    core chrome (sidebars, tabs, modals, menus, callouts, tables, code blocks).
-4. Save screenshots to `screenshots/` and compare them against the reference
+5. Save screenshots to `screenshots/` and compare them against the reference
    screenshots.
