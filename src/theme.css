@@ -1,0 +1,1277 @@
+/* ==========================================================================
+   Folio — a dark, clean, minimal Obsidian theme.
+   Near-black canvas, light serif headings, sans body, hairline gray boxes,
+   mono tracked eyebrows, dashed hairlines, pill buttons, flat content.
+   Target: Obsidian 1.14.x. Fonts: Geist + Geist Mono (OFL), embedded at build.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Fonts (placeholders are inlined as base64 by scripts/build.sh)
+   ========================================================================== */
+
+@font-face {
+  font-family: "Geist";
+  src: url("__GEIST_SANS__") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("__GEIST_MONO__") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   2. Tokens
+   ========================================================================== */
+
+.theme-dark {
+  --folio-bg: #0a0a0a;
+  --folio-bg-sidebar: #0d0d0d;
+  --folio-surface-1: #111111;
+  --folio-surface-2: #161616;
+  --folio-surface-3: #1d1d1d;
+  --folio-hover: rgba(255, 255, 255, 0.045);
+  --folio-active: rgba(255, 255, 255, 0.075);
+  --folio-line: #222222;
+  --folio-border: #313131;
+  --folio-border-strong: #454543;
+  --folio-text: #ededeb;
+  --folio-text-strong: #f6f6f4;
+  --folio-text-muted: #a9aaa5;
+  --folio-text-faint: #6b6c68;
+  --folio-accent: hsl(212 52% 66%);
+  --folio-invert-bg: #ededeb;
+  --folio-invert-bg-hover: #ffffff;
+  --folio-invert-fg: #0a0a0a;
+  --folio-highlight: rgba(217, 201, 131, 0.2);
+  --folio-scrollbar: rgba(255, 255, 255, 0.08);
+  --folio-scrollbar-active: rgba(255, 255, 255, 0.16);
+  --folio-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.65);
+  --folio-neutral-rgb: 169, 170, 165;
+
+  --accent-h: 212;
+  --accent-s: 52%;
+  --accent-l: 66%;
+
+  --color-red: #e08585;
+  --color-orange: #dfa874;
+  --color-yellow: #d9c983;
+  --color-green: #93c29a;
+  --color-cyan: #85c3c3;
+  --color-blue: #7ea7d8;
+  --color-purple: #ab9fda;
+  --color-pink: #d79fbe;
+  --color-red-rgb: 224, 133, 133;
+  --color-orange-rgb: 223, 168, 116;
+  --color-yellow-rgb: 217, 201, 131;
+  --color-green-rgb: 147, 194, 154;
+  --color-cyan-rgb: 133, 195, 195;
+  --color-blue-rgb: 126, 167, 216;
+  --color-purple-rgb: 171, 159, 218;
+  --color-pink-rgb: 215, 159, 190;
+
+  --color-base-00: #0a0a0a;
+  --color-base-05: #0d0d0d;
+  --color-base-10: #111111;
+  --color-base-20: #141414;
+  --color-base-25: #181818;
+  --color-base-30: #222222;
+  --color-base-35: #313131;
+  --color-base-40: #454543;
+  --color-base-50: #6b6c68;
+  --color-base-60: #8a8b86;
+  --color-base-70: #a9aaa5;
+  --color-base-100: #ededeb;
+}
+
+.theme-light {
+  --folio-bg: #ffffff;
+  --folio-bg-sidebar: #fafafa;
+  --folio-surface-1: #f7f7f7;
+  --folio-surface-2: #f1f1f1;
+  --folio-surface-3: #e9e9e9;
+  --folio-hover: rgba(0, 0, 0, 0.04);
+  --folio-active: rgba(0, 0, 0, 0.065);
+  --folio-line: #ececec;
+  --folio-border: #dedede;
+  --folio-border-strong: #c8c8c8;
+  --folio-text: #141414;
+  --folio-text-strong: #0a0a0a;
+  --folio-text-muted: #5f5f5c;
+  --folio-text-faint: #9a9a96;
+  --folio-accent: hsl(212 45% 45%);
+  --folio-invert-bg: #141414;
+  --folio-invert-bg-hover: #000000;
+  --folio-invert-fg: #ffffff;
+  --folio-highlight: rgba(217, 190, 90, 0.28);
+  --folio-scrollbar: rgba(0, 0, 0, 0.12);
+  --folio-scrollbar-active: rgba(0, 0, 0, 0.22);
+  --folio-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.18);
+  --folio-neutral-rgb: 95, 95, 92;
+
+  --accent-h: 212;
+  --accent-s: 45%;
+  --accent-l: 45%;
+
+  --color-red: #b85454;
+  --color-orange: #b5793f;
+  --color-yellow: #a38f3a;
+  --color-green: #4f8a5a;
+  --color-cyan: #3f8a8a;
+  --color-blue: #4a74a8;
+  --color-purple: #7464a8;
+  --color-pink: #a5577f;
+  --color-red-rgb: 184, 84, 84;
+  --color-orange-rgb: 181, 121, 63;
+  --color-yellow-rgb: 163, 143, 58;
+  --color-green-rgb: 79, 138, 90;
+  --color-cyan-rgb: 63, 138, 138;
+  --color-blue-rgb: 74, 116, 168;
+  --color-purple-rgb: 116, 100, 168;
+  --color-pink-rgb: 165, 87, 127;
+
+  --color-base-00: #ffffff;
+  --color-base-05: #fafafa;
+  --color-base-10: #f7f7f7;
+  --color-base-20: #f1f1f1;
+  --color-base-25: #ececec;
+  --color-base-30: #e9e9e9;
+  --color-base-35: #dedede;
+  --color-base-40: #c8c8c8;
+  --color-base-50: #9a9a96;
+  --color-base-60: #7a7a76;
+  --color-base-70: #5f5f5c;
+  --color-base-100: #141414;
+}
+
+/* ==========================================================================
+   3. Shared mapping: Obsidian variables -> Folio tokens
+   ========================================================================== */
+
+.theme-dark,
+.theme-light {
+  /* Fonts (user overrides in Settings still win: *-override is untouched) */
+  --folio-font-serif: "Tiempos Headline", "Test Tiempos Headline", "Source Serif 4", "Newsreader", Georgia, serif;
+  --folio-font-sans: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  --folio-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-text-theme: var(--folio-font-sans);
+  --font-interface-theme: var(--folio-font-sans);
+  --font-monospace-theme: var(--folio-font-mono);
+  --font-ui-small: 13px;
+  --font-ui-smaller: 12px;
+
+  /* Layout & type scale */
+  --line-height-normal: 1.65;
+  --file-line-width: 720px;
+  --p-spacing: 1.1rem;
+  --bold-weight: 600;
+  --bold-color: var(--folio-text-strong);
+
+  /* Radii */
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 10px;
+  --radius-xl: 16px;
+
+  /* Backgrounds */
+  --background-primary: var(--folio-bg);
+  --background-primary-alt: var(--folio-surface-1);
+  --background-secondary: var(--folio-bg-sidebar);
+  --background-secondary-alt: var(--folio-surface-1);
+  --background-modifier-border: var(--folio-border);
+  --background-modifier-border-hover: var(--folio-border-strong);
+  --background-modifier-border-focus: var(--folio-border-strong);
+  --background-modifier-hover: var(--folio-hover);
+  --background-modifier-active-hover: var(--folio-active);
+  --background-modifier-form-field: var(--folio-surface-1);
+  --background-modifier-box-shadow: transparent;
+  --divider-color: var(--folio-line);
+  --divider-color-hover: var(--folio-border-strong);
+  --indentation-guide-color: var(--folio-line);
+  --indentation-guide-color-active: var(--folio-border);
+
+  /* Text */
+  --text-normal: var(--folio-text);
+  --text-muted: var(--folio-text-muted);
+  --text-faint: var(--folio-text-faint);
+  --text-accent: var(--folio-accent);
+  --text-accent-hover: var(--folio-text-strong);
+  --text-on-accent: var(--folio-invert-fg);
+  --text-selection: color-mix(in srgb, var(--folio-accent) 28%, transparent);
+  --text-highlight-bg: var(--folio-highlight);
+  --caret-color: var(--folio-text-strong);
+
+  /* Interactive */
+  --interactive-normal: var(--folio-surface-2);
+  --interactive-hover: var(--folio-surface-3);
+  --interactive-accent: var(--folio-accent);
+  --interactive-accent-hover: color-mix(in srgb, var(--folio-accent) 85%, white);
+
+  /* Icons */
+  --icon-color: var(--folio-text-faint);
+  --icon-color-hover: var(--folio-text-muted);
+  --icon-color-active: var(--folio-text);
+  --icon-color-focused: var(--folio-text);
+
+  /* Shadows: content is flat; only floating layers carry one */
+  --shadow-s: none;
+  --shadow-l: var(--folio-shadow-float);
+  --input-shadow: 0 0 0 1px var(--folio-border);
+  --input-shadow-hover: 0 0 0 1px var(--folio-border-strong);
+
+  /* Headings */
+  --heading-formatting: var(--folio-text-faint);
+  --h1-font: var(--folio-font-serif);
+  --h1-size: 2em;
+  --h1-weight: 400;
+  --h1-line-height: 1.15;
+  --h1-letter-spacing: -0.022em;
+  --h1-color: var(--folio-text-strong);
+  --h2-font: var(--folio-font-serif);
+  --h2-size: 1.55em;
+  --h2-weight: 400;
+  --h2-line-height: 1.2;
+  --h2-letter-spacing: -0.016em;
+  --h2-color: var(--folio-text-strong);
+  --h3-font: var(--folio-font-serif);
+  --h3-size: 1.25em;
+  --h3-weight: 400;
+  --h3-line-height: 1.3;
+  --h3-letter-spacing: -0.01em;
+  --h3-color: var(--folio-text-strong);
+  --h4-font: var(--folio-font-sans);
+  --h4-size: 1.05em;
+  --h4-weight: 600;
+  --h4-line-height: 1.4;
+  --h4-letter-spacing: 0;
+  --h4-color: var(--folio-text);
+  --h5-font: var(--folio-font-sans);
+  --h5-size: 0.95em;
+  --h5-weight: 600;
+  --h5-line-height: 1.4;
+  --h5-letter-spacing: 0;
+  --h5-color: var(--folio-text-muted);
+  --h6-font: var(--folio-font-mono);
+  --h6-size: 0.72em;
+  --h6-weight: 400;
+  --h6-line-height: 1.5;
+  --h6-letter-spacing: 0.1em;
+  --h6-color: var(--folio-text-faint);
+  --inline-title-font: var(--folio-font-serif);
+  --inline-title-size: 2.35em;
+  --inline-title-weight: 400;
+  --inline-title-line-height: 1.1;
+  --inline-title-color: var(--folio-text-strong);
+  --inline-title-margin-bottom: 0.6em;
+
+  /* Links */
+  --link-color: var(--folio-text);
+  --link-color-hover: var(--folio-accent);
+  --link-decoration: underline;
+  --link-decoration-hover: underline;
+  --link-decoration-thickness: 1px;
+  --link-external-color: var(--folio-text);
+  --link-external-color-hover: var(--folio-accent);
+  --link-external-decoration: underline;
+  --link-external-decoration-hover: underline;
+  --link-unresolved-color: var(--folio-text-muted);
+  --link-unresolved-opacity: 1;
+  --link-unresolved-decoration-style: dashed;
+  --link-unresolved-decoration-color: var(--folio-text-faint);
+
+  /* Tags */
+  --tag-radius: 999px;
+  --tag-size: 0.8em;
+  --tag-weight: 400;
+  --tag-padding-x: 0.6em;
+  --tag-padding-y: 0.15em;
+  --tag-color: var(--folio-text-muted);
+  --tag-color-hover: var(--folio-text);
+  --tag-background: var(--folio-surface-2);
+  --tag-background-hover: var(--folio-surface-2);
+  --tag-border-width: 1px;
+  --tag-border-color: var(--folio-border);
+  --tag-border-color-hover: var(--folio-border-strong);
+  --tag-decoration: none;
+  --tag-decoration-hover: none;
+
+  /* Code */
+  --code-size: 0.86em;
+  --code-radius: 4px;
+  --code-background: var(--folio-surface-2);
+  --code-normal: var(--folio-text);
+  --code-border-width: 1px;
+  --code-border-color: var(--folio-line);
+  --code-comment: var(--folio-text-faint);
+  --code-keyword: var(--color-purple);
+  --code-string: var(--color-green);
+  --code-function: var(--color-blue);
+  --code-value: var(--color-orange);
+  --code-property: var(--folio-text);
+  --code-tag: var(--color-pink);
+  --code-operator: var(--folio-text-muted);
+  --code-punctuation: var(--folio-text-muted);
+  --code-important: var(--color-orange);
+
+  /* Tables */
+  --table-background: transparent;
+  --table-border-width: 1px;
+  --table-border-color: var(--folio-border);
+  --table-header-background: var(--folio-surface-2);
+  --table-header-background-hover: var(--folio-surface-2);
+  --table-header-color: var(--folio-text-muted);
+  --table-header-weight: 400;
+  --table-header-size: var(--table-text-size);
+  --table-header-font: inherit;
+  --table-row-background-hover: var(--folio-hover);
+  --table-row-alt-background: transparent;
+  --table-row-alt-background-hover: var(--folio-hover);
+  --table-column-alt-background: transparent;
+  --table-text-color: var(--folio-text);
+
+  /* Callouts: 1.14 uses --callout-color as a colour value, not an rgb triple */
+  --callout-radius: 8px;
+  --callout-padding: 12px 16px;
+  --callout-border-width: 1px;
+  --callout-border-opacity: 0.22;
+  --callout-title-weight: 500;
+  --callout-blend-mode: normal;
+  --callout-default: rgb(var(--folio-neutral-rgb));
+  --callout-quote: rgb(var(--folio-neutral-rgb));
+
+  /* Checkbox, lists, rules, quotes */
+  --checkbox-size: 15px;
+  --checkbox-radius: 4px;
+  --checkbox-border-color: var(--folio-text-faint);
+  --checkbox-border-color-hover: var(--folio-text-muted);
+  --checkbox-color: var(--folio-invert-bg);
+  --checkbox-color-hover: var(--folio-invert-bg);
+  --checkbox-marker-color: var(--folio-invert-fg);
+  --checklist-done-color: var(--folio-text-faint);
+  --checklist-done-decoration: line-through;
+  --list-marker-color: var(--folio-text-faint);
+  --list-marker-color-hover: var(--folio-text-muted);
+  --list-marker-color-collapsed: var(--folio-text-muted);
+  --list-bullet-size: 5px;
+  --hr-color: var(--folio-border);
+  --hr-thickness: 1px;
+  --blockquote-border-color: var(--folio-border-strong);
+  --blockquote-border-thickness: 1px;
+  --blockquote-color: var(--folio-text);
+  --blockquote-background-color: transparent;
+  --blockquote-font-style: normal;
+  --blockquote-style: normal;
+  --embed-border-left: 1px solid var(--folio-border-strong);
+  --embed-border-start: 1px solid var(--folio-border-strong);
+  --embed-padding: 0 0 0 1em;
+  --footnote-size: 0.85em;
+
+  /* Properties */
+  --metadata-label-font: var(--folio-font-mono);
+  --metadata-label-font-size: 11px;
+  --metadata-label-font-weight: 400;
+  --metadata-label-text-color: var(--folio-text-faint);
+  --metadata-label-text-color-hover: var(--folio-text-muted);
+  --metadata-input-font: var(--folio-font-sans);
+  --metadata-input-font-size: 13px;
+  --metadata-input-text-color: var(--folio-text);
+  --metadata-border-width: 0;
+  --metadata-border-radius: 0;
+  --metadata-background: transparent;
+  --metadata-padding: 0 0 12px 0;
+  --metadata-divider-color: transparent;
+
+  /* Tabs */
+  --tab-font-size: 12.5px;
+  --tab-font-weight: 400;
+  --tab-container-background: var(--folio-bg-sidebar);
+  --tab-background-active: var(--folio-bg);
+  --tab-text-color: var(--folio-text-faint);
+  --tab-text-color-focused: var(--folio-text-muted);
+  --tab-text-color-active: var(--folio-text);
+  --tab-text-color-focused-active: var(--folio-text);
+  --tab-text-color-focused-active-current: var(--folio-text);
+  --tab-outline-color: var(--folio-line);
+  --tab-divider-color: var(--folio-line);
+
+  /* Chrome */
+  --titlebar-background: var(--folio-bg-sidebar);
+  --titlebar-background-focused: var(--folio-bg-sidebar);
+  --titlebar-border-color: var(--folio-line);
+  --ribbon-background: var(--folio-bg-sidebar);
+  --ribbon-background-collapsed: var(--folio-bg);
+  --sidebar-tab-container-background: var(--folio-bg-sidebar);
+  --file-header-background: var(--folio-bg);
+  --file-header-background-focused: var(--folio-bg);
+  --workspace-background-translucent: color-mix(in srgb, var(--folio-bg-sidebar) 85%, transparent);
+
+  /* Navigation */
+  --nav-item-radius: 6px;
+  --nav-item-color: var(--folio-text-muted);
+  --nav-item-color-hover: var(--folio-text);
+  --nav-item-color-active: var(--folio-text-strong);
+  --nav-item-color-selected: var(--folio-text-strong);
+  --nav-item-color-highlighted: var(--folio-text-strong);
+  --nav-item-background-hover: var(--folio-hover);
+  --nav-item-background-active: var(--folio-active);
+  --nav-item-background-selected: var(--folio-active);
+  --nav-item-weight: 400;
+  --nav-item-weight-hover: 400;
+  --nav-item-weight-active: 400;
+  --nav-indentation-guide-color: var(--folio-line);
+  --nav-collapse-icon-color: var(--folio-text-faint);
+  --nav-collapse-icon-color-collapsed: var(--folio-text-faint);
+  --nav-heading-color: var(--folio-text-muted);
+  --nav-heading-color-hover: var(--folio-text);
+  --nav-heading-color-collapsed: var(--folio-text-faint);
+  --nav-heading-color-collapsed-hover: var(--folio-text-muted);
+
+  /* Status bar */
+  --status-bar-background: transparent;
+  --status-bar-border-width: 0;
+  --status-bar-border-color: transparent;
+  --status-bar-font-size: 11px;
+  --status-bar-text-color: var(--folio-text-faint);
+
+  /* Modals, prompt, menus */
+  --modal-radius: 12px;
+  --modal-background: var(--folio-surface-1);
+  --modal-border-color: var(--folio-border);
+  --modal-border-width: 1px;
+  --modal-shadow: 0 0 0 1px var(--folio-border), var(--folio-shadow-float);
+  --prompt-background: var(--folio-surface-1);
+  --prompt-border-color: var(--folio-border);
+  --prompt-border-width: 1px;
+  --menu-background: var(--folio-surface-1);
+  --menu-border-color: var(--folio-border);
+  --menu-border-width: 1px;
+  --menu-radius: 10px;
+  --menu-shadow: 0 0 0 1px var(--folio-border), var(--folio-shadow-float);
+  --menu-divider-color: var(--folio-line);
+  --dialog-bg-color: var(--folio-surface-1);
+  --dialog-shadow: 0 0 0 1px var(--folio-border), var(--folio-shadow-float);
+  --settings-background: var(--folio-surface-1);
+  --setting-items-background: transparent;
+  --setting-items-border-color: var(--folio-line);
+  --setting-items-divider-color: var(--folio-line);
+
+  /* Inputs, buttons, dropdowns, toggles */
+  --input-radius: 8px;
+  --button-radius: 999px;
+  --input-font-weight: 500;
+  --input-focus-border-color: var(--folio-border-strong);
+  --input-hover-border-color: var(--folio-border-strong);
+  --input-placeholder-color: var(--folio-text-faint);
+  --dropdown-background: var(--folio-surface-1);
+  --dropdown-background-hover: var(--folio-surface-1);
+  --toggle-thumb-color: white;
+  --slider-track-background: var(--folio-surface-3);
+  --slider-thumb-border-color: var(--folio-border-strong);
+
+  /* Tooltip, scrollbars */
+  --tooltip-background: var(--folio-surface-3);
+  --tooltip-color: var(--folio-text);
+  --tooltip-radius: 6px;
+  --tooltip-font-size: 12px;
+  --tooltip-shadow: 0 0 0 1px var(--folio-border-strong), var(--folio-shadow-float);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--folio-scrollbar);
+  --scrollbar-active-thumb-bg: var(--folio-scrollbar-active);
+
+  /* Canvas (1.14 expects colours, not triples) */
+  --canvas-background: var(--folio-bg);
+  --canvas-dot-pattern: var(--folio-line);
+  --canvas-card-label-color: var(--folio-text-faint);
+  --canvas-color-1: var(--color-red);
+  --canvas-color-2: var(--color-orange);
+  --canvas-color-3: var(--color-yellow);
+  --canvas-color-4: var(--color-green);
+  --canvas-color-5: var(--color-cyan);
+  --canvas-color-6: var(--color-purple);
+
+  /* Graph */
+  --graph-text: var(--folio-text-faint);
+  --graph-node: var(--folio-text-muted);
+  --graph-node-unresolved: var(--folio-text-faint);
+  --graph-node-focused: var(--folio-accent);
+  --graph-node-tag: var(--color-green);
+  --graph-node-attachment: var(--color-yellow);
+  --graph-line: var(--folio-border);
+
+  /* Bases */
+  --bases-table-header-background: var(--folio-surface-2);
+  --bases-table-header-background-hover: var(--folio-surface-3);
+  --bases-table-header-color: var(--folio-text-muted);
+  --bases-table-border-color: var(--folio-border);
+  --bases-table-row-background-hover: var(--folio-hover);
+  --bases-cards-background: var(--folio-surface-1);
+  --bases-cards-radius: 8px;
+  --bases-cards-shadow: 0 0 0 1px var(--folio-border);
+  --bases-cards-shadow-hover: 0 0 0 1px var(--folio-border-strong);
+  --bases-kanban-card-background: var(--folio-surface-1);
+  --bases-kanban-card-radius: 8px;
+  --bases-kanban-card-shadow: 0 0 0 1px var(--folio-border);
+  --bases-kanban-card-shadow-hover: 0 0 0 1px var(--folio-border-strong);
+}
+
+/* ==========================================================================
+   4. Components
+   ========================================================================== */
+
+/* --- Editor typography ---------------------------------------------------- */
+
+.markdown-rendered,
+.markdown-source-view {
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.markdown-rendered strong,
+.cm-s-obsidian span.cm-strong {
+  color: var(--bold-color);
+}
+
+.markdown-rendered mark,
+.cm-s-obsidian span.cm-highlight {
+  color: inherit;
+  border-radius: 2px;
+}
+
+/* --- Headings -------------------------------------------------------------- */
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.HyperMD-header-1,
+.HyperMD-header-2,
+.HyperMD-header-3,
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.inline-title {
+  font-weight: 400;
+}
+
+.markdown-rendered h2 {
+  margin-block-start: 2.2em;
+}
+
+.markdown-rendered h3 {
+  margin-block-start: 1.8em;
+}
+
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+  margin-block-start: 1.6em;
+}
+
+.inline-title {
+  letter-spacing: -0.025em;
+}
+
+.markdown-rendered h4,
+.HyperMD-header-4,
+.cm-header-4 {
+  font-family: var(--h4-font);
+  font-weight: var(--h4-weight);
+}
+
+.markdown-rendered h5,
+.HyperMD-header-5,
+.cm-header-5 {
+  font-family: var(--h5-font);
+  font-weight: var(--h5-weight);
+}
+
+.markdown-rendered h6,
+.HyperMD-header-6,
+.cm-header-6 {
+  font-family: var(--h6-font);
+  font-weight: var(--h6-weight);
+  font-size: var(--h6-size);
+  letter-spacing: var(--h6-letter-spacing);
+  text-transform: uppercase;
+  color: var(--h6-color);
+}
+
+/* --- Links ----------------------------------------------------------------- */
+
+.markdown-rendered a.internal-link,
+.markdown-rendered a.external-link,
+.cm-s-obsidian span.cm-link,
+.cm-s-obsidian span.cm-hmd-internal-link,
+.cm-s-obsidian span.cm-url {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--folio-text-faint) 80%, transparent);
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+}
+
+.markdown-rendered a.internal-link:hover,
+.markdown-rendered a.external-link:hover,
+.cm-s-obsidian span.cm-hmd-internal-link:hover,
+.cm-s-obsidian span.cm-link:hover {
+  color: var(--folio-accent);
+  text-decoration-color: var(--folio-accent);
+}
+
+.markdown-rendered a.internal-link.is-unresolved,
+.cm-s-obsidian span.cm-hmd-internal-link.is-unresolved {
+  text-decoration-style: dashed;
+  text-decoration-color: var(--folio-text-faint);
+}
+
+.markdown-rendered a.external-link {
+  background-image: none;
+  padding-inline-end: 0;
+}
+
+.external-link .svg-icon,
+.markdown-rendered a.external-link::after {
+  color: var(--folio-text-faint);
+}
+
+/* --- Tags ------------------------------------------------------------------ */
+
+a.tag,
+.cm-s-obsidian span.cm-hashtag {
+  font-family: var(--font-interface);
+}
+
+a.tag:hover,
+.cm-s-obsidian span.cm-hashtag:hover {
+  color: var(--tag-color-hover);
+  border-color: var(--tag-border-color-hover);
+}
+
+.cm-hashtag-begin:hover,
+.cm-hashtag-end:hover {
+  border-color: var(--tag-border-color-hover);
+}
+
+/* --- Code ------------------------------------------------------------------ */
+
+.markdown-rendered code,
+.cm-s-obsidian span.cm-inline-code {
+  padding: 0.1em 0.35em;
+  font-variant-ligatures: none;
+}
+
+.markdown-rendered pre,
+.cm-s-obsidian .HyperMD-codeblock {
+  font-family: var(--font-monospace);
+  line-height: 1.6;
+}
+
+.markdown-rendered pre {
+  background-color: var(--folio-surface-1);
+  border: 1px solid var(--folio-border);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.markdown-rendered pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.86em;
+  line-height: 1.6;
+}
+
+/* Live preview code block lines: full box via background on each line */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  background-color: var(--folio-surface-1);
+  padding-inline: 18px;
+  line-height: 1.6;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
+  border-start-start-radius: 8px;
+  border-start-end-radius: 8px;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
+  border-end-start-radius: 8px;
+  border-end-end-radius: 8px;
+}
+
+.markdown-rendered .copy-code-button {
+  opacity: 0.5;
+  background: transparent;
+  box-shadow: none;
+  color: var(--folio-text-faint);
+  font-family: var(--folio-font-mono);
+  font-size: 11px;
+}
+
+.markdown-rendered pre:hover .copy-code-button {
+  opacity: 1;
+  color: var(--folio-text-muted);
+}
+
+/* --- Tables ---------------------------------------------------------------- */
+
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-table-widget table {
+  border-collapse: collapse;
+  border: 1px solid var(--table-border-color);
+  border-radius: 0;
+}
+
+.markdown-rendered th,
+.markdown-rendered td,
+.markdown-source-view.mod-cm6 .cm-table-widget th,
+.markdown-source-view.mod-cm6 .cm-table-widget td {
+  border: 1px solid var(--table-border-color);
+  padding: 10px 14px;
+}
+
+.markdown-rendered th,
+.markdown-source-view.mod-cm6 .cm-table-widget th {
+  background-color: var(--table-header-background);
+  color: var(--table-header-color);
+  font-weight: var(--table-header-weight);
+  font-family: inherit;
+}
+
+.markdown-rendered tbody tr:hover td,
+.markdown-source-view.mod-cm6 .cm-table-widget tbody tr:hover td {
+  background-color: var(--table-row-background-hover);
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget td .table-cell-wrapper,
+.markdown-source-view.mod-cm6 .cm-table-widget th .table-cell-wrapper {
+  padding: 0;
+}
+
+/* --- Blockquote ------------------------------------------------------------ */
+
+.markdown-rendered blockquote {
+  font-family: var(--folio-font-serif);
+  font-size: 1.1em;
+  line-height: 1.55;
+  padding-inline-start: 1.25em;
+}
+
+.markdown-rendered blockquote ul,
+.markdown-rendered blockquote ol {
+  font-family: inherit;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
+  font-family: var(--folio-font-serif);
+  font-size: 1.1em;
+  line-height: 1.55;
+  padding-inline-start: 1.25em;
+}
+
+.cm-s-obsidian span.cm-quote {
+  font-family: inherit;
+  color: var(--blockquote-color);
+}
+
+/* --- HR -------------------------------------------------------------------- */
+
+.markdown-rendered hr,
+.markdown-source-view.mod-cm6 hr {
+  border: none;
+  border-top: var(--hr-thickness) dashed var(--hr-color);
+  background: none;
+  height: 0;
+}
+
+.markdown-rendered hr {
+  margin: 2.5em 0;
+}
+
+.markdown-source-view.mod-cm6 .hr {
+  margin: 1.25em 0;
+}
+
+/* --- Callouts -------------------------------------------------------------- */
+
+.callout {
+  background-color: color-mix(in srgb, var(--callout-color) 5%, transparent);
+  border-color: color-mix(in srgb, var(--callout-color) 22%, transparent);
+}
+
+.callout-title {
+  gap: 8px;
+}
+
+.callout-title-inner {
+  color: var(--callout-color);
+  font-weight: var(--callout-title-weight);
+}
+
+.callout-content {
+  color: var(--folio-text);
+  padding-top: 6px;
+}
+
+.callout-content > :first-child {
+  margin-top: 0;
+}
+
+.callout-content > :last-child {
+  margin-bottom: 0;
+}
+
+/* --- Lists & tasks --------------------------------------------------------- */
+
+.markdown-rendered ul > li::marker,
+.markdown-rendered ol > li::marker,
+.cm-s-obsidian span.cm-formatting-list {
+  color: var(--list-marker-color);
+}
+
+.markdown-rendered .task-list-item.is-checked,
+.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task=" "]) {
+  color: var(--checklist-done-color);
+}
+
+/* --- Embeds ---------------------------------------------------------------- */
+
+.markdown-embed {
+  padding-inline-start: 1em;
+  border-radius: 0;
+}
+
+.markdown-embed .markdown-embed-title {
+  color: var(--folio-text-faint);
+}
+
+.markdown-rendered .image-embed img,
+.markdown-source-view.mod-cm6 .image-embed img,
+.markdown-rendered img {
+  border-radius: 6px;
+}
+
+/* --- Properties ------------------------------------------------------------ */
+
+.metadata-container {
+  border-bottom: 1px dashed var(--folio-line);
+  margin-block-end: 1.5em;
+  padding-bottom: 12px;
+}
+
+.metadata-property-key,
+input.metadata-property-key-input,
+.metadata-properties-heading {
+  font-family: var(--folio-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--folio-text-faint);
+}
+
+.metadata-property-value,
+.metadata-property-value input,
+.metadata-input-longtext {
+  font-family: var(--folio-font-sans);
+  font-size: 13px;
+  color: var(--folio-text);
+}
+
+/* --- Footnotes ------------------------------------------------------------- */
+
+.markdown-rendered .footnotes {
+  font-size: var(--footnote-size);
+  color: var(--folio-text-muted);
+}
+
+.markdown-rendered .footnotes hr {
+  margin: 2em 0 1em;
+}
+
+/* --- Workspace chrome ------------------------------------------------------ */
+
+.workspace-ribbon,
+.mod-left-split .workspace-tabs,
+.mod-right-split .workspace-tabs,
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split {
+  background-color: var(--folio-bg-sidebar);
+}
+
+.workspace-split.mod-root,
+.workspace-leaf-content {
+  background-color: var(--folio-bg);
+}
+
+.mod-left-split .workspace-leaf-content,
+.mod-right-split .workspace-leaf-content {
+  background-color: var(--folio-bg-sidebar);
+}
+
+.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle {
+  background-color: var(--folio-line);
+}
+
+.view-header-title {
+  font-family: var(--folio-font-sans);
+  font-weight: 400;
+}
+
+.view-header-breadcrumb,
+.view-header-title-parent {
+  color: var(--folio-text-faint);
+}
+
+.clickable-icon:hover,
+.workspace-ribbon .side-dock-ribbon-action:hover {
+  background-color: var(--folio-hover);
+}
+
+/* --- Tabs ------------------------------------------------------------------ */
+
+.workspace-tab-header-inner-title {
+  font-family: var(--folio-font-sans);
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner-title {
+  color: var(--tab-text-color-active);
+}
+
+.mod-left-split .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.mod-right-split .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
+  color: var(--folio-text-strong);
+}
+
+/* --- Navigation ------------------------------------------------------------ */
+
+.nav-folder-title,
+.nav-folder-title-content {
+  font-weight: 500;
+}
+
+.nav-file-title,
+.tree-item-self {
+  border-radius: var(--nav-item-radius);
+}
+
+.nav-file-title.is-active,
+.tree-item-self.is-active {
+  color: var(--nav-item-color-active);
+}
+
+.nav-file-title.is-active,
+.tree-item-self.is-active,
+.nav-file-title.is-selected,
+.tree-item-self.is-selected {
+  background-color: var(--nav-item-background-active);
+}
+
+.nav-header .nav-buttons-container .clickable-icon.is-active {
+  background-color: var(--folio-active);
+  color: var(--folio-text);
+}
+
+.tree-item-flair {
+  font-family: var(--folio-font-mono);
+  font-size: 10.5px;
+  color: var(--folio-text-faint);
+  background-color: var(--folio-surface-2);
+}
+
+/* --- Status bar ------------------------------------------------------------ */
+
+.status-bar {
+  font-family: var(--folio-font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--status-bar-text-color);
+  background-color: transparent;
+  border: 0;
+}
+
+.status-bar-item {
+  color: var(--status-bar-text-color);
+}
+
+.status-bar-item.mod-clickable:hover {
+  background-color: var(--folio-hover);
+  color: var(--folio-text-muted);
+}
+
+/* --- Buttons & inputs ------------------------------------------------------ */
+
+button:not(.clickable-icon) {
+  font-weight: 500;
+  color: var(--folio-text);
+  background-color: var(--folio-surface-2);
+  box-shadow: 0 0 0 1px var(--folio-border);
+}
+
+button:not(.clickable-icon):hover {
+  background-color: var(--folio-surface-3);
+  box-shadow: 0 0 0 1px var(--folio-border-strong);
+}
+
+button.mod-cta {
+  --text-color: var(--folio-invert-fg);
+  background-color: var(--folio-invert-bg);
+  box-shadow: none;
+}
+
+button.mod-cta:hover {
+  background-color: var(--folio-invert-bg-hover);
+  box-shadow: none;
+}
+
+button.mod-warning {
+  --text-color: var(--color-red);
+  background-color: color-mix(in srgb, var(--color-red) 15%, transparent);
+  box-shadow: none;
+}
+
+button.mod-warning:hover {
+  background-color: color-mix(in srgb, var(--color-red) 22%, transparent);
+  box-shadow: none;
+}
+
+button:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--folio-accent) 30%, transparent);
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+input[type="date"],
+input[type="time"],
+textarea,
+select,
+.dropdown {
+  background-color: var(--folio-surface-1);
+  border: 1px solid var(--folio-border);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+input[type="text"]:hover,
+input[type="search"]:hover,
+input[type="number"]:hover,
+textarea:hover,
+.dropdown:hover {
+  border-color: var(--folio-border-strong);
+  box-shadow: none;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+textarea:focus,
+select:focus,
+.dropdown:focus {
+  border-color: var(--folio-border-strong);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--folio-accent) 22%, transparent);
+}
+
+/* --- Toggles --------------------------------------------------------------- */
+
+.checkbox-container {
+  background-color: var(--folio-surface-3);
+  box-shadow: inset 0 0 0 1px var(--folio-border);
+}
+
+.checkbox-container.is-enabled {
+  background-color: var(--folio-accent);
+  box-shadow: none;
+}
+
+.checkbox-container::after {
+  background-color: var(--toggle-thumb-color);
+  box-shadow: none;
+}
+
+/* --- Modals / prompt / menus ----------------------------------------------- */
+
+.modal,
+.prompt,
+.menu,
+.popover,
+.suggestion-container {
+  border: 1px solid var(--folio-border);
+}
+
+.modal-bg {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-title,
+.setting-item-heading,
+.setting-item-name {
+  font-weight: 500;
+}
+
+.setting-item {
+  border-top-color: var(--folio-line);
+}
+
+.vertical-tab-nav-item.is-active {
+  background-color: var(--folio-active);
+  color: var(--folio-text-strong);
+}
+
+.prompt {
+  border-radius: var(--modal-radius);
+}
+
+.prompt-input,
+.prompt-input:focus {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.suggestion-item {
+  border-radius: 6px;
+}
+
+.suggestion-item.is-selected {
+  background-color: var(--folio-active);
+}
+
+.suggestion-highlight,
+.search-result-file-matched-text {
+  background-color: var(--text-highlight-bg);
+  color: inherit;
+  border-radius: 2px;
+}
+
+.menu {
+  padding: 6px;
+}
+
+.menu-item {
+  border-radius: 6px;
+}
+
+.menu-item:hover,
+.menu-item.selected {
+  background-color: var(--folio-hover);
+}
+
+.menu-separator {
+  border-color: var(--folio-line);
+}
+
+/* --- Tooltip --------------------------------------------------------------- */
+
+.tooltip {
+  background-color: var(--tooltip-background);
+  color: var(--tooltip-color);
+  border: 1px solid var(--folio-border-strong);
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: var(--tooltip-shadow);
+}
+
+.tooltip .tooltip-arrow {
+  display: none;
+}
+
+/* --- Scrollbars ------------------------------------------------------------ */
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--folio-scrollbar);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--folio-scrollbar-active);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* --- Canvas ---------------------------------------------------------------- */
+
+.canvas-node-container {
+  background-color: var(--folio-surface-1);
+  border: 1px solid var(--folio-border);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.canvas-node.is-focused .canvas-node-container,
+.canvas-node.is-selected .canvas-node-container {
+  border-color: var(--folio-accent);
+  box-shadow: none;
+}
+
+.canvas-node-label {
+  font-family: var(--folio-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--folio-text-faint);
+}
+
+/* --- Graph ----------------------------------------------------------------- */
+
+.graph-view.color-fill {
+  color: var(--graph-node);
+}
+
+.graph-view.color-fill-tag {
+  color: var(--graph-node-tag);
+}
+
+.graph-view.color-fill-attachment {
+  color: var(--graph-node-attachment);
+}
+
+.graph-view.color-fill-focused {
+  color: var(--graph-node-focused);
+}
+
+.graph-view.color-fill-unresolved {
+  color: var(--graph-node-unresolved);
+}
+
+.graph-view.color-arrow,
+.graph-view.color-line {
+  color: var(--graph-line);
+}
+
+.graph-view.color-text {
+  color: var(--graph-text);
+}
+
+/* --- Bases ----------------------------------------------------------------- */
+
+.bases-table-container,
+.bases-embed {
+  border-color: var(--folio-border);
+}
+
+.bases-thead,
+.bases-table-header {
+  font-weight: 400;
+}
+
+.bases-cards-item,
+.bases-cards-container .bases-cards-item {
+  border-radius: 8px;
+  background-color: var(--folio-surface-1);
+}
