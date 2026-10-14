@@ -427,19 +427,27 @@ const notice = {
 /* Empty state                                                               */
 /* ------------------------------------------------------------------------ */
 
-// Markup from app.js (EmptyView): actions are div.empty-state-action.tappable with
-// the hotkey in the label text; the title element is created empty.
-const emptyAction = (label, close = false) =>
-  `<div class="empty-state-action tappable${close ? " mod-close" : ""}">${label}</div>`;
+// Markup taken from Obsidian 1.14's live DOM: each action is a
+// .text-icon-button.mod-pill.empty-state-action with icon, label and optional
+// hotkey spans; the title element is created empty. Icons are stand-ins for the
+// lucide glyphs.
+const emptyIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><rect x="4" y="3" width="16" height="18" rx="2"/></svg>`;
+const emptyAction = (label, hotkey = "") =>
+  `<div class="text-icon-button tappable mod-pill empty-state-action" tabindex="0" role="button" aria-label="${label}">` +
+  `<span class="text-button-icon">${emptyIcon}</span>` +
+  `<span class="text-button-label">${label}</span>` +
+  (hotkey ? `<span class="empty-state-hotkey"> ${hotkey}</span>` : "") +
+  `</div>`;
 const emptyState = `
   <div class="view-content">
     <div class="empty-state">
       <div class="empty-state-container">
         <div class="empty-state-title"></div>
         <div class="empty-state-action-list">
-          ${emptyAction("Create new note (⌘ N)")}
-          ${emptyAction("Go to file (⌘ O)")}
-          ${emptyAction("Close", true)}
+          ${emptyAction("New note", "⌘ N")}
+          ${emptyAction("New base")}
+          ${emptyAction("New canvas")}
+          ${emptyAction("Go to file", "⌘ O")}
         </div>
       </div>
     </div>
@@ -458,9 +466,9 @@ const empty = {
   title: "Empty state",
   frames: [
     emptyFrame("New tab · default", 720),
-    emptyFrame("Hover 1st, Close hover", 720, [
+    emptyFrame("Hover 1st, focus-visible 4th", 720, [
       { sel: ".empty-state-action:nth-child(1)", states: ["hover"] },
-      { sel: ".empty-state-action:nth-child(3)", states: ["hover"] },
+      { sel: ".empty-state-action:nth-child(4)", states: ["focus", "focus-visible"] },
     ]),
     emptyFrame("Narrow pane", 220),
   ],

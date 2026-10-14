@@ -1792,79 +1792,86 @@ select:focus,
 /* src: app/empty-state.css */
 /* --- Empty state ----------------------------------------------------------- */
 
-/* Pill row. Obsidian renders the actions as plain `div.empty-state-action.tappable`
-   rows (Close adds `.mod-close`) with the hotkey inside the label text; the title
-   element is created empty. */
+/* Obsidian 1.14 renders each action as
+   `.empty-state-action-list > .text-icon-button.mod-pill.empty-state-action`
+   (icon span, label span, optional `.empty-state-hotkey` span) and creates the
+   title element empty. Its pill rules sit at (0,3,0), so the action selectors
+   below repeat that shape and win on order. The actions read as a row of text
+   links under a receding serif title. */
 .empty-state-title {
   font-family: var(--basalt-font-serif);
-  font-size: 1.9em;
+  font-size: 1.5em;
   font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--basalt-text-strong);
+  letter-spacing: -0.01em;
+  color: var(--basalt-text-muted);
+  margin-bottom: 12px;
 }
 /* Obsidian leaves the title empty; supply the label so the empty state has a heading. */
 .empty-state-title:empty::before {
   content: "No file is open";
 }
+/* No `display` here: app.css switches the list to a grid in narrow panes
+   (`@container empty-state (max-width: 230px)`). */
 .empty-state-action-list {
-  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 4px 20px;
+  max-width: 520px;
 }
-.empty-state-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: var(--basalt-ui-size-5);
-  font-weight: 500;
-  line-height: normal;
-  padding: 7px 14px;
-  border-radius: var(--basalt-radius-pill);
-  background-color: var(--basalt-surface-2);
-  box-shadow: 0 0 0 1px var(--basalt-border);
-  color: var(--basalt-text);
-}
-.empty-state-action:hover {
-  background-color: var(--basalt-surface-3);
-  box-shadow: 0 0 0 1px var(--basalt-border-strong);
-  color: var(--basalt-text-strong);
-}
-/* Icons: Obsidian renders none, so draw lucide glyphs with a mask. Create / Go to
-   file are positional (first two actions); Close is .mod-close. */
-.empty-state-action::before {
-  content: "";
-  flex: none;
-  width: 16px;
-  height: 16px;
-  background-color: var(--basalt-text-faint);
-  -webkit-mask: var(--basalt-empty-icon) center / contain no-repeat;
-  mask: var(--basalt-empty-icon) center / contain no-repeat;
-}
-.empty-state-action:hover::before {
-  background-color: var(--basalt-text-strong);
-}
-.empty-state-action:nth-child(1) {
-  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z'/%3E%3Cpath d='M14 2v6h6M12 18v-6M9 15h6'/%3E%3C/svg%3E");
-}
-.empty-state-action:nth-child(2) {
-  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M4.3 21a2 2 0 0 0 1.7 1h12a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3'/%3E%3Ccircle cx='5' cy='14' r='3'/%3E%3Cpath d='m9 18-1.5-1.5'/%3E%3C/svg%3E");
-}
-.empty-state-action.mod-close {
-  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
-  justify-content: center;
-  flex: 0 0 100%;
-  margin-top: 4px;
+.empty-state-action-list > .empty-state-action.mod-pill {
+  width: auto;
+  gap: 6px;
+  padding: 2px 0;
+  border: 0;
+  border-radius: 0;
   background-color: transparent;
   box-shadow: none;
-  color: var(--basalt-text-muted);
+  font-size: var(--basalt-ui-size-5);
+  font-weight: 400;
+  color: var(--basalt-text);
 }
-.empty-state-action.mod-close:hover {
+.empty-state-action-list > .empty-state-action.mod-pill:hover {
+  background-color: transparent;
+  color: var(--basalt-text-strong);
+}
+.empty-state-action-list > .empty-state-action.mod-pill.mod-destructive:hover {
   background-color: transparent;
   color: var(--color-red);
 }
-.empty-state-action.mod-close:hover::before {
-  background-color: var(--color-red);
+/* The box-shadow reset above also removes Obsidian's focus ring; restore one. */
+.empty-state-action-list > .empty-state-action.mod-pill:focus-visible {
+  border-radius: var(--basalt-radius-2);
+  box-shadow: var(--basalt-focus-ring);
+}
+/* Underline the label only, so the hotkey sits outside the decoration. */
+.empty-state-action .text-button-label {
+  text-decoration: underline;
+  text-decoration-color: var(--basalt-border-strong);
+  text-underline-offset: 4px;
+}
+.empty-state-action:hover .text-button-label {
+  text-decoration-color: currentColor;
+}
+/* app.css sets `margin-inline: auto -4px`, which clips the hotkey in a row.
+   `display` stays app.css's, so its narrow-pane rule can still hide it. */
+.empty-state-action .empty-state-hotkey {
+  margin-inline: 2px 0;
+  padding: 0;
+  background: none;
+  font-family: var(--basalt-font-mono);
+  font-size: var(--basalt-ui-size-2);
+  color: var(--basalt-text-faint);
+}
+.empty-state-action .text-button-icon {
+  color: var(--basalt-text-muted);
+}
+/* Below 230px app.css hides labels and hotkeys and leaves only icons, so the
+   icons are hidden only above that width. */
+@container empty-state (min-width: 231px) {
+  .empty-state-action .text-button-icon {
+    display: none;
+  }
 }
 
 /* src: app/tooltip.css */
