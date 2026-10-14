@@ -13,7 +13,9 @@
   box-shadow: 0 0 0 1px var(--basalt-border);
 }
 .notice-button-container {
-  column-gap: 14px;
+  /* Keep Obsidian's row spacing; gap avoids doiuse's multicolumn false positive
+     for column-gap on this flex container. */
+  gap: var(--size-4-1) 14px;
 }
 .notice-cta {
   text-decoration: none;

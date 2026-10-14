@@ -474,4 +474,45 @@ const empty = {
   ],
 };
 
-export const FIXTURES = [tabbar, graph, find, notice, empty];
+/* ------------------------------------------------------------------------ */
+/* Links and bundled fonts                                                  */
+/* ------------------------------------------------------------------------ */
+
+// Reading selectors come from app.css's .markdown-rendered link rules.
+// GUESS: the editor spans reproduce app.css's CodeMirror selectors without
+// running CodeMirror; use the app to verify actual live-preview interaction.
+const linkContent = `
+  <div class="view-content">
+    <div class="markdown-rendered" style="padding: 24px">
+      <h1>Letters and links</h1>
+      <p>Latin: café, naïef, coöperatie, Straße, Łódź, Český, Œuvre.</p>
+      <p><strong>Bold stays bold.</strong> € £ ¥ → ← ± × ÷</p>
+      <p>Fallback scripts: Ελληνικά · Привет · 日本語</p>
+      <p><a class="internal-link" href="#">Internal link</a> ·
+        <a class="external-link" href="#">External link</a> ·
+        <a class="internal-link is-unresolved" href="#">Unresolved link</a></p>
+      <blockquote><p>Serif keeps its optical sizing and bold: <strong>café Œuvre</strong>.</p></blockquote>
+      <p><code>Geist Mono: naïef → € 0123456789</code></p>
+    </div>
+    <div class="markdown-source-view mod-cm6 is-live-preview cm-s-obsidian" style="padding: 0 24px">
+      <div class="cm-line">
+        <span class="cm-hmd-internal-link"><span class="cm-underline">Internal link</span></span> ·
+        <span class="cm-link"><span class="cm-underline">External link</span></span> ·
+        <span class="cm-hmd-internal-link is-unresolved"><span class="cm-underline">Unresolved link</span></span>
+      </div>
+    </div>
+  </div>`;
+
+const links = {
+  id: "links",
+  title: "Links and bundled fonts",
+  frames: [
+    { label: "Reading and editor replicas", width: 660, height: 600,
+      html: rootLeaf({ type: "markdown", title: "Links and fonts", content: linkContent }) },
+    { label: "Hover on resolved and unresolved links", width: 660, height: 600,
+      html: rootLeaf({ type: "markdown", title: "Links and fonts", content: linkContent }),
+      force: [{ sel: ".internal-link, .external-link, .cm-hmd-internal-link, .cm-link", states: ["hover"] }] },
+  ],
+};
+
+export const FIXTURES = [tabbar, graph, find, notice, empty, links];

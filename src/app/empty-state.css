@@ -53,6 +53,9 @@
   box-shadow: var(--basalt-focus-ring);
 }
 /* Underline the label only, so the hotkey sits outside the decoration. */
+/* Chromium supports decoration colour; doiuse flags the feature group because
+   text-decoration-skip is partial. We don't use that property (caniuse note 5). */
+/* doiuse-disable text-decoration */
 .empty-state-action .text-button-label {
   text-decoration: underline;
   text-decoration-color: var(--basalt-border-strong);
@@ -61,6 +64,7 @@
 .empty-state-action:hover .text-button-label {
   text-decoration-color: currentColor;
 }
+/* doiuse-enable text-decoration */
 /* app.css sets `margin-inline: auto -4px`, which clips the hotkey in a row.
    `display` stays app.css's, so its narrow-pane rule can still hide it. */
 .empty-state-action .empty-state-hotkey {
