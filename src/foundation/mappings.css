@@ -59,7 +59,7 @@
   --interactive-normal: var(--basalt-surface-2);
   --interactive-hover: var(--basalt-surface-3);
   --interactive-accent: var(--basalt-accent);
-  --interactive-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, white);
+  --interactive-accent-hover: var(--basalt-accent-hover);
 
   /* Icons */
   --icon-color: var(--basalt-text-faint);
@@ -319,7 +319,7 @@
   --input-placeholder-color: var(--basalt-text-faint);
   --dropdown-background: var(--basalt-surface-1);
   --dropdown-background-hover: var(--basalt-surface-1);
-  --toggle-thumb-color: white;
+  --toggle-thumb-color: var(--basalt-toggle-thumb);
   --slider-track-background: var(--basalt-surface-3);
   --slider-thumb-border-color: var(--basalt-border-strong);
 

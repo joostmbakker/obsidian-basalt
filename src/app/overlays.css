@@ -9,7 +9,7 @@
 }
 
 .modal-bg {
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: var(--basalt-scrim);
 }
 
 .modal-title,

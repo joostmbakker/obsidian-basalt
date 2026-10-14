@@ -18,6 +18,8 @@
   --basalt-text-muted: #a9aaa5;
   --basalt-text-faint: #6b6c68;
   --basalt-accent: hsl(212 52% 66%);
+  --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
+  --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #ededeb;
   --basalt-invert-bg-hover: #ffffff;
   --basalt-invert-fg: #0a0a0a;
@@ -25,6 +27,7 @@
   --basalt-scrollbar: rgba(255, 255, 255, 0.08);
   --basalt-scrollbar-active: rgba(255, 255, 255, 0.16);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.65);
+  --basalt-scrim: rgba(0, 0, 0, 0.45);
   --basalt-neutral-rgb: 169, 170, 165;
 
   --accent-h: 212;
@@ -78,6 +81,8 @@
   --basalt-text-muted: #5f5f5c;
   --basalt-text-faint: #9a9a96;
   --basalt-accent: hsl(212 45% 45%);
+  --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
+  --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #141414;
   --basalt-invert-bg-hover: #000000;
   --basalt-invert-fg: #ffffff;
@@ -85,6 +90,7 @@
   --basalt-scrollbar: rgba(0, 0, 0, 0.12);
   --basalt-scrollbar-active: rgba(0, 0, 0, 0.22);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.18);
+  --basalt-scrim: rgba(0, 0, 0, 0.45);
   --basalt-neutral-rgb: 95, 95, 92;
 
   --accent-h: 212;
