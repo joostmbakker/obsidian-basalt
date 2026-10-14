@@ -31,14 +31,15 @@ TOKENS = "foundation/tokens.css"
 MODES = (".theme-dark", ".theme-light")
 
 # (text token, floor, surfaces it must clear). 4.5:1 is WCAG AA body text;
-# 3:1 is AA large text and UI components (faint is tertiary text and markers;
-# accent marks state and link hover, never body copy).
+# 3:1 is AA large text and UI components (accent marks state and link hover,
+# never body copy). Faint is small real text (status bar, H6, breadcrumbs), so
+# it needs body contrast on every ground except surface-3 (pressed fills).
 SURFACES = ["bg", "bg-sidebar", "surface-1", "surface-2", "surface-3"]
 CONTRAST = [
     ("text", 4.5, SURFACES),
     ("text-strong", 4.5, SURFACES),
     ("text-muted", 4.5, SURFACES),
-    ("text-faint", 3.0, ["bg", "bg-sidebar", "surface-1", "surface-2"]),
+    ("text-faint", 4.5, ["bg", "bg-sidebar", "surface-1", "surface-2"]),
     ("accent", 3.0, SURFACES),
 ]
 
