@@ -1,24 +1,26 @@
 /* --- Tokens ---------------------------------------------------------------- */
 
 /* Layers: palette and semantic colours per mode (the only place colours are
-   written), then shared scales and derived roles. mappings.css hands these to
+   written), then shared scales and derived roles. Ground and body text are
+   neutral; surfaces, hairlines and the gray text steps are warm stone
+   (hue 30-45, saturation 5-7%). mappings.css hands these to
    Obsidian's variables; components read tokens, never literals. */
 
 .theme-dark {
   --basalt-bg: #0a0a0a;
-  --basalt-bg-sidebar: #0d0d0d;
-  --basalt-surface-1: #111111;
-  --basalt-surface-2: #161616;
-  --basalt-surface-3: #1d1d1d;
-  --basalt-hover: rgba(255, 255, 255, 0.045);
-  --basalt-active: rgba(255, 255, 255, 0.075);
-  --basalt-line: #222222;
-  --basalt-border: #313131;
-  --basalt-border-strong: #454543;
+  --basalt-bg-sidebar: #0d0d0c;
+  --basalt-surface-1: #121110;
+  --basalt-surface-2: #171614;
+  --basalt-surface-3: #1e1d1a;
+  --basalt-hover: rgba(255, 246, 230, 0.045);
+  --basalt-active: rgba(255, 246, 230, 0.075);
+  --basalt-line: #232120;
+  --basalt-border: #33302c;
+  --basalt-border-strong: #48453f;
   --basalt-text: #ededeb;
   --basalt-text-strong: #f6f6f4;
-  --basalt-text-muted: #a9aaa5;
-  --basalt-text-faint: #80817c;
+  --basalt-text-muted: #aba79e;
+  --basalt-text-faint: #86827a;
   --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
   --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
   --basalt-toggle-thumb: #ffffff;
@@ -26,11 +28,11 @@
   --basalt-invert-bg-hover: #ffffff;
   --basalt-invert-fg: #0a0a0a;
   --basalt-highlight: rgba(217, 201, 131, 0.2);
-  --basalt-scrollbar: rgba(255, 255, 255, 0.08);
-  --basalt-scrollbar-active: rgba(255, 255, 255, 0.16);
+  --basalt-scrollbar: rgba(255, 246, 230, 0.08);
+  --basalt-scrollbar-active: rgba(255, 246, 230, 0.16);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.65);
   --basalt-scrim: rgba(0, 0, 0, 0.45);
-  --basalt-neutral-rgb: 169, 170, 165;
+  --basalt-neutral-rgb: 171, 167, 158;
 
   /* Default accent. Obsidian sets these inline on body when the user picks an
      accent in Settings -> Appearance, so theirs wins. */
@@ -56,34 +58,34 @@
   --color-pink-rgb: 215, 159, 190;
 
   --color-base-00: #0a0a0a;
-  --color-base-05: #0d0d0d;
-  --color-base-10: #111111;
-  --color-base-20: #141414;
-  --color-base-25: #181818;
-  --color-base-30: #222222;
-  --color-base-35: #313131;
-  --color-base-40: #454543;
-  --color-base-50: #80817c;
-  --color-base-60: #8a8b86;
-  --color-base-70: #a9aaa5;
+  --color-base-05: #0d0d0c;
+  --color-base-10: #121110;
+  --color-base-20: #151413;
+  --color-base-25: #191816;
+  --color-base-30: #232120;
+  --color-base-35: #33302c;
+  --color-base-40: #48453f;
+  --color-base-50: #86827a;
+  --color-base-60: #98948c;
+  --color-base-70: #aba79e;
   --color-base-100: #ededeb;
 }
 
 .theme-light {
   --basalt-bg: #ffffff;
-  --basalt-bg-sidebar: #fafafa;
-  --basalt-surface-1: #f7f7f7;
-  --basalt-surface-2: #f1f1f1;
-  --basalt-surface-3: #e9e9e9;
-  --basalt-hover: rgba(0, 0, 0, 0.04);
-  --basalt-active: rgba(0, 0, 0, 0.065);
-  --basalt-line: #ececec;
-  --basalt-border: #dedede;
-  --basalt-border-strong: #c8c8c8;
+  --basalt-bg-sidebar: #fafaf8;
+  --basalt-surface-1: #f7f6f3;
+  --basalt-surface-2: #f1efeb;
+  --basalt-surface-3: #e9e6e1;
+  --basalt-hover: rgba(40, 30, 10, 0.04);
+  --basalt-active: rgba(40, 30, 10, 0.065);
+  --basalt-line: #ecebe7;
+  --basalt-border: #dedbd5;
+  --basalt-border-strong: #c8c4bc;
   --basalt-text: #141414;
   --basalt-text-strong: #0a0a0a;
-  --basalt-text-muted: #5f5f5c;
-  --basalt-text-faint: #6d6d6a;
+  --basalt-text-muted: #5e5b55;
+  --basalt-text-faint: #6f6c66;
   --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
   --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
   --basalt-toggle-thumb: #ffffff;
@@ -91,11 +93,11 @@
   --basalt-invert-bg-hover: #000000;
   --basalt-invert-fg: #ffffff;
   --basalt-highlight: rgba(217, 190, 90, 0.28);
-  --basalt-scrollbar: rgba(0, 0, 0, 0.12);
-  --basalt-scrollbar-active: rgba(0, 0, 0, 0.22);
+  --basalt-scrollbar: rgba(40, 30, 10, 0.12);
+  --basalt-scrollbar-active: rgba(40, 30, 10, 0.22);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.18);
   --basalt-scrim: rgba(0, 0, 0, 0.45);
-  --basalt-neutral-rgb: 95, 95, 92;
+  --basalt-neutral-rgb: 94, 91, 85;
 
   --accent-h: 212;
   --accent-s: 45%;
@@ -119,16 +121,16 @@
   --color-pink-rgb: 165, 87, 127;
 
   --color-base-00: #ffffff;
-  --color-base-05: #fafafa;
-  --color-base-10: #f7f7f7;
-  --color-base-20: #f1f1f1;
-  --color-base-25: #ececec;
-  --color-base-30: #e9e9e9;
-  --color-base-35: #dedede;
-  --color-base-40: #c8c8c8;
-  --color-base-50: #6d6d6a;
-  --color-base-60: #666663;
-  --color-base-70: #5f5f5c;
+  --color-base-05: #fafaf8;
+  --color-base-10: #f7f6f3;
+  --color-base-20: #f1efeb;
+  --color-base-25: #ecebe7;
+  --color-base-30: #e9e6e1;
+  --color-base-35: #dedbd5;
+  --color-base-40: #c8c4bc;
+  --color-base-50: #6f6c66;
+  --color-base-60: #67645e;
+  --color-base-70: #5e5b55;
   --color-base-100: #141414;
 }
 
