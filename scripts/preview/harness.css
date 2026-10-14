@@ -1,0 +1,150 @@
+/* Preview harness chrome. Loaded after app.css and the theme, so its few
+   overrides (marked) win. Colours here are harness-only and never reach the
+   theme; they are fixed so the board frame looks the same in both modes. */
+
+html,
+body {
+  /* app.css pins the app to the window (overflow clip, 100% height,
+     contain: strict); the board needs to scroll and grow. */
+  overflow: auto !important;
+  height: auto !important;
+  position: static !important;
+  contain: none !important;
+}
+
+body.pv-board {
+  margin: 0;
+  padding: 24px;
+  background: #7a7a7a;
+  display: block;
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+.pv-title {
+  font: 600 15px/1.3 ui-sans-serif, system-ui, sans-serif;
+  color: #fff;
+  margin: 0 0 4px;
+}
+
+.pv-note {
+  font: 12px/1.4 ui-sans-serif, system-ui, sans-serif;
+  color: #f0f0f0;
+  margin: 0 0 18px;
+}
+
+.pv-frames {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.pv-frame-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pv-label {
+  font: 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #fff;
+  max-width: 100%;
+}
+
+.pv-frame {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-primary);
+  outline: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.pv-frame > * {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Obsidian's workspace sizes these with JS; give the fixture a full-height
+   column instead. */
+.pv-frame .workspace-split,
+.pv-frame .workspace-tabs,
+.pv-frame .workspace-tab-container,
+.pv-frame .workspace-leaf,
+.pv-frame .workspace-leaf-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  width: 100%;
+}
+
+.pv-frame .workspace-tab-header-container {
+  flex: 0 0 auto;
+}
+
+.pv-frame .view-header {
+  flex: 0 0 auto;
+}
+
+.pv-frame .view-content {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* CodeMirror injects its base layout styles from JS at runtime (not in
+   app.css); this is the minimum of them the static editor fixture needs. */
+.pv-frame .markdown-source-view.mod-cm6 {
+  display: flex;
+  height: 100%;
+}
+
+.pv-frame .cm-editor {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.pv-frame .cm-scroller {
+  display: flex;
+  align-items: flex-start;
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.pv-frame .cm-sizer {
+  flex: 1 1 auto;
+}
+
+.pv-frame .cm-content {
+  display: block;
+  white-space: pre-wrap;
+  flex-grow: 2;
+}
+
+.pv-graph {
+  position: absolute;
+  inset: 0;
+}
+
+.pv-graph svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The real .notice-container is position: fixed to the window corner. */
+.pv-notice-host {
+  position: relative;
+  background: var(--background-primary);
+}
+
+.pv-notice-host .notice-container {
+  position: absolute;
+  top: 0;
+}
