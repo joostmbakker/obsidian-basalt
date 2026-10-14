@@ -1656,9 +1656,9 @@ select:focus,
 
 /* --- Empty state ----------------------------------------------------------- */
 
-/* Pill row. Obsidian styles the actions at 0,3,0, so the selectors match that and
-   win by load order. Layout changes are limited to wider containers; the
-   <=230px icon grid is Obsidian's own and must not be overridden. */
+/* Pill row. Obsidian renders the actions as plain `div.empty-state-action.tappable`
+   rows (Close adds `.mod-close`) with the hotkey inside the label text; the title
+   element is created empty. */
 .empty-state-title {
   font-family: var(--basalt-font-serif);
   font-size: 1.9em;
@@ -1666,59 +1666,69 @@ select:focus,
   letter-spacing: -0.02em;
   color: var(--basalt-text-strong);
 }
-.empty-state-action-list > .text-icon-button.mod-pill {
-  --icon-color: var(--basalt-text-faint);
-  --icon-color-hover: var(--basalt-text-strong);
-  background-color: var(--basalt-surface-2);
-  border: 0;
-  box-shadow: 0 0 0 1px var(--basalt-border);
+/* Obsidian leaves the title empty; supply the label so the empty state has a heading. */
+.empty-state-title:empty::before {
+  content: "No file is open";
+}
+.empty-state-action-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.empty-state-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+  padding: 7px 14px;
   border-radius: 999px;
-  padding: 6px 12px;
+  background-color: var(--basalt-surface-2);
+  box-shadow: 0 0 0 1px var(--basalt-border);
   color: var(--basalt-text);
 }
-.empty-state-action-list > .text-icon-button.mod-pill:hover {
+.empty-state-action:hover {
   background-color: var(--basalt-surface-3);
   box-shadow: 0 0 0 1px var(--basalt-border-strong);
   color: var(--basalt-text-strong);
 }
-.empty-state-action-list > .text-icon-button.mod-pill:focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+/* Icons: Obsidian renders none, so draw lucide glyphs with a mask. Create / Go to
+   file are positional (first two actions); Close is .mod-close. */
+.empty-state-action::before {
+  content: "";
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background-color: var(--basalt-text-faint);
+  -webkit-mask: var(--basalt-empty-icon) center / contain no-repeat;
+  mask: var(--basalt-empty-icon) center / contain no-repeat;
 }
-.empty-state-action-list > .text-icon-button.mod-pill.mod-destructive {
+.empty-state-action:hover::before {
+  background-color: var(--basalt-text-strong);
+}
+.empty-state-action:nth-child(1) {
+  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z'/%3E%3Cpath d='M14 2v6h6M12 18v-6M9 15h6'/%3E%3C/svg%3E");
+}
+.empty-state-action:nth-child(2) {
+  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M4.3 21a2 2 0 0 0 1.7 1h12a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3'/%3E%3Ccircle cx='5' cy='14' r='3'/%3E%3Cpath d='m9 18-1.5-1.5'/%3E%3C/svg%3E");
+}
+.empty-state-action.mod-close {
+  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+  justify-content: center;
+  flex: 0 0 100%;
+  margin-top: 4px;
   background-color: transparent;
   box-shadow: none;
   color: var(--basalt-text-muted);
 }
-.empty-state-action-list > .text-icon-button.mod-pill.mod-destructive:hover {
+.empty-state-action.mod-close:hover {
   background-color: transparent;
-  border: 0;
-  box-shadow: none;
   color: var(--color-red);
 }
-.empty-state-hotkey {
-  padding: 0;
-  margin-inline: 4px 0;
-  background-color: transparent;
-  font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
-  color: var(--basalt-text-faint);
-}
-@container empty-state (min-width: 231px) {
-  .empty-state-action-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-  .empty-state-action-list > .text-icon-button.mod-pill {
-    width: auto;
-  }
-  .empty-state-action-list > .text-icon-button.mod-pill.mod-destructive {
-    flex: 0 0 100%;
-    width: 100%;
-    justify-content: center;
-    margin-top: 4px;
-  }
+.empty-state-action.mod-close:hover::before {
+  background-color: var(--color-red);
 }
 
 /* --- Tooltip --------------------------------------------------------------- */
