@@ -1,0 +1,16 @@
+/* --- Embeds ---------------------------------------------------------------- */
+
+.markdown-embed {
+  padding-inline-start: 1em;
+  border-radius: 0;
+}
+
+.markdown-embed .markdown-embed-title {
+  color: var(--basalt-text-faint);
+}
+
+.markdown-rendered .image-embed img,
+.markdown-source-view.mod-cm6 .image-embed img,
+.markdown-rendered img {
+  border-radius: var(--basalt-radius-3);
+}

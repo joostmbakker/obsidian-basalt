@@ -1,0 +1,83 @@
+/* --- Empty state ----------------------------------------------------------- */
+
+/* Obsidian 1.14 renders each action as
+   `.empty-state-action-list > .text-icon-button.mod-pill.empty-state-action`
+   (icon span, label span, optional `.empty-state-hotkey` span) and creates the
+   title element empty. Its pill rules sit at (0,3,0), so the action selectors
+   below repeat that shape and win on order. The actions read as a row of text
+   links under a receding serif title. */
+.empty-state-title {
+  font-family: var(--basalt-font-serif);
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--basalt-text-muted);
+  margin-bottom: 12px;
+}
+/* Obsidian leaves the title empty; supply the label so the empty state has a heading. */
+.empty-state-title:empty::before {
+  content: "No file is open";
+}
+/* No `display` here: app.css switches the list to a grid in narrow panes
+   (`@container empty-state (max-width: 230px)`). */
+.empty-state-action-list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 20px;
+  max-width: 520px;
+}
+.empty-state-action-list > .empty-state-action.mod-pill {
+  width: auto;
+  gap: 6px;
+  padding: 2px 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: var(--basalt-ui-size-5);
+  font-weight: 400;
+  color: var(--basalt-text);
+}
+.empty-state-action-list > .empty-state-action.mod-pill:hover {
+  background-color: transparent;
+  color: var(--basalt-text-strong);
+}
+.empty-state-action-list > .empty-state-action.mod-pill.mod-destructive:hover {
+  background-color: transparent;
+  color: var(--color-red);
+}
+/* The box-shadow reset above also removes Obsidian's focus ring; restore one. */
+.empty-state-action-list > .empty-state-action.mod-pill:focus-visible {
+  border-radius: var(--basalt-radius-2);
+  box-shadow: var(--basalt-focus-ring);
+}
+/* Underline the label only, so the hotkey sits outside the decoration. */
+.empty-state-action .text-button-label {
+  text-decoration: underline;
+  text-decoration-color: var(--basalt-border-strong);
+  text-underline-offset: 4px;
+}
+.empty-state-action:hover .text-button-label {
+  text-decoration-color: currentColor;
+}
+/* app.css sets `margin-inline: auto -4px`, which clips the hotkey in a row.
+   `display` stays app.css's, so its narrow-pane rule can still hide it. */
+.empty-state-action .empty-state-hotkey {
+  margin-inline: 2px 0;
+  padding: 0;
+  background: none;
+  font-family: var(--basalt-font-mono);
+  font-size: var(--basalt-ui-size-2);
+  color: var(--basalt-text-faint);
+}
+.empty-state-action .text-button-icon {
+  color: var(--basalt-text-muted);
+}
+/* Below 230px app.css hides labels and hotkeys and leaves only icons, so the
+   icons are hidden only above that width. */
+@container empty-state (min-width: 231px) {
+  .empty-state-action .text-button-icon {
+    display: none;
+  }
+}

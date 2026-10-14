@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Basalt — a dark, clean, minimal Obsidian theme.
+   Near-black canvas, light serif headings, sans body, hairline gray boxes,
+   mono tracked eyebrows, dashed hairlines, quiet rect buttons, flat content.
+   Target: Obsidian 1.14.x. Fonts: Geist, Geist Mono and Basalt Serif (OFL),
+   embedded at build.
+   ========================================================================== */
+
+/* Build entry. scripts/build.sh inlines these files in this order, which is
+   the cascade order: later files win specificity ties. Add a component as its
+   own file and import it where its rules should sit. */
+
+@import "foundation/settings.css";
+@import "foundation/fonts.css";
+@import "foundation/tokens.css";
+@import "foundation/mappings.css";
+@import "editor/typography.css";
+@import "editor/headings.css";
+@import "editor/links.css";
+@import "editor/tags.css";
+@import "editor/code.css";
+@import "editor/tables.css";
+@import "editor/blockquote.css";
+@import "editor/hr.css";
+@import "editor/callouts.css";
+@import "editor/lists.css";
+@import "editor/embeds.css";
+@import "editor/properties.css";
+@import "editor/footnotes.css";
+@import "app/workspace.css";
+@import "app/tabs.css";
+@import "app/tab-styles.css";
+@import "app/navigation.css";
+@import "app/status-bar.css";
+@import "app/controls.css";
+@import "app/overlays.css";
+@import "app/find.css";
+@import "app/notices.css";
+@import "app/empty-state.css";
+@import "app/tooltip.css";
+@import "app/scrollbars.css";
+@import "views/canvas.css";
+@import "views/graph.css";
+@import "views/bases.css";

@@ -1,0 +1,65 @@
+/* --- Callouts -------------------------------------------------------------- */
+
+/* Obsidian 1.14 mixes --callout-color as a colour. Registering it makes an
+   invalid value (an old "52, 120, 246" triple) inherit the root's
+   --callout-default, so such callouts look like a plain note instead of
+   losing their title colour. */
+@property --callout-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: currentcolor;
+}
+
+/* No field and a 1px neutral rule: the callout colour lives only in the
+   eyebrow title, so a page of callouts stays calm. */
+.callout {
+  background-color: transparent;
+  border: none;
+  border-inline-start: 1px solid var(--basalt-border);
+}
+
+/* Obsidian's embed-block hover rounds the widget to 4px and rings it, which clips
+   the rule and boxes the callout. Keep it square and show hover as a row state:
+   without a field the block needs a cue that it is one editable unit. */
+.markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover > .callout {
+  background-color: var(--basalt-hover);
+}
+
+.callout-title {
+  gap: 6px;
+  align-items: center;
+}
+
+/* Eyebrow in the callout colour. Tracking is tighter than the eyebrow token:
+   callout titles run longer than labels. text-transform also uppercases
+   user-written titles, so long titles read loud; short ones read well. */
+.callout-title-inner {
+  color: var(--callout-color);
+  font-family: var(--basalt-font-mono);
+  font-weight: var(--callout-title-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.callout-icon .svg-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.callout-content {
+  color: var(--basalt-text);
+  padding-top: 4px;
+}
+
+.callout-content > :first-child {
+  margin-top: 0;
+}
+
+.callout-content > :last-child {
+  margin-bottom: 0;
+}

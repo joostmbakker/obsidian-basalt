@@ -1,0 +1,32 @@
+/* --- Fonts ----------------------------------------------------------------- */
+
+/* Placeholders are inlined as base64 by scripts/build.sh. */
+
+@font-face {
+  font-family: "Geist";
+  src: url("__GEIST_SANS__") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("__GEIST_MONO__") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Basalt Serif: Source Serif 4 (Adobe, SIL OFL 1.1), subset to Latin and to
+   weight 400-700 and optical size 16-48. A subset is a Modified Version and
+   "Source" is a Reserved Font Name, so it ships renamed. Headings stay 400;
+   bold inside a heading or blockquote is real, and optical size gives
+   blockquotes the text cut and H1 the display cut. */
+@font-face {
+  font-family: "Basalt Serif";
+  src: url("__BASALT_SERIF__") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}

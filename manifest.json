@@ -1,7 +1,7 @@
 {
-  "name": "Folio",
-  "version": "0.1.0",
+  "name": "Basalt",
+  "version": "1.0.0",
   "minAppVersion": "1.6.0",
   "author": "Joost Bakker",
-  "authorUrl": ""
+  "authorUrl": "https://github.com/joostmbakker"
 }

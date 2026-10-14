@@ -1,0 +1,189 @@
+/* --- Tokens ---------------------------------------------------------------- */
+
+/* Layers: palette and semantic colours per mode (the only place colours are
+   written), then shared scales and derived roles. Ground and body text are
+   neutral; surfaces, hairlines and the gray text steps are warm stone
+   (hue 30-45, saturation 5-7%). mappings.css hands these to
+   Obsidian's variables; components read tokens, never literals. */
+
+.theme-dark {
+  --basalt-bg: #0a0a0a;
+  --basalt-bg-sidebar: #0d0d0c;
+  --basalt-surface-1: #121110;
+  --basalt-surface-2: #171614;
+  --basalt-surface-3: #1e1d1a;
+  --basalt-hover: rgba(255, 246, 230, 0.045);
+  --basalt-active: rgba(255, 246, 230, 0.075);
+  --basalt-line: #232120;
+  --basalt-border: #33302c;
+  --basalt-border-strong: #48453f;
+  --basalt-text: #ededeb;
+  --basalt-text-strong: #f6f6f4;
+  --basalt-text-muted: #aba79e;
+  --basalt-text-faint: #86827a;
+  --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
+  --basalt-toggle-thumb: #ffffff;
+  --basalt-invert-bg: #ededeb;
+  --basalt-invert-bg-hover: #ffffff;
+  --basalt-invert-fg: #0a0a0a;
+  --basalt-highlight: rgba(217, 201, 131, 0.2);
+  --basalt-scrollbar: rgba(255, 246, 230, 0.08);
+  --basalt-scrollbar-active: rgba(255, 246, 230, 0.16);
+  --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.65);
+  --basalt-scrim: rgba(0, 0, 0, 0.45);
+  --basalt-neutral-rgb: 171, 167, 158;
+
+  /* Default accent. Obsidian sets these inline on body when the user picks an
+     accent in Settings -> Appearance, so theirs wins. */
+  --accent-h: 15;
+  --accent-s: 63%;
+  --accent-l: 60%;
+
+  --color-red: #e08585;
+  --color-orange: #dfa874;
+  --color-yellow: #d9c983;
+  --color-green: #93c29a;
+  --color-cyan: #85c3c3;
+  --color-blue: #7ea7d8;
+  --color-purple: #ab9fda;
+  --color-pink: #d79fbe;
+  --color-red-rgb: 224, 133, 133;
+  --color-orange-rgb: 223, 168, 116;
+  --color-yellow-rgb: 217, 201, 131;
+  --color-green-rgb: 147, 194, 154;
+  --color-cyan-rgb: 133, 195, 195;
+  --color-blue-rgb: 126, 167, 216;
+  --color-purple-rgb: 171, 159, 218;
+  --color-pink-rgb: 215, 159, 190;
+
+  --color-base-00: #0a0a0a;
+  --color-base-05: #0d0d0c;
+  --color-base-10: #121110;
+  --color-base-20: #151413;
+  --color-base-25: #191816;
+  --color-base-30: #232120;
+  --color-base-35: #33302c;
+  --color-base-40: #48453f;
+  --color-base-50: #86827a;
+  --color-base-60: #98948c;
+  --color-base-70: #aba79e;
+  --color-base-100: #ededeb;
+}
+
+.theme-light {
+  --basalt-bg: #ffffff;
+  --basalt-bg-sidebar: #fafaf8;
+  --basalt-surface-1: #f7f6f3;
+  --basalt-surface-2: #f1efeb;
+  --basalt-surface-3: #e9e6e1;
+  --basalt-hover: rgba(40, 30, 10, 0.04);
+  --basalt-active: rgba(40, 30, 10, 0.065);
+  --basalt-line: #ecebe7;
+  --basalt-border: #dedbd5;
+  --basalt-border-strong: #c8c4bc;
+  --basalt-text: #141414;
+  --basalt-text-strong: #0a0a0a;
+  --basalt-text-muted: #5e5b55;
+  --basalt-text-faint: #6f6c66;
+  --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
+  --basalt-toggle-thumb: #ffffff;
+  --basalt-invert-bg: #141414;
+  --basalt-invert-bg-hover: #000000;
+  --basalt-invert-fg: #ffffff;
+  --basalt-highlight: rgba(217, 190, 90, 0.28);
+  --basalt-scrollbar: rgba(40, 30, 10, 0.12);
+  --basalt-scrollbar-active: rgba(40, 30, 10, 0.22);
+  --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.18);
+  --basalt-scrim: rgba(0, 0, 0, 0.45);
+  --basalt-neutral-rgb: 94, 91, 85;
+
+  --accent-h: 16;
+  --accent-s: 59%;
+  --accent-l: 45%;
+
+  --color-red: #b85454;
+  --color-orange: #996635;
+  --color-yellow: #81712e;
+  --color-green: #487d52;
+  --color-cyan: #397c7c;
+  --color-blue: #4a74a8;
+  --color-purple: #7464a8;
+  --color-pink: #a5577f;
+  --color-red-rgb: 184, 84, 84;
+  --color-orange-rgb: 153, 102, 53;
+  --color-yellow-rgb: 129, 113, 46;
+  --color-green-rgb: 72, 125, 82;
+  --color-cyan-rgb: 57, 124, 124;
+  --color-blue-rgb: 74, 116, 168;
+  --color-purple-rgb: 116, 100, 168;
+  --color-pink-rgb: 165, 87, 127;
+
+  --color-base-00: #ffffff;
+  --color-base-05: #fafaf8;
+  --color-base-10: #f7f6f3;
+  --color-base-20: #f1efeb;
+  --color-base-25: #ecebe7;
+  --color-base-30: #e9e6e1;
+  --color-base-35: #dedbd5;
+  --color-base-40: #c8c4bc;
+  --color-base-50: #6f6c66;
+  --color-base-60: #67645e;
+  --color-base-70: #5e5b55;
+  --color-base-100: #141414;
+}
+
+/* Shared: scales and roles derived from the mode tokens above. */
+.theme-dark,
+.theme-light {
+  /* Font stacks (Settings font choices still win: *-override is untouched) */
+  --basalt-font-serif: "Basalt Serif", Georgia, serif;
+  --basalt-font-sans: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  --basalt-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radius */
+  --basalt-radius-1: 2px;
+  --basalt-radius-2: 4px;
+  --basalt-radius-3: 6px;
+  --basalt-radius-4: 8px;
+  --basalt-radius-5: 10px;
+  --basalt-radius-6: 12px;
+  --basalt-radius-7: 16px;
+  --basalt-radius-pill: 999px;
+
+  /* UI type (px: chrome doesn't scale with the note text size) */
+  --basalt-ui-size-1: 10.5px;
+  --basalt-ui-size-2: 11px;
+  --basalt-ui-size-3: 12px;
+  --basalt-ui-size-4: 12.5px;
+  --basalt-ui-size-5: 13px;
+  --basalt-ui-size-6: 14px;
+
+  /* Accent halos: soft for pointer focus and hover, full for keyboard focus */
+  --basalt-accent-tint-soft: color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  --basalt-accent-tint: color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  --basalt-focus-ring-soft: 0 0 0 3px var(--basalt-accent-tint-soft);
+  --basalt-focus-ring: 0 0 0 3px var(--basalt-accent-tint);
+
+  /* Eyebrow: mono, uppercase, tracked (H6, find labels, notice actions) */
+  --basalt-tracking-eyebrow: 0.1em;
+
+  /* Motion */
+  --basalt-motion-fast: 120ms ease;
+  --basalt-motion: 150ms ease-out;
+
+  /* Graph. Hover is monochrome (ink): the hovered node and its ring take the
+     strongest text colour, its links the muted one. */
+  --basalt-graph-highlight: var(--basalt-text-strong);
+  --basalt-graph-highlight-line: var(--basalt-text-muted);
+  --basalt-graph-circle: var(--basalt-text-strong);
+  /* Default colours for new colour groups: the soft palette minus green and
+     yellow (tag and attachment nodes), with blue (focused node) last. */
+  --basalt-graph-group-1: var(--color-purple);
+  --basalt-graph-group-2: var(--color-cyan);
+  --basalt-graph-group-3: var(--color-orange);
+  --basalt-graph-group-4: var(--color-pink);
+  --basalt-graph-group-5: var(--color-red);
+  --basalt-graph-group-6: var(--color-blue);
+}

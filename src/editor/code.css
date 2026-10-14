@@ -1,0 +1,59 @@
+/* --- Code ------------------------------------------------------------------ */
+
+.markdown-rendered code,
+.cm-s-obsidian span.cm-inline-code {
+  padding: 0.1em 0.35em;
+  font-variant-ligatures: none;
+}
+
+.markdown-rendered pre,
+.cm-s-obsidian .HyperMD-codeblock {
+  font-family: var(--font-monospace);
+  line-height: 1.6;
+}
+
+.markdown-rendered pre {
+  background-color: var(--basalt-surface-1);
+  border: 1px solid var(--basalt-border);
+  border-radius: var(--basalt-radius-4);
+  padding: 14px 18px;
+}
+
+.markdown-rendered pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.86em;
+  line-height: 1.6;
+}
+
+/* Live preview code block lines: full box via background on each line */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  background-color: var(--basalt-surface-1);
+  padding-inline: 18px;
+  line-height: 1.6;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
+  border-start-start-radius: var(--basalt-radius-4);
+  border-start-end-radius: var(--basalt-radius-4);
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
+  border-end-start-radius: var(--basalt-radius-4);
+  border-end-end-radius: var(--basalt-radius-4);
+}
+
+.markdown-rendered .copy-code-button {
+  opacity: 0.5;
+  background: transparent;
+  box-shadow: none;
+  color: var(--basalt-text-faint);
+  font-family: var(--basalt-font-mono);
+  font-size: var(--basalt-ui-size-2);
+}
+
+.markdown-rendered pre:hover .copy-code-button {
+  opacity: 1;
+  color: var(--basalt-text-muted);
+}
