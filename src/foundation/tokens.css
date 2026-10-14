@@ -36,9 +36,9 @@
 
   /* Default accent. Obsidian sets these inline on body when the user picks an
      accent in Settings -> Appearance, so theirs wins. */
-  --accent-h: 212;
-  --accent-s: 52%;
-  --accent-l: 66%;
+  --accent-h: 15;
+  --accent-s: 63%;
+  --accent-l: 60%;
 
   --color-red: #e08585;
   --color-orange: #dfa874;
@@ -99,8 +99,8 @@
   --basalt-scrim: rgba(0, 0, 0, 0.45);
   --basalt-neutral-rgb: 94, 91, 85;
 
-  --accent-h: 212;
-  --accent-s: 45%;
+  --accent-h: 16;
+  --accent-s: 59%;
   --accent-l: 45%;
 
   --color-red: #b85454;
