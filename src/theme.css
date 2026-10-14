@@ -390,9 +390,9 @@ settings:
   --checkbox-marker-color: var(--basalt-invert-fg);
   --checklist-done-color: var(--basalt-text-faint);
   --checklist-done-decoration: line-through;
-  --list-marker-color: var(--basalt-text-faint);
-  --list-marker-color-hover: var(--basalt-text-muted);
-  --list-marker-color-collapsed: var(--basalt-text-muted);
+  --list-marker-color: var(--basalt-text-strong);
+  --list-marker-color-hover: var(--basalt-text-strong);
+  --list-marker-color-collapsed: var(--basalt-text-faint);
   --list-bullet-size: 5px;
   --hr-color: var(--basalt-border);
   --hr-thickness: 1px;
@@ -903,10 +903,26 @@ a.tag:hover,
 
 /* --- Lists & tasks --------------------------------------------------------- */
 
-.markdown-rendered ul > li::marker,
+/* Bullets are drawn by .list-bullet::after (the native ::marker is transparent),
+   so the marker colour comes from --list-marker-color. Numerals stay quieter. */
 .markdown-rendered ol > li::marker,
-.cm-s-obsidian span.cm-formatting-list {
-  color: var(--list-marker-color);
+.cm-s-obsidian span.cm-formatting-list-ol {
+  color: var(--basalt-text-muted);
+}
+
+/* Marker-to-text gap. Reading: pull the floated bullet further left.
+   Live preview: pad the marker's end and widen --list-marker-space to match,
+   so wrapped lines stay aligned. */
+.markdown-rendered .list-bullet {
+  margin-inline-start: -0.95em;
+}
+
+.markdown-source-view.is-live-preview {
+  --list-marker-space: 0.4em;
+}
+
+.cm-formatting-list-ul {
+  padding-inline-end: 0.15em;
 }
 
 .markdown-rendered .task-list-item.is-checked,
