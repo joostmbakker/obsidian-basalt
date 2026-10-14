@@ -343,6 +343,8 @@
   --callout-blend-mode: normal;
   --callout-default: rgb(var(--basalt-neutral-rgb));
   --callout-quote: rgb(var(--basalt-neutral-rgb));
+  /* Inherited by a callout whose own value is invalid (see @property in Callouts) */
+  --callout-color: var(--callout-default);
 
   /* Checkbox, lists, rules, quotes */
   --checkbox-size: 15px;
@@ -801,6 +803,16 @@ a.tag:hover,
 }
 
 /* --- Callouts -------------------------------------------------------------- */
+
+/* Obsidian 1.14 mixes --callout-color as a colour. Registering it makes an
+   invalid value (an old "52, 120, 246" triple) inherit the root's
+   --callout-default, so such callouts look like a plain note instead of
+   getting a full-text-colour border. */
+@property --callout-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: currentcolor;
+}
 
 .callout {
   background-color: color-mix(in srgb, var(--callout-color) 5%, transparent);
