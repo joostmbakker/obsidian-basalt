@@ -925,12 +925,6 @@ input.metadata-property-key-input,
   background-color: var(--basalt-bg-sidebar);
 }
 
-.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
-.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
-.workspace-split.mod-right-split > .workspace-leaf-resize-handle {
-  background-color: var(--basalt-line);
-}
-
 .view-header-title {
   font-family: var(--basalt-font-sans);
   font-weight: 400;
