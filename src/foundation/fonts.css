@@ -1,6 +1,10 @@
 /* --- Fonts ----------------------------------------------------------------- */
 
-/* Placeholders are inlined as base64 by scripts/build.sh. */
+/* Placeholders are inlined as base64 by scripts/build.sh. Geist and Geist Mono
+   are subset to Latin, accents, punctuation, currencies, arrows, maths and
+   keyboard symbols to keep the embedded payload smaller. Other scripts use
+   the fallback stacks;
+   the full weight axis and OpenType features of retained glyphs are preserved. */
 
 @font-face {
   font-family: "Geist";
