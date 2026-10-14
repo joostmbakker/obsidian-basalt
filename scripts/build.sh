@@ -1,7 +1,7 @@
 #!/bin/bash
 # Build Basalt: src/index.css -> theme.css. Inlines the @import'ed modules in order
 # and the Geist fonts as base64 WOFF2. Also refreshes the local, gitignored
-# test-vault copy when test-vault/.obsidian exists.
+# test-vault copy when test-vault/.obsidian exists. Runs scripts/check.py first.
 # Override the entry with BASALT_SRC=/path/to/file.css (used for testing); its
 # @imports resolve relative to that file.
 set -euo pipefail
@@ -24,6 +24,11 @@ die() {
 for f in "$SANS_FONT" "$MONO_FONT" "$MANIFEST"; do
   [ -f "$f" ] || die "required file missing: $f"
 done
+
+# Design-system rules (SPEC.md). Alternate entries are experiments: not checked.
+if [ -z "${BASALT_SRC:-}" ]; then
+  python3 -I "$ROOT/scripts/check.py" || die "check failed (scripts/check.py); fix the errors above"
+fi
 
 # Inline @import'ed modules, then substitute font placeholders with base64 data
 # URIs. Paths are passed as argv, not interpolated.
