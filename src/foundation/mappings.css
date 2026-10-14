@@ -22,10 +22,10 @@
   --bold-color: var(--basalt-text-strong);
 
   /* Radii */
-  --radius-s: 4px;
-  --radius-m: 6px;
-  --radius-l: 10px;
-  --radius-xl: 16px;
+  --radius-s: var(--basalt-radius-2);
+  --radius-m: var(--basalt-radius-3);
+  --radius-l: var(--basalt-radius-5);
+  --radius-xl: var(--basalt-radius-7);
 
   /* Backgrounds */
   --background-primary: var(--basalt-bg);
@@ -134,7 +134,7 @@
   --link-unresolved-decoration-color: var(--basalt-text-faint);
 
   /* Tags */
-  --tag-radius: 999px;
+  --tag-radius: var(--basalt-radius-pill);
   --tag-size: 0.8em;
   --tag-weight: 400;
   --tag-padding-x: 0.6em;
@@ -151,7 +151,7 @@
 
   /* Code */
   --code-size: 0.86em;
-  --code-radius: 4px;
+  --code-radius: var(--basalt-radius-2);
   --code-background: var(--basalt-surface-2);
   --code-normal: var(--basalt-text);
   --code-border-width: 1px;
@@ -196,7 +196,7 @@
 
   /* Checkbox, lists, rules, quotes */
   --checkbox-size: 15px;
-  --checkbox-radius: 4px;
+  --checkbox-radius: var(--basalt-radius-2);
   --checkbox-border-color: var(--basalt-text-faint);
   --checkbox-border-color-hover: var(--basalt-text-muted);
   --checkbox-color: var(--basalt-invert-bg);
@@ -261,7 +261,7 @@
   --workspace-background-translucent: color-mix(in srgb, var(--basalt-bg-sidebar) 85%, transparent);
 
   /* Navigation */
-  --nav-item-radius: 6px;
+  --nav-item-radius: var(--basalt-radius-3);
   --nav-item-color: var(--basalt-text-muted);
   --nav-item-color-hover: var(--basalt-text);
   --nav-item-color-active: var(--basalt-text-strong);
@@ -289,7 +289,7 @@
   --status-bar-text-color: var(--basalt-text-faint);
 
   /* Modals, prompt, menus */
-  --modal-radius: 12px;
+  --modal-radius: var(--basalt-radius-6);
   --modal-background: var(--basalt-surface-1);
   --modal-border-color: var(--basalt-border);
   --modal-border-width: 1px;
@@ -300,7 +300,7 @@
   --menu-background: var(--basalt-surface-1);
   --menu-border-color: var(--basalt-border);
   --menu-border-width: 1px;
-  --menu-radius: 10px;
+  --menu-radius: var(--basalt-radius-5);
   --menu-shadow: 0 0 0 1px var(--basalt-border), var(--basalt-shadow-float);
   --menu-divider-color: var(--basalt-line);
   --dialog-bg-color: var(--basalt-surface-1);
@@ -311,8 +311,8 @@
   --setting-items-divider-color: var(--basalt-line);
 
   /* Inputs, buttons, dropdowns, toggles */
-  --input-radius: 8px;
-  --button-radius: 999px;
+  --input-radius: var(--basalt-radius-4);
+  --button-radius: var(--basalt-radius-pill);
   --input-font-weight: 500;
   --input-focus-border-color: var(--basalt-border-strong);
   --input-hover-border-color: var(--basalt-border-strong);
@@ -326,7 +326,7 @@
   /* Tooltip, scrollbars */
   --tooltip-background: var(--basalt-surface-3);
   --tooltip-color: var(--basalt-text);
-  --tooltip-radius: 6px;
+  --tooltip-radius: var(--basalt-radius-3);
   --tooltip-font-size: 12px;
   --tooltip-shadow: 0 0 0 1px var(--basalt-border-strong), var(--basalt-shadow-float);
   --scrollbar-bg: transparent;
@@ -373,11 +373,11 @@
   --bases-table-border-color: var(--basalt-border);
   --bases-table-row-background-hover: var(--basalt-hover);
   --bases-cards-background: var(--basalt-surface-1);
-  --bases-cards-radius: 8px;
+  --bases-cards-radius: var(--basalt-radius-4);
   --bases-cards-shadow: 0 0 0 1px var(--basalt-border);
   --bases-cards-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
   --bases-kanban-card-background: var(--basalt-surface-1);
-  --bases-kanban-card-radius: 8px;
+  --bases-kanban-card-radius: var(--basalt-radius-4);
   --bases-kanban-card-shadow: 0 0 0 1px var(--basalt-border);
   --bases-kanban-card-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
 }

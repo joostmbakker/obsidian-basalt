@@ -40,7 +40,7 @@
 }
 
 .suggestion-item {
-  border-radius: 6px;
+  border-radius: var(--basalt-radius-3);
 }
 
 .suggestion-item.is-selected {
@@ -51,7 +51,7 @@
 .search-result-file-matched-text {
   background-color: var(--text-highlight-bg);
   color: inherit;
-  border-radius: 2px;
+  border-radius: var(--basalt-radius-1);
 }
 
 .menu {
@@ -59,7 +59,7 @@
 }
 
 .menu-item {
-  border-radius: 6px;
+  border-radius: var(--basalt-radius-3);
 }
 
 .menu-item:hover,

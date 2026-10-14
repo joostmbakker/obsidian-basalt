@@ -76,7 +76,7 @@
   padding: 3px;
   background-color: var(--basalt-surface-1);
   border: 1px solid var(--basalt-border);
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
 }
 
 .basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
@@ -84,7 +84,7 @@
   width: auto;
   min-width: 72px;
   max-width: 220px;
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
 }
 
 .basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {

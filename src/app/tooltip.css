@@ -4,7 +4,7 @@
   background-color: var(--tooltip-background);
   color: var(--tooltip-color);
   border: 1px solid var(--basalt-border-strong);
-  border-radius: 6px;
+  border-radius: var(--basalt-radius-3);
   font-size: 12px;
   box-shadow: var(--tooltip-shadow);
 }

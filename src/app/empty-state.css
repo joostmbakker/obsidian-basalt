@@ -28,7 +28,7 @@
   font-weight: 500;
   line-height: normal;
   padding: 7px 14px;
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
   background-color: var(--basalt-surface-2);
   box-shadow: 0 0 0 1px var(--basalt-border);
   color: var(--basalt-text);

@@ -2,7 +2,7 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--basalt-scrollbar);
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
 }
 
 ::-webkit-scrollbar-thumb:hover,

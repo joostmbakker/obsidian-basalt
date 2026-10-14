@@ -3,7 +3,7 @@
 .canvas-node-container {
   background-color: var(--basalt-surface-1);
   border: 1px solid var(--basalt-border);
-  border-radius: 8px;
+  border-radius: var(--basalt-radius-4);
   box-shadow: none;
 }
 

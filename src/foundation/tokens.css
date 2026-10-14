@@ -121,3 +121,17 @@
   --color-base-70: #5f5f5c;
   --color-base-100: #141414;
 }
+
+/* Scales, the same in both modes. Components take a step from here rather
+   than a literal. */
+.theme-dark,
+.theme-light {
+  --basalt-radius-1: 2px;
+  --basalt-radius-2: 4px;
+  --basalt-radius-3: 6px;
+  --basalt-radius-4: 8px;
+  --basalt-radius-5: 10px;
+  --basalt-radius-6: 12px;
+  --basalt-radius-7: 16px;
+  --basalt-radius-pill: 999px;
+}

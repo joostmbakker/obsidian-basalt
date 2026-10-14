@@ -14,5 +14,5 @@
 .markdown-rendered mark,
 .cm-s-obsidian span.cm-highlight {
   color: inherit;
-  border-radius: 2px;
+  border-radius: var(--basalt-radius-1);
 }

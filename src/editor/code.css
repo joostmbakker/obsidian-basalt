@@ -15,7 +15,7 @@
 .markdown-rendered pre {
   background-color: var(--basalt-surface-1);
   border: 1px solid var(--basalt-border);
-  border-radius: 8px;
+  border-radius: var(--basalt-radius-4);
   padding: 14px 18px;
 }
 
@@ -35,13 +35,13 @@
 }
 
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
-  border-start-start-radius: 8px;
-  border-start-end-radius: 8px;
+  border-start-start-radius: var(--basalt-radius-4);
+  border-start-end-radius: var(--basalt-radius-4);
 }
 
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
-  border-end-start-radius: 8px;
-  border-end-end-radius: 8px;
+  border-end-start-radius: var(--basalt-radius-4);
+  border-end-end-radius: var(--basalt-radius-4);
 }
 
 .markdown-rendered .copy-code-button {

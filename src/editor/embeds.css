@@ -12,5 +12,5 @@
 .markdown-rendered .image-embed img,
 .markdown-source-view.mod-cm6 .image-embed img,
 .markdown-rendered img {
-  border-radius: 6px;
+  border-radius: var(--basalt-radius-3);
 }
