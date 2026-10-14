@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build Folio and install it into an Obsidian vault. Does not change appearance.json.
+# Build Basalt and install it into an Obsidian vault. Does not change appearance.json.
 # Usage: scripts/install.sh <vault-path>
 set -euo pipefail
 
@@ -16,9 +16,9 @@ VAULT="${1%/}"
 
 "$ROOT/scripts/build.sh"
 
-DEST="$VAULT/.obsidian/themes/Folio"
+DEST="$VAULT/.obsidian/themes/Basalt"
 mkdir -p "$DEST"
 cp "$ROOT/manifest.json" "$ROOT/theme.css" "$DEST/"
 
-echo "Installed Folio to $DEST"
-echo "Activate: Obsidian → Settings → Appearance → Themes → Folio"
+echo "Installed Basalt to $DEST"
+echo "Activate: Obsidian → Settings → Appearance → Themes → Basalt"

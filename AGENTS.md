@@ -1,10 +1,10 @@
-# Folio
+# Basalt
 
 Dark, minimal Obsidian theme (CSS only, no plugin code). Design contract: `SPEC.md`. Human docs: `README.md`.
 
 ## Commands
-- `scripts/build.sh`: `src/theme.css` -> root `theme.css` with Geist fonts inlined as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Folio/`. Only automated check this repo has; run it after every CSS change.
-- `FOLIO_SRC=/path/to/file.css scripts/build.sh`: build from an alternate source (experiments).
+- `scripts/build.sh`: `src/theme.css` -> root `theme.css` with Geist fonts inlined as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Basalt/`. Only automated check this repo has; run it after every CSS change.
+- `BASALT_SRC=/path/to/file.css scripts/build.sh`: build from an alternate source (experiments).
 - `scripts/install.sh <vault-path>`: build, then copy into a real vault. Writes outside the repo; run it only when the user names the vault.
 - `grep -n '!important' src/theme.css`: every hit needs a reason (see Conventions).
 

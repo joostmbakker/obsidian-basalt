@@ -1,23 +1,23 @@
 #!/bin/bash
-# Build Folio: src/theme.css -> theme.css with Geist fonts inlined as base64 WOFF2.
-# Also refreshes the fixture vault copy under test-vault/.obsidian/themes/Folio/.
-# Override the source with FOLIO_SRC=/path/to/file.css (used for testing).
+# Build Basalt: src/theme.css -> theme.css with Geist fonts inlined as base64 WOFF2.
+# Also refreshes the fixture vault copy under test-vault/.obsidian/themes/Basalt/.
+# Override the source with BASALT_SRC=/path/to/file.css (used for testing).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SRC="${FOLIO_SRC:-$ROOT/src/theme.css}"
+SRC="${BASALT_SRC:-$ROOT/src/theme.css}"
 SANS_FONT="$ROOT/src/fonts/Geist-Variable.woff2"
 MONO_FONT="$ROOT/src/fonts/GeistMono-Variable.woff2"
 MANIFEST="$ROOT/manifest.json"
 OUT="$ROOT/theme.css"
-VAULT_THEME="$ROOT/test-vault/.obsidian/themes/Folio"
+VAULT_THEME="$ROOT/test-vault/.obsidian/themes/Basalt"
 
 die() {
   echo "build.sh: error: $*" >&2
   exit 1
 }
 
-[ -f "$SRC" ] || die "source not found: $SRC (create src/theme.css or set FOLIO_SRC)"
+[ -f "$SRC" ] || die "source not found: $SRC (create src/theme.css or set BASALT_SRC)"
 for f in "$SANS_FONT" "$MONO_FONT" "$MANIFEST"; do
   [ -f "$f" ] || die "required file missing: $f"
 done
@@ -27,7 +27,7 @@ python3 -I -c '
 import base64, sys
 
 src, sans, mono, out = sys.argv[1:5]
-header = ("/* Folio — generated from src/theme.css by scripts/build.sh. Do not edit. "
+header = ("/* Basalt — generated from src/theme.css by scripts/build.sh. Do not edit. "
           "Geist fonts © Vercel, SIL OFL 1.1 */\n")
 
 with open(src, encoding="utf-8") as f:

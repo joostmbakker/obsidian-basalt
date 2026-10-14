@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Folio — a dark, clean, minimal Obsidian theme.
+   Basalt — a dark, clean, minimal Obsidian theme.
    Near-black canvas, light serif headings, sans body, hairline gray boxes,
    mono tracked eyebrows, dashed hairlines, pill buttons, flat content.
    Target: Obsidian 1.14.x. Fonts: Geist + Geist Mono (OFL), embedded at build.
@@ -150,7 +150,7 @@
 }
 
 /* ==========================================================================
-   3. Shared mapping: Obsidian variables -> Folio tokens
+   3. Shared mapping: Obsidian variables -> Basalt tokens
    ========================================================================== */
 
 .theme-dark,

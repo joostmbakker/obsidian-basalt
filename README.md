@@ -1,6 +1,6 @@
-# Folio
+# Basalt
 
-Folio is a dark, minimal Obsidian theme. It takes its base from the Claude docs
+Basalt is a dark, minimal Obsidian theme. It takes its base from the Claude docs
 pages (near-black canvas, light serif headings at weight 400, sans body, hairline
 gray boxes) and adds editorial details from the Antimetal design system (mono
 tracked eyebrows, dashed hairlines, pill buttons, no shadows on content). A light
@@ -28,7 +28,7 @@ scripts/build.sh
 
 Replaces `__GEIST_SANS__` and `__GEIST_MONO__` in `src/theme.css` with base64
 WOFF2 data URIs, writes `theme.css` at the repo root, and copies it plus
-`manifest.json` into `test-vault/.obsidian/themes/Folio/`.
+`manifest.json` into `test-vault/.obsidian/themes/Basalt/`.
 
 ## Install
 
@@ -36,9 +36,9 @@ WOFF2 data URIs, writes `theme.css` at the repo root, and copies it plus
 scripts/install.sh ~/Vaults/X
 ```
 
-Copies the built theme into `~/Vaults/X/.obsidian/themes/Folio/`. It does not
+Copies the built theme into `~/Vaults/X/.obsidian/themes/Basalt/`. It does not
 change `appearance.json`. Activate it in Obsidian: Settings → Appearance →
-Themes → Folio.
+Themes → Basalt.
 
 ## Fonts
 
@@ -52,7 +52,7 @@ Themes → Folio.
 ## Verification workflow
 
 1. Run `scripts/build.sh`. It refreshes `test-vault/`.
-2. Open `test-vault/` in Obsidian and select Folio.
+2. Open `test-vault/` in Obsidian and select Basalt.
 3. Check dark and light modes, the reading and live-preview views, and the
    core chrome (sidebars, tabs, modals, menus, callouts, tables, code blocks).
 4. Save screenshots to `screenshots/` and compare them against the reference
