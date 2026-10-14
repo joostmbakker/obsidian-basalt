@@ -156,6 +156,9 @@
   --basalt-focus-ring-soft: 0 0 0 3px var(--basalt-accent-tint-soft);
   --basalt-focus-ring: 0 0 0 3px var(--basalt-accent-tint);
 
+  /* Eyebrow: mono, uppercase, tracked (H6, find labels, notice actions) */
+  --basalt-tracking-eyebrow: 0.1em;
+
   /* Motion */
   --basalt-motion-fast: 120ms ease;
   --basalt-motion: 150ms ease-out;

@@ -23,7 +23,7 @@
   flex: 0 0 64px;
   font-family: var(--basalt-font-mono);
   font-size: var(--basalt-ui-size-1);
-  letter-spacing: 0.1em;
+  letter-spacing: var(--basalt-tracking-eyebrow);
   text-transform: uppercase;
   color: var(--basalt-text-faint);
 }

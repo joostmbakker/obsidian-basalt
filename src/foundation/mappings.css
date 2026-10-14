@@ -109,7 +109,7 @@
   --h6-size: 0.72em;
   --h6-weight: 400;
   --h6-line-height: 1.5;
-  --h6-letter-spacing: 0.1em;
+  --h6-letter-spacing: var(--basalt-tracking-eyebrow);
   --h6-color: var(--basalt-text-faint);
   --inline-title-font: var(--basalt-font-serif);
   --inline-title-size: 2.35em;
