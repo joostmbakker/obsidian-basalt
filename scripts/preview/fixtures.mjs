@@ -144,11 +144,12 @@ function toggle(name, on) {
     </div>`;
 }
 
+// GUESS: Obsidian's JS keeps --slider-fill-ratio in sync inline; set it once here.
 function slider(name, value, min = 0, max = 1) {
   return `
     <div class="setting-item mod-slider">
       <div class="setting-item-info"><div class="setting-item-name">${name}</div><div class="setting-item-description"></div></div>
-      <div class="setting-item-control"><input class="slider" type="range" min="${min}" max="${max}" step="any" value="${value}"></div>
+      <div class="setting-item-control"><input class="slider" type="range" min="${min}" max="${max}" step="any" value="${value}" style="--slider-fill-ratio: ${(value - min) / (max - min)}"></div>
     </div>`;
 }
 
