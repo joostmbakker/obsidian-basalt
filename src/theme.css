@@ -372,11 +372,11 @@
   --footnote-size: 0.85em;
 
   /* Properties */
-  --metadata-label-font: var(--basalt-font-mono);
-  --metadata-label-font-size: 11px;
+  --metadata-label-font: var(--basalt-font-sans);
+  --metadata-label-font-size: 13px;
   --metadata-label-font-weight: 400;
-  --metadata-label-text-color: var(--basalt-text-faint);
-  --metadata-label-text-color-hover: var(--basalt-text-muted);
+  --metadata-label-text-color: var(--basalt-text-muted);
+  --metadata-label-text-color-hover: var(--basalt-text);
   --metadata-input-font: var(--basalt-font-sans);
   --metadata-input-font-size: 13px;
   --metadata-input-text-color: var(--basalt-text);
@@ -870,11 +870,19 @@ a.tag:hover,
 .metadata-property-key,
 input.metadata-property-key-input,
 .metadata-properties-heading {
-  font-family: var(--basalt-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--basalt-text-faint);
+  font-family: var(--basalt-font-sans);
+  font-size: 13px;
+  color: var(--basalt-text-muted);
+}
+
+/* Keys are <input>s, so ::first-letter can't apply; capitalize is the closest.
+   Show the raw key while editing it. */
+input.metadata-property-key-input {
+  text-transform: capitalize;
+}
+
+input.metadata-property-key-input:focus {
+  text-transform: none;
 }
 
 .metadata-property-value,
