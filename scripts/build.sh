@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build Basalt: src/theme.css -> theme.css with Geist fonts inlined as base64 WOFF2.
-# Also refreshes the fixture vault copy under test-vault/.obsidian/themes/Basalt/.
+# Also refreshes the local, gitignored test-vault copy when test-vault/.obsidian exists.
 # Override the source with BASALT_SRC=/path/to/file.css (used for testing).
 set -euo pipefail
 
@@ -46,9 +46,14 @@ with open(out, "w", encoding="utf-8") as f:
     f.write(header + css)
 ' "$SRC" "$SANS_FONT" "$MONO_FONT" "$OUT"
 
-mkdir -p "$VAULT_THEME"
-cp "$MANIFEST" "$OUT" "$VAULT_THEME/"
+if [ -d "$ROOT/test-vault/.obsidian" ]; then
+  mkdir -p "$VAULT_THEME"
+  cp "$MANIFEST" "$OUT" "$VAULT_THEME/"
+  vault_msg="Copied manifest.json + theme.css to ${VAULT_THEME#"$ROOT"/}/"
+else
+  vault_msg="test-vault/ not found; skipped local copy"
+fi
 
 bytes="$(wc -c < "$OUT" | tr -d ' ')"
 echo "Built $OUT (${bytes} bytes, $((bytes / 1024)) KiB)"
-echo "Copied manifest.json + theme.css to ${VAULT_THEME#"$ROOT"/}/"
+echo "$vault_msg"

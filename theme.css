@@ -391,9 +391,9 @@ settings:
   --checkbox-marker-color: var(--basalt-invert-fg);
   --checklist-done-color: var(--basalt-text-faint);
   --checklist-done-decoration: line-through;
-  --list-marker-color: var(--basalt-text-faint);
-  --list-marker-color-hover: var(--basalt-text-muted);
-  --list-marker-color-collapsed: var(--basalt-text-muted);
+  --list-marker-color: var(--basalt-text-strong);
+  --list-marker-color-hover: var(--basalt-text-strong);
+  --list-marker-color-collapsed: var(--basalt-text-faint);
   --list-bullet-size: 5px;
   --hr-color: var(--basalt-border);
   --hr-thickness: 1px;
@@ -610,6 +610,17 @@ settings:
 
 .inline-title {
   letter-spacing: -0.025em;
+}
+
+/* Space below headings. Reading: margins collapse with the next block, so use
+   max() against --p-spacing. Live preview: the next line has no top padding, so the
+   gap lives on the header line itself. */
+.markdown-rendered :is(h1, h2, h3, h4, h5, h6) {
+  margin-block-end: max(var(--p-spacing), 0.6em);
+}
+
+.cm-s-obsidian .cm-line.HyperMD-header {
+  padding-bottom: 0.35em;
 }
 
 .markdown-rendered h4,
@@ -858,6 +869,17 @@ a.tag:hover,
   border-inline-start: 4px solid var(--callout-color);
 }
 
+/* Obsidian's embed-block hover rounds the widget to 4px and rings it, which clips
+   the bar and boxes the callout. Keep it square and show hover as a field step. */
+.markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover > .callout {
+  background-color: color-mix(in srgb, var(--callout-color) 10%, var(--basalt-bg));
+}
+
 .callout-title {
   gap: 8px;
 }
@@ -882,10 +904,26 @@ a.tag:hover,
 
 /* --- Lists & tasks --------------------------------------------------------- */
 
-.markdown-rendered ul > li::marker,
+/* Bullets are drawn by .list-bullet::after (the native ::marker is transparent),
+   so the marker colour comes from --list-marker-color. Numerals stay quieter. */
 .markdown-rendered ol > li::marker,
-.cm-s-obsidian span.cm-formatting-list {
-  color: var(--list-marker-color);
+.cm-s-obsidian span.cm-formatting-list-ol {
+  color: var(--basalt-text-muted);
+}
+
+/* Marker-to-text gap. Reading: pull the floated bullet further left.
+   Live preview: pad the marker's end and widen --list-marker-space to match,
+   so wrapped lines stay aligned. */
+.markdown-rendered .list-bullet {
+  margin-inline-start: -0.95em;
+}
+
+.markdown-source-view.is-live-preview {
+  --list-marker-space: 0.4em;
+}
+
+.cm-formatting-list-ul {
+  padding-inline-end: 0.15em;
 }
 
 .markdown-rendered .task-list-item.is-checked,
@@ -1300,7 +1338,6 @@ input.metadata-property-key-input:focus {
 
 button:not(.clickable-icon) {
   font-weight: 500;
-  color: var(--basalt-text);
   background-color: var(--basalt-surface-2);
   box-shadow: 0 0 0 1px var(--basalt-border);
 }
@@ -1332,7 +1369,8 @@ button.mod-warning:hover {
   box-shadow: none;
 }
 
-button:focus-visible {
+button:focus-visible,
+button:not(.clickable-icon):focus-visible {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
 }
 
@@ -1465,6 +1503,232 @@ select:focus,
 
 .menu-separator {
   border-color: var(--basalt-line);
+}
+
+/* --- Find & replace -------------------------------------------------------- */
+
+/* Docked sheet: surface-1 band, mono eyebrow per row, underline-only fields.
+   Scoped under .document-search so the global search pane and graph inputs keep
+   their pill fields. Matches are monochrome: soft tint, current = strong underline. */
+.document-search-container,
+.mod-active .document-search-container {
+  margin: 0;
+  padding: 10px 16px;
+  gap: 4px;
+  background-color: var(--basalt-surface-1);
+  border-bottom: 1px solid var(--basalt-border);
+}
+.document-search,
+.document-replace {
+  max-width: none;
+  padding: 0;
+  align-items: center;
+  gap: 8px;
+}
+.document-search::before,
+.document-replace::before {
+  flex: 0 0 64px;
+  font-family: var(--basalt-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--basalt-text-faint);
+}
+.document-search::before {
+  content: "Find";
+}
+.document-replace::before {
+  content: "Replace";
+}
+.document-search-input,
+.document-replace-input[type="text"] {
+  border-radius: 0;
+}
+.document-search-input input,
+.document-replace-input[type="text"] {
+  height: 32px;
+  font-size: 14px;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid var(--basalt-line);
+  border-radius: 0;
+}
+.document-search-input input:hover,
+.document-replace-input[type="text"]:hover {
+  border-color: transparent;
+  border-bottom-color: var(--basalt-border-strong);
+}
+.document-search-input input:focus,
+.document-replace-input[type="text"]:focus {
+  border-color: transparent;
+  border-bottom-color: var(--basalt-text-strong);
+  box-shadow: none;
+}
+.document-search-count {
+  font-family: var(--basalt-font-mono);
+  font-size: 11px;
+  color: var(--basalt-text-muted);
+}
+.document-search-buttons .document-search-button,
+.document-search-close-button {
+  color: var(--basalt-text-muted);
+}
+.document-search-buttons .document-search-button:hover,
+.document-search-close-button:hover,
+.document-search-buttons .document-search-button.is-active {
+  color: var(--basalt-text-strong);
+}
+.document-replace-buttons button.document-search-button {
+  height: 28px;
+  padding: 0 12px;
+  background-color: var(--basalt-surface-2);
+  box-shadow: 0 0 0 1px var(--basalt-border);
+  color: var(--basalt-text);
+}
+.cm-s-obsidian span.obsidian-search-match-highlight {
+  background-color: var(--text-highlight-bg);
+  box-shadow: none;
+  mix-blend-mode: normal;
+}
+.cm-s-obsidian span.cm-highlight.obsidian-search-match-highlight {
+  background-color: var(--text-selection);
+  box-shadow: inset 0 -2px 0 var(--basalt-text-strong);
+}
+.markdown-rendered .search-highlight > div {
+  background-color: var(--text-highlight-bg);
+  box-shadow: none;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+.markdown-rendered .search-highlight > div.is-active {
+  background-color: var(--text-selection);
+  box-shadow: inset 0 -2px 0 var(--basalt-text-strong);
+}
+
+/* --- Notices --------------------------------------------------------------- */
+
+/* Margin bar: echoes callouts. Obsidian only hard-codes the light-mode progress
+   track (#262626) at .theme-light specificity, so both themes are targeted here.
+   .is-loading:before is global; keep the override scoped to notices. */
+.notice {
+  background-color: var(--basalt-surface-2);
+  color: var(--basalt-text);
+  font-size: 12.5px;
+  border: 0;
+  border-inline-start: 4px solid var(--basalt-text-strong);
+  border-radius: 0;
+  box-shadow: 0 0 0 1px var(--basalt-border);
+}
+.notice-button-container {
+  column-gap: 14px;
+}
+.notice-cta {
+  text-decoration: none;
+  font-family: var(--basalt-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--basalt-text-muted);
+}
+.notice-cta:hover,
+.notice-cta.mobile-tap {
+  text-decoration: none;
+  color: var(--basalt-text-strong);
+}
+.notice-cta:focus-visible {
+  outline: 2px solid var(--basalt-accent);
+  outline-offset: 2px;
+}
+.notice.is-loading:before {
+  background-color: var(--basalt-text-strong);
+}
+.theme-dark .notice progress[value]::-webkit-progress-bar,
+.theme-light .notice progress[value]::-webkit-progress-bar {
+  background-color: transparent;
+  background-image: repeating-linear-gradient(90deg, var(--basalt-border-strong) 0 6px, transparent 6px 9px);
+  box-shadow: none;
+  border-radius: 0;
+}
+.notice progress[value]::-webkit-progress-value {
+  background-color: var(--basalt-text-strong);
+}
+
+/* --- Empty state ----------------------------------------------------------- */
+
+/* Pill row. Obsidian renders the actions as plain `div.empty-state-action.tappable`
+   rows (Close adds `.mod-close`) with the hotkey inside the label text; the title
+   element is created empty. */
+.empty-state-title {
+  font-family: var(--basalt-font-serif);
+  font-size: 1.9em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--basalt-text-strong);
+}
+/* Obsidian leaves the title empty; supply the label so the empty state has a heading. */
+.empty-state-title:empty::before {
+  content: "No file is open";
+}
+.empty-state-action-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.empty-state-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background-color: var(--basalt-surface-2);
+  box-shadow: 0 0 0 1px var(--basalt-border);
+  color: var(--basalt-text);
+}
+.empty-state-action:hover {
+  background-color: var(--basalt-surface-3);
+  box-shadow: 0 0 0 1px var(--basalt-border-strong);
+  color: var(--basalt-text-strong);
+}
+/* Icons: Obsidian renders none, so draw lucide glyphs with a mask. Create / Go to
+   file are positional (first two actions); Close is .mod-close. */
+.empty-state-action::before {
+  content: "";
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background-color: var(--basalt-text-faint);
+  -webkit-mask: var(--basalt-empty-icon) center / contain no-repeat;
+  mask: var(--basalt-empty-icon) center / contain no-repeat;
+}
+.empty-state-action:hover::before {
+  background-color: var(--basalt-text-strong);
+}
+.empty-state-action:nth-child(1) {
+  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z'/%3E%3Cpath d='M14 2v6h6M12 18v-6M9 15h6'/%3E%3C/svg%3E");
+}
+.empty-state-action:nth-child(2) {
+  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M4.3 21a2 2 0 0 0 1.7 1h12a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3'/%3E%3Ccircle cx='5' cy='14' r='3'/%3E%3Cpath d='m9 18-1.5-1.5'/%3E%3C/svg%3E");
+}
+.empty-state-action.mod-close {
+  --basalt-empty-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+  justify-content: center;
+  flex: 0 0 100%;
+  margin-top: 4px;
+  background-color: transparent;
+  box-shadow: none;
+  color: var(--basalt-text-muted);
+}
+.empty-state-action.mod-close:hover {
+  background-color: transparent;
+  color: var(--color-red);
+}
+.empty-state-action.mod-close:hover::before {
+  background-color: var(--color-red);
 }
 
 /* --- Tooltip --------------------------------------------------------------- */
