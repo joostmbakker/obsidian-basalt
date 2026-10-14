@@ -1,46 +1,67 @@
 /* --- Tab styles ------------------------------------------------------------ */
-/* Body classes set by Style Settings (see @settings at the top). Each style is
+/* Underline applies without a style class. Style Settings can select another
+   style via an ancestor class (see foundation/settings.css). Each style is
    scoped to the root split's tab bar, minus stacked tab groups, so sidebar tabs
    keep Obsidian's icon strip. ".workspace-tabs.mod-active" is the focused tab
    group: its active tab is marked more strongly than the active tab of an
    unfocused split, so the user can see which pane has focus. */
 
-/* Shared: drop Obsidian's curved ears, active outline and inner dividers. */
-:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
-  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+/* Shared: drop Obsidian's curved ears, active outline and inner dividers.
+   The fallback excludes explicit alternative styles on any ancestor; :where()
+   keeps specificity equal to the existing class-based rules. */
+:is(
+  :is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed) .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
   background-color: transparent;
   box-shadow: none;
   border-radius: 0;
   transition: color var(--basalt-motion), background-color var(--basalt-motion), box-shadow var(--basalt-motion);
 }
 
-:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
-  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header::before,
-:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
-  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header::after,
-:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
-  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-inner::after {
+:is(
+  :is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed) .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header::before,
+:is(
+  :is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed) .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header::after,
+:is(
+  :is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed) .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-inner::after {
   display: none;
 }
 
-:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
-  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header .workspace-tab-header-inner {
+:is(
+  :is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed) .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header .workspace-tab-header-inner {
   background-color: transparent;
 }
 
-:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
-  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-title {
+:is(
+  :is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed) .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-title {
   color: var(--basalt-text-muted);
 }
 
 /* Underline: the bar takes the editor colour; a 1.5px rule marks the active tab
    (accent in the focused pane, faint elsewhere). */
-.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container {
+:is(
+  .basalt-tabs-underline .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container {
   background-color: var(--basalt-bg);
   border-bottom-color: var(--basalt-line);
 }
 
-.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-container-inner {
+:is(
+  .basalt-tabs-underline .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-container-inner {
   align-items: stretch;
   margin-top: 0;
   margin-bottom: -1px;
@@ -49,20 +70,32 @@
 
 /* Obsidian pads tabs 1px top / 3px bottom for the curved style; even it out so
    titles centre on the new-tab and tab-list buttons. */
-.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+:is(
+  .basalt-tabs-underline .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
   padding-top: 2px;
   padding-bottom: 2px;
 }
 
-.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
+:is(
+  .basalt-tabs-underline .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
   box-shadow: inset 0 -1px 0 var(--basalt-border-strong);
 }
 
-.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+:is(
+  .basalt-tabs-underline .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
   box-shadow: inset 0 -1.5px 0 var(--basalt-text-faint);
 }
 
-.basalt-tabs-underline .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+:is(
+  .basalt-tabs-underline .mod-root,
+  .mod-root:not(:where(.basalt-tabs-default *, .basalt-tabs-track *, .basalt-tabs-ink *, .basalt-tabs-sheet *, .basalt-tabs-indexed *))
+) .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
   box-shadow: inset 0 -1.5px 0 var(--basalt-accent);
 }
 

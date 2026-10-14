@@ -53,10 +53,11 @@ Themes → Basalt.
 
 ## Options
 
+The tab bar above notes uses **Underline** by default, with no plugin or setup needed.
 With the [Style Settings](https://github.com/obsidian-community/obsidian-style-settings)
 community plugin installed, Settings → Style Settings → Basalt offers a **Tab style**
-for the tab bar above notes: Obsidian (default), Underline, Track, Ink, Sheet, or
-Indexed. Without the plugin the default applies.
+to choose Obsidian, Underline (default), Track, Ink, Sheet, or Indexed. An explicitly
+saved choice takes precedence over the built-in default.
 
 ## Fonts
 

@@ -11,13 +11,13 @@ settings:
     description: Look of the tab bar above notes. Sidebar and stacked tabs are unaffected.
     type: class-select
     allowEmpty: false
-    default: basalt-tabs-default
+    default: basalt-tabs-underline
     options:
       -
-        label: Obsidian (default)
+        label: Obsidian
         value: basalt-tabs-default
       -
-        label: Underline
+        label: Underline (default)
         value: basalt-tabs-underline
       -
         label: Track

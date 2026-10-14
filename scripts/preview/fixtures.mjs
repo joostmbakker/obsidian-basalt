@@ -82,7 +82,8 @@ function sideLeaf({ type, content }) {
 /* ------------------------------------------------------------------------ */
 
 const tabStyles = [
-  ["basalt-tabs-default", "Default"],
+  ["", "Built-in default (no plugin)"],
+  ["basalt-tabs-default", "Obsidian (explicit)"],
   ["basalt-tabs-underline", "Underline"],
   ["basalt-tabs-track", "Track"],
   ["basalt-tabs-ink", "Ink"],
