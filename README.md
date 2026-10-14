@@ -45,7 +45,12 @@ Obsidian, Underline (default), Track, Ink, Sheet or Indexed.
 
 ## Fonts
 
-- Geist and Geist Mono, © Vercel, under the SIL Open Font License 1.1. See
+- Geist and Geist Mono are subsets covering Latin (including extended Latin),
+  combining accents, common punctuation, currencies, arrows, maths and keyboard
+  symbols.
+  Other scripts use the fallback fonts in Obsidian. The full weight range and
+  OpenType features of retained glyphs are preserved.
+  © Vercel, under the SIL Open Font License 1.1. See
   [`src/fonts/OFL.txt`](src/fonts/OFL.txt).
 - Basalt Serif is a Latin subset of Source Serif 4 (© Adobe, SIL Open Font
   License 1.1; weights 400–700, optical sizes 16–48), used for headings, the
@@ -101,7 +106,8 @@ change `appearance.json`; select the theme in Obsidian afterwards.
 ### Preview harness
 
 `scripts/preview/preview.mjs` screenshots HTML replicas of Obsidian's DOM (tab
-bar, graph view and controls, find and replace, notices, empty state) with
+bar, graph view and controls, find and replace, notices, empty state, links and
+bundled fonts) with
 Obsidian's own `app.css` and the built `theme.css`, in dark and light mode, with
 hover and focus forced through Chrome DevTools.
 

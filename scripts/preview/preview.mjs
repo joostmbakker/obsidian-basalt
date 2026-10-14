@@ -14,7 +14,7 @@
 //   --theme <file>   built theme to load (default: theme.css at the repo root;
 //                    env BASALT_THEME). Run scripts/build.sh first.
 //   --out <dir>      output directory (default: preview-out/; env BASALT_PREVIEW_OUT)
-//   --only <ids>     comma-separated fixture ids: tabbar,graph,find,notices,empty
+//   --only <ids>     comma-separated fixture ids: tabbar,graph,find,notices,empty,links
 //   --modes <list>   dark,light (default both)
 //   --scale <n>      device scale factor (default 1)
 //
