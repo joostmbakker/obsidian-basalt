@@ -1,0 +1,21 @@
+/* --- Canvas ---------------------------------------------------------------- */
+
+.canvas-node-container {
+  background-color: var(--basalt-surface-1);
+  border: 1px solid var(--basalt-border);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.canvas-node.is-focused .canvas-node-container,
+.canvas-node.is-selected .canvas-node-container {
+  border-color: var(--basalt-accent);
+  box-shadow: none;
+}
+
+.canvas-node-label {
+  font-family: var(--basalt-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--basalt-text-faint);
+}

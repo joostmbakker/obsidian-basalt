@@ -1,0 +1,383 @@
+/* --- Obsidian variables -> Basalt tokens ----------------------------------- */
+
+/* Specificity 0,1,0: beats Obsidian's body {} defaults. */
+
+.theme-dark,
+.theme-light {
+  /* Fonts (user overrides in Settings still win: *-override is untouched) */
+  --basalt-font-serif: "Tiempos Headline", "Test Tiempos Headline", "Source Serif 4", "Newsreader", Georgia, serif;
+  --basalt-font-sans: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  --basalt-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-text-theme: var(--basalt-font-sans);
+  --font-interface-theme: var(--basalt-font-sans);
+  --font-monospace-theme: var(--basalt-font-mono);
+  --font-ui-small: 13px;
+  --font-ui-smaller: 12px;
+
+  /* Layout & type scale */
+  --line-height-normal: 1.65;
+  --file-line-width: 720px;
+  --p-spacing: 1.1rem;
+  --bold-weight: 600;
+  --bold-color: var(--basalt-text-strong);
+
+  /* Radii */
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 10px;
+  --radius-xl: 16px;
+
+  /* Backgrounds */
+  --background-primary: var(--basalt-bg);
+  --background-primary-alt: var(--basalt-surface-1);
+  --background-secondary: var(--basalt-bg-sidebar);
+  --background-secondary-alt: var(--basalt-surface-1);
+  --background-modifier-border: var(--basalt-border);
+  --background-modifier-border-hover: var(--basalt-border-strong);
+  --background-modifier-border-focus: var(--basalt-border-strong);
+  --background-modifier-hover: var(--basalt-hover);
+  --background-modifier-active-hover: var(--basalt-active);
+  --background-modifier-form-field: var(--basalt-surface-1);
+  --background-modifier-box-shadow: transparent;
+  --divider-color: var(--basalt-line);
+  --divider-color-hover: var(--basalt-border-strong);
+  --indentation-guide-color: var(--basalt-line);
+  --indentation-guide-color-active: var(--basalt-border);
+
+  /* Text */
+  --text-normal: var(--basalt-text);
+  --text-muted: var(--basalt-text-muted);
+  --text-faint: var(--basalt-text-faint);
+  --text-accent: var(--basalt-accent);
+  --text-accent-hover: var(--basalt-text-strong);
+  --text-on-accent: var(--basalt-invert-fg);
+  --text-selection: color-mix(in srgb, var(--basalt-accent) 28%, transparent);
+  --text-highlight-bg: var(--basalt-highlight);
+  --caret-color: var(--basalt-text-strong);
+
+  /* Interactive */
+  --interactive-normal: var(--basalt-surface-2);
+  --interactive-hover: var(--basalt-surface-3);
+  --interactive-accent: var(--basalt-accent);
+  --interactive-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, white);
+
+  /* Icons */
+  --icon-color: var(--basalt-text-faint);
+  --icon-color-hover: var(--basalt-text-muted);
+  --icon-color-active: var(--basalt-text);
+  --icon-color-focused: var(--basalt-text);
+
+  /* Shadows: content is flat; only floating layers carry one */
+  --shadow-s: none;
+  --shadow-l: var(--basalt-shadow-float);
+  --input-shadow: 0 0 0 1px var(--basalt-border);
+  --input-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
+
+  /* Headings */
+  --heading-formatting: var(--basalt-text-faint);
+  --h1-font: var(--basalt-font-serif);
+  --h1-size: 2em;
+  --h1-weight: 400;
+  --h1-line-height: 1.15;
+  --h1-letter-spacing: -0.022em;
+  --h1-color: var(--basalt-text-strong);
+  --h2-font: var(--basalt-font-serif);
+  --h2-size: 1.55em;
+  --h2-weight: 400;
+  --h2-line-height: 1.2;
+  --h2-letter-spacing: -0.016em;
+  --h2-color: var(--basalt-text-strong);
+  --h3-font: var(--basalt-font-serif);
+  --h3-size: 1.25em;
+  --h3-weight: 400;
+  --h3-line-height: 1.3;
+  --h3-letter-spacing: -0.01em;
+  --h3-color: var(--basalt-text-strong);
+  --h4-font: var(--basalt-font-sans);
+  --h4-size: 1.05em;
+  --h4-weight: 600;
+  --h4-line-height: 1.4;
+  --h4-letter-spacing: 0;
+  --h4-color: var(--basalt-text);
+  --h5-font: var(--basalt-font-sans);
+  --h5-size: 0.95em;
+  --h5-weight: 600;
+  --h5-line-height: 1.4;
+  --h5-letter-spacing: 0;
+  --h5-color: var(--basalt-text-muted);
+  --h6-font: var(--basalt-font-mono);
+  --h6-size: 0.72em;
+  --h6-weight: 400;
+  --h6-line-height: 1.5;
+  --h6-letter-spacing: 0.1em;
+  --h6-color: var(--basalt-text-faint);
+  --inline-title-font: var(--basalt-font-serif);
+  --inline-title-size: 2.35em;
+  --inline-title-weight: 400;
+  --inline-title-line-height: 1.1;
+  --inline-title-color: var(--basalt-text-strong);
+  --inline-title-margin-bottom: 0.6em;
+
+  /* Links */
+  --link-color: var(--basalt-text);
+  --link-color-hover: var(--basalt-accent);
+  --link-decoration: underline;
+  --link-decoration-hover: underline;
+  --link-decoration-thickness: 1px;
+  --link-external-color: var(--basalt-text);
+  --link-external-color-hover: var(--basalt-accent);
+  --link-external-decoration: underline;
+  --link-external-decoration-hover: underline;
+  --link-unresolved-color: var(--basalt-text-muted);
+  --link-unresolved-opacity: 1;
+  --link-unresolved-decoration-style: dashed;
+  --link-unresolved-decoration-color: var(--basalt-text-faint);
+
+  /* Tags */
+  --tag-radius: 999px;
+  --tag-size: 0.8em;
+  --tag-weight: 400;
+  --tag-padding-x: 0.6em;
+  --tag-padding-y: 0.15em;
+  --tag-color: var(--basalt-text-muted);
+  --tag-color-hover: var(--basalt-text);
+  --tag-background: var(--basalt-surface-2);
+  --tag-background-hover: var(--basalt-surface-2);
+  --tag-border-width: 1px;
+  --tag-border-color: var(--basalt-border);
+  --tag-border-color-hover: var(--basalt-border-strong);
+  --tag-decoration: none;
+  --tag-decoration-hover: none;
+
+  /* Code */
+  --code-size: 0.86em;
+  --code-radius: 4px;
+  --code-background: var(--basalt-surface-2);
+  --code-normal: var(--basalt-text);
+  --code-border-width: 1px;
+  --code-border-color: var(--basalt-line);
+  --code-comment: var(--basalt-text-faint);
+  --code-keyword: var(--color-purple);
+  --code-string: var(--color-green);
+  --code-function: var(--color-blue);
+  --code-value: var(--color-orange);
+  --code-property: var(--basalt-text);
+  --code-tag: var(--color-pink);
+  --code-operator: var(--basalt-text-muted);
+  --code-punctuation: var(--basalt-text-muted);
+  --code-important: var(--color-orange);
+
+  /* Tables */
+  --table-background: transparent;
+  --table-border-width: 1px;
+  --table-border-color: var(--basalt-border);
+  --table-header-background: var(--basalt-surface-2);
+  --table-header-background-hover: var(--basalt-surface-2);
+  --table-header-color: var(--basalt-text-muted);
+  --table-header-weight: 400;
+  --table-header-size: var(--table-text-size);
+  --table-header-font: inherit;
+  --table-row-background-hover: var(--basalt-hover);
+  --table-row-alt-background: transparent;
+  --table-row-alt-background-hover: var(--basalt-hover);
+  --table-column-alt-background: transparent;
+  --table-text-color: var(--basalt-text);
+
+  /* Callouts: 1.14 uses --callout-color as a colour value, not an rgb triple */
+  --callout-radius: 0;
+  --callout-padding: 12px 16px 12px 18px;
+  --callout-border-width: 0;
+  --callout-title-weight: 600;
+  --callout-blend-mode: normal;
+  --callout-default: rgb(var(--basalt-neutral-rgb));
+  --callout-quote: rgb(var(--basalt-neutral-rgb));
+  /* Inherited by a callout whose own value is invalid (see @property in Callouts) */
+  --callout-color: var(--callout-default);
+
+  /* Checkbox, lists, rules, quotes */
+  --checkbox-size: 15px;
+  --checkbox-radius: 4px;
+  --checkbox-border-color: var(--basalt-text-faint);
+  --checkbox-border-color-hover: var(--basalt-text-muted);
+  --checkbox-color: var(--basalt-invert-bg);
+  --checkbox-color-hover: var(--basalt-invert-bg);
+  --checkbox-marker-color: var(--basalt-invert-fg);
+  --checklist-done-color: var(--basalt-text-faint);
+  --checklist-done-decoration: line-through;
+  --list-marker-color: var(--basalt-text-strong);
+  --list-marker-color-hover: var(--basalt-text-strong);
+  --list-marker-color-collapsed: var(--basalt-text-faint);
+  --list-bullet-size: 5px;
+  --hr-color: var(--basalt-border);
+  --hr-thickness: 1px;
+  --blockquote-border-color: var(--basalt-border-strong);
+  --blockquote-border-thickness: 1px;
+  --blockquote-color: var(--basalt-text);
+  --blockquote-background-color: transparent;
+  --blockquote-font-style: normal;
+  --blockquote-style: normal;
+  --embed-border-left: 1px solid var(--basalt-border-strong);
+  --embed-border-start: 1px solid var(--basalt-border-strong);
+  --embed-padding: 0 0 0 1em;
+  --footnote-size: 0.85em;
+
+  /* Properties */
+  --metadata-label-font: var(--basalt-font-sans);
+  --metadata-label-font-size: 13px;
+  --metadata-label-font-weight: 400;
+  --metadata-label-text-color: var(--basalt-text-muted);
+  --metadata-label-text-color-hover: var(--basalt-text);
+  --metadata-input-font: var(--basalt-font-sans);
+  --metadata-input-font-size: 13px;
+  --metadata-input-text-color: var(--basalt-text);
+  --metadata-border-width: 0;
+  --metadata-border-radius: 0;
+  --metadata-background: transparent;
+  --metadata-padding: 0 0 12px 0;
+  --metadata-divider-color: transparent;
+
+  /* Tabs */
+  --tab-font-size: 12.5px;
+  --tab-font-weight: 400;
+  --tab-container-background: var(--basalt-bg-sidebar);
+  --tab-background-active: var(--basalt-bg);
+  --tab-text-color: var(--basalt-text-faint);
+  --tab-text-color-focused: var(--basalt-text-muted);
+  --tab-text-color-active: var(--basalt-text);
+  --tab-text-color-focused-active: var(--basalt-text);
+  --tab-text-color-focused-active-current: var(--basalt-text);
+  --tab-outline-color: var(--basalt-line);
+  --tab-divider-color: var(--basalt-line);
+
+  /* Chrome */
+  --titlebar-background: var(--basalt-bg-sidebar);
+  --titlebar-background-focused: var(--basalt-bg-sidebar);
+  --titlebar-border-color: var(--basalt-line);
+  --ribbon-background: var(--basalt-bg-sidebar);
+  --ribbon-background-collapsed: var(--basalt-bg);
+  --sidebar-tab-container-background: var(--basalt-bg-sidebar);
+  --file-header-background: var(--basalt-bg);
+  --file-header-background-focused: var(--basalt-bg);
+  --workspace-background-translucent: color-mix(in srgb, var(--basalt-bg-sidebar) 85%, transparent);
+
+  /* Navigation */
+  --nav-item-radius: 6px;
+  --nav-item-color: var(--basalt-text-muted);
+  --nav-item-color-hover: var(--basalt-text);
+  --nav-item-color-active: var(--basalt-text-strong);
+  --nav-item-color-selected: var(--basalt-text-strong);
+  --nav-item-color-highlighted: var(--basalt-text-strong);
+  --nav-item-background-hover: var(--basalt-hover);
+  --nav-item-background-active: var(--basalt-active);
+  --nav-item-background-selected: var(--basalt-active);
+  --nav-item-weight: 400;
+  --nav-item-weight-hover: 400;
+  --nav-item-weight-active: 400;
+  --nav-indentation-guide-color: var(--basalt-line);
+  --nav-collapse-icon-color: var(--basalt-text-faint);
+  --nav-collapse-icon-color-collapsed: var(--basalt-text-faint);
+  --nav-heading-color: var(--basalt-text-muted);
+  --nav-heading-color-hover: var(--basalt-text);
+  --nav-heading-color-collapsed: var(--basalt-text-faint);
+  --nav-heading-color-collapsed-hover: var(--basalt-text-muted);
+
+  /* Status bar */
+  --status-bar-background: transparent;
+  --status-bar-border-width: 0;
+  --status-bar-border-color: transparent;
+  --status-bar-font-size: 11px;
+  --status-bar-text-color: var(--basalt-text-faint);
+
+  /* Modals, prompt, menus */
+  --modal-radius: 12px;
+  --modal-background: var(--basalt-surface-1);
+  --modal-border-color: var(--basalt-border);
+  --modal-border-width: 1px;
+  --modal-shadow: 0 0 0 1px var(--basalt-border), var(--basalt-shadow-float);
+  --prompt-background: var(--basalt-surface-1);
+  --prompt-border-color: var(--basalt-border);
+  --prompt-border-width: 1px;
+  --menu-background: var(--basalt-surface-1);
+  --menu-border-color: var(--basalt-border);
+  --menu-border-width: 1px;
+  --menu-radius: 10px;
+  --menu-shadow: 0 0 0 1px var(--basalt-border), var(--basalt-shadow-float);
+  --menu-divider-color: var(--basalt-line);
+  --dialog-bg-color: var(--basalt-surface-1);
+  --dialog-shadow: 0 0 0 1px var(--basalt-border), var(--basalt-shadow-float);
+  --settings-background: var(--basalt-surface-1);
+  --setting-items-background: transparent;
+  --setting-items-border-color: var(--basalt-line);
+  --setting-items-divider-color: var(--basalt-line);
+
+  /* Inputs, buttons, dropdowns, toggles */
+  --input-radius: 8px;
+  --button-radius: 999px;
+  --input-font-weight: 500;
+  --input-focus-border-color: var(--basalt-border-strong);
+  --input-hover-border-color: var(--basalt-border-strong);
+  --input-placeholder-color: var(--basalt-text-faint);
+  --dropdown-background: var(--basalt-surface-1);
+  --dropdown-background-hover: var(--basalt-surface-1);
+  --toggle-thumb-color: white;
+  --slider-track-background: var(--basalt-surface-3);
+  --slider-thumb-border-color: var(--basalt-border-strong);
+
+  /* Tooltip, scrollbars */
+  --tooltip-background: var(--basalt-surface-3);
+  --tooltip-color: var(--basalt-text);
+  --tooltip-radius: 6px;
+  --tooltip-font-size: 12px;
+  --tooltip-shadow: 0 0 0 1px var(--basalt-border-strong), var(--basalt-shadow-float);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--basalt-scrollbar);
+  --scrollbar-active-thumb-bg: var(--basalt-scrollbar-active);
+
+  /* Canvas (1.14 expects colours, not triples) */
+  --canvas-background: var(--basalt-bg);
+  --canvas-dot-pattern: var(--basalt-line);
+  --canvas-card-label-color: var(--basalt-text-faint);
+  --canvas-color-1: var(--color-red);
+  --canvas-color-2: var(--color-orange);
+  --canvas-color-3: var(--color-yellow);
+  --canvas-color-4: var(--color-green);
+  --canvas-color-5: var(--color-cyan);
+  --canvas-color-6: var(--color-purple);
+
+  /* Graph */
+  --graph-text: var(--basalt-text-faint);
+  --graph-node: var(--basalt-text-muted);
+  --graph-node-unresolved: var(--basalt-text-faint);
+  --graph-node-focused: var(--basalt-accent);
+  --graph-node-tag: var(--color-green);
+  --graph-node-attachment: var(--color-yellow);
+  --graph-line: var(--basalt-border);
+  /* Hover is monochrome (ink): the hovered node and its ring take the
+     strongest text colour, its links the muted one. */
+  --basalt-graph-highlight: var(--basalt-text-strong);
+  --basalt-graph-highlight-line: var(--basalt-text-muted);
+  --basalt-graph-circle: var(--basalt-text-strong);
+  /* Default colours for new colour groups: the soft palette minus green and
+     yellow (tag and attachment nodes), with blue (focused node) last. */
+  --basalt-graph-group-1: var(--color-purple);
+  --basalt-graph-group-2: var(--color-cyan);
+  --basalt-graph-group-3: var(--color-orange);
+  --basalt-graph-group-4: var(--color-pink);
+  --basalt-graph-group-5: var(--color-red);
+  --basalt-graph-group-6: var(--color-blue);
+
+  /* Bases */
+  --bases-table-header-background: var(--basalt-surface-2);
+  --bases-table-header-background-hover: var(--basalt-surface-3);
+  --bases-table-header-color: var(--basalt-text-muted);
+  --bases-table-border-color: var(--basalt-border);
+  --bases-table-row-background-hover: var(--basalt-hover);
+  --bases-cards-background: var(--basalt-surface-1);
+  --bases-cards-radius: 8px;
+  --bases-cards-shadow: 0 0 0 1px var(--basalt-border);
+  --bases-cards-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
+  --bases-kanban-card-background: var(--basalt-surface-1);
+  --bases-kanban-card-radius: 8px;
+  --bases-kanban-card-shadow: 0 0 0 1px var(--basalt-border);
+  --bases-kanban-card-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
+}

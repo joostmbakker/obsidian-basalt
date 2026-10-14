@@ -1,0 +1,72 @@
+/* --- Modals / prompt / menus ----------------------------------------------- */
+
+.modal,
+.prompt,
+.menu,
+.popover,
+.suggestion-container {
+  border: 1px solid var(--basalt-border);
+}
+
+.modal-bg {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-title,
+.setting-item-heading,
+.setting-item-name {
+  font-weight: 500;
+}
+
+.setting-item {
+  border-top-color: var(--basalt-line);
+}
+
+.vertical-tab-nav-item.is-active {
+  background-color: var(--basalt-active);
+  color: var(--basalt-text-strong);
+}
+
+.prompt {
+  border-radius: var(--modal-radius);
+}
+
+.prompt-input,
+.prompt-input:focus {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.suggestion-item {
+  border-radius: 6px;
+}
+
+.suggestion-item.is-selected {
+  background-color: var(--basalt-active);
+}
+
+.suggestion-highlight,
+.search-result-file-matched-text {
+  background-color: var(--text-highlight-bg);
+  color: inherit;
+  border-radius: 2px;
+}
+
+.menu {
+  padding: 6px;
+}
+
+.menu-item {
+  border-radius: 6px;
+}
+
+.menu-item:hover,
+.menu-item.selected {
+  background-color: var(--basalt-hover);
+}
+
+.menu-separator {
+  border-color: var(--basalt-line);
+}

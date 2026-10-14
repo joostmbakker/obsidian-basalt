@@ -1,0 +1,34 @@
+/* --- Workspace chrome ------------------------------------------------------ */
+
+.workspace-ribbon,
+.mod-left-split .workspace-tabs,
+.mod-right-split .workspace-tabs,
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split {
+  background-color: var(--basalt-bg-sidebar);
+}
+
+.workspace-split.mod-root,
+.workspace-leaf-content {
+  background-color: var(--basalt-bg);
+}
+
+.mod-left-split .workspace-leaf-content,
+.mod-right-split .workspace-leaf-content {
+  background-color: var(--basalt-bg-sidebar);
+}
+
+.view-header-title {
+  font-family: var(--basalt-font-sans);
+  font-weight: 400;
+}
+
+.view-header-breadcrumb,
+.view-header-title-parent {
+  color: var(--basalt-text-faint);
+}
+
+.clickable-icon:hover,
+.workspace-ribbon .side-dock-ribbon-action:hover {
+  background-color: var(--basalt-hover);
+}

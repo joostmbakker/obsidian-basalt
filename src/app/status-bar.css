@@ -1,0 +1,19 @@
+/* --- Status bar ------------------------------------------------------------ */
+
+.status-bar {
+  font-family: var(--basalt-font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--status-bar-text-color);
+  background-color: transparent;
+  border: 0;
+}
+
+.status-bar-item {
+  color: var(--status-bar-text-color);
+}
+
+.status-bar-item.mod-clickable:hover {
+  background-color: var(--basalt-hover);
+  color: var(--basalt-text-muted);
+}

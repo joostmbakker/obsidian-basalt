@@ -1,0 +1,37 @@
+/* --- Links ----------------------------------------------------------------- */
+
+.markdown-rendered a.internal-link,
+.markdown-rendered a.external-link,
+.cm-s-obsidian span.cm-link,
+.cm-s-obsidian span.cm-hmd-internal-link,
+.cm-s-obsidian span.cm-url {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--basalt-text-faint) 80%, transparent);
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+}
+
+.markdown-rendered a.internal-link:hover,
+.markdown-rendered a.external-link:hover,
+.cm-s-obsidian span.cm-hmd-internal-link:hover,
+.cm-s-obsidian span.cm-link:hover {
+  color: var(--basalt-accent);
+  text-decoration-color: var(--basalt-accent);
+}
+
+.markdown-rendered a.internal-link.is-unresolved,
+.cm-s-obsidian span.cm-hmd-internal-link.is-unresolved {
+  text-decoration-style: dashed;
+  text-decoration-color: var(--basalt-text-faint);
+}
+
+.markdown-rendered a.external-link {
+  background-image: none;
+  padding-inline-end: 0;
+}
+
+.external-link .svg-icon,
+.markdown-rendered a.external-link::after {
+  color: var(--basalt-text-faint);
+}

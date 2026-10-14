@@ -1,4 +1,4 @@
-/* Basalt — generated from src/theme.css by scripts/build.sh. Do not edit. Geist fonts © Vercel, SIL OFL 1.1 */
+/* Basalt — generated from src/ by scripts/build.sh. Do not edit. Geist fonts © Vercel, SIL OFL 1.1 */
 /* ==========================================================================
    Basalt — a dark, clean, minimal Obsidian theme.
    Near-black canvas, light serif headings, sans body, hairline gray boxes,
@@ -6,6 +6,11 @@
    Target: Obsidian 1.14.x. Fonts: Geist + Geist Mono (OFL), embedded at build.
    ========================================================================== */
 
+/* Build entry. scripts/build.sh inlines these files in this order, which is
+   the cascade order: later files win specificity ties. Add a component as its
+   own file and import it where its rules should sit. */
+
+/* src: foundation/settings.css */
 /* Options for the Style Settings community plugin; without it the defaults apply. */
 
 /* @settings
@@ -41,9 +46,10 @@ settings:
         value: basalt-tabs-indexed
 */
 
-/* ==========================================================================
-   1. Fonts (placeholders are inlined as base64 by scripts/build.sh)
-   ========================================================================== */
+/* src: foundation/fonts.css */
+/* --- Fonts ----------------------------------------------------------------- */
+
+/* Placeholders are inlined as base64 by scripts/build.sh. */
 
 @font-face {
   font-family: "Geist";
@@ -61,9 +67,10 @@ settings:
   font-display: swap;
 }
 
-/* ==========================================================================
-   2. Tokens
-   ========================================================================== */
+/* src: foundation/tokens.css */
+/* --- Tokens ---------------------------------------------------------------- */
+
+/* Raw values live only in these two blocks (one per mode). */
 
 .theme-dark {
   --basalt-bg: #0a0a0a;
@@ -185,9 +192,10 @@ settings:
   --color-base-100: #141414;
 }
 
-/* ==========================================================================
-   3. Shared mapping: Obsidian variables -> Basalt tokens
-   ========================================================================== */
+/* src: foundation/mappings.css */
+/* --- Obsidian variables -> Basalt tokens ----------------------------------- */
+
+/* Specificity 0,1,0: beats Obsidian's body {} defaults. */
 
 .theme-dark,
 .theme-light {
@@ -569,10 +577,7 @@ settings:
   --bases-kanban-card-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
 }
 
-/* ==========================================================================
-   4. Components
-   ========================================================================== */
-
+/* src: editor/typography.css */
 /* --- Editor typography ---------------------------------------------------- */
 
 .markdown-rendered,
@@ -592,6 +597,7 @@ settings:
   border-radius: 2px;
 }
 
+/* src: editor/headings.css */
 /* --- Headings -------------------------------------------------------------- */
 
 .markdown-rendered h1,
@@ -661,6 +667,7 @@ settings:
   color: var(--h6-color);
 }
 
+/* src: editor/links.css */
 /* --- Links ----------------------------------------------------------------- */
 
 .markdown-rendered a.internal-link,
@@ -699,6 +706,7 @@ settings:
   color: var(--basalt-text-faint);
 }
 
+/* src: editor/tags.css */
 /* --- Tags ------------------------------------------------------------------ */
 
 a.tag,
@@ -717,6 +725,7 @@ a.tag:hover,
   border-color: var(--tag-border-color-hover);
 }
 
+/* src: editor/code.css */
 /* --- Code ------------------------------------------------------------------ */
 
 .markdown-rendered code,
@@ -777,6 +786,7 @@ a.tag:hover,
   color: var(--basalt-text-muted);
 }
 
+/* src: editor/tables.css */
 /* --- Tables ---------------------------------------------------------------- */
 
 .markdown-rendered table,
@@ -812,6 +822,7 @@ a.tag:hover,
   padding: 0;
 }
 
+/* src: editor/blockquote.css */
 /* --- Blockquote ------------------------------------------------------------ */
 
 .markdown-rendered blockquote {
@@ -843,6 +854,7 @@ a.tag:hover,
   color: var(--blockquote-color);
 }
 
+/* src: editor/hr.css */
 /* --- HR -------------------------------------------------------------------- */
 
 .markdown-rendered hr,
@@ -861,6 +873,7 @@ a.tag:hover,
   margin: 1.25em 0;
 }
 
+/* src: editor/callouts.css */
 /* --- Callouts -------------------------------------------------------------- */
 
 /* Obsidian 1.14 mixes --callout-color as a colour. Registering it makes an
@@ -915,6 +928,7 @@ a.tag:hover,
   margin-bottom: 0;
 }
 
+/* src: editor/lists.css */
 /* --- Lists & tasks --------------------------------------------------------- */
 
 /* Bullets are drawn by .list-bullet::after (the native ::marker is transparent),
@@ -944,6 +958,7 @@ a.tag:hover,
   color: var(--checklist-done-color);
 }
 
+/* src: editor/embeds.css */
 /* --- Embeds ---------------------------------------------------------------- */
 
 .markdown-embed {
@@ -961,6 +976,7 @@ a.tag:hover,
   border-radius: 6px;
 }
 
+/* src: editor/properties.css */
 /* --- Properties ------------------------------------------------------------ */
 
 .metadata-container {
@@ -1004,6 +1020,7 @@ input.metadata-property-key-input:focus {
   box-shadow: none;
 }
 
+/* src: editor/footnotes.css */
 /* --- Footnotes ------------------------------------------------------------- */
 
 .markdown-rendered .footnotes {
@@ -1015,6 +1032,7 @@ input.metadata-property-key-input:focus {
   margin: 2em 0 1em;
 }
 
+/* src: app/workspace.css */
 /* --- Workspace chrome ------------------------------------------------------ */
 
 .workspace-ribbon,
@@ -1050,6 +1068,7 @@ input.metadata-property-key-input:focus {
   background-color: var(--basalt-hover);
 }
 
+/* src: app/tabs.css */
 /* --- Tabs ------------------------------------------------------------------ */
 
 .workspace-tab-header-inner-title {
@@ -1065,6 +1084,7 @@ input.metadata-property-key-input:focus {
   color: var(--basalt-text-strong);
 }
 
+/* src: app/tab-styles.css */
 /* --- Tab styles ------------------------------------------------------------ */
 /* Body classes set by Style Settings (see @settings at the top). Each style is
    scoped to the root split's tab bar, minus stacked tab groups, so sidebar tabs
@@ -1291,6 +1311,7 @@ input.metadata-property-key-input:focus {
   color: var(--basalt-accent);
 }
 
+/* src: app/navigation.css */
 /* --- Navigation ------------------------------------------------------------ */
 
 .nav-folder-title,
@@ -1327,6 +1348,7 @@ input.metadata-property-key-input:focus {
   background-color: var(--basalt-surface-2);
 }
 
+/* src: app/status-bar.css */
 /* --- Status bar ------------------------------------------------------------ */
 
 .status-bar {
@@ -1347,6 +1369,7 @@ input.metadata-property-key-input:focus {
   color: var(--basalt-text-muted);
 }
 
+/* src: app/controls.css */
 /* --- Buttons & inputs ------------------------------------------------------ */
 
 button:not(.clickable-icon) {
@@ -1445,6 +1468,7 @@ select:focus,
   box-shadow: none;
 }
 
+/* src: app/overlays.css */
 /* --- Modals / prompt / menus ----------------------------------------------- */
 
 .modal,
@@ -1518,6 +1542,7 @@ select:focus,
   border-color: var(--basalt-line);
 }
 
+/* src: app/find.css */
 /* --- Find & replace -------------------------------------------------------- */
 
 /* Docked sheet: surface-1 band, mono eyebrow per row, underline-only fields.
@@ -1619,6 +1644,7 @@ select:focus,
   box-shadow: inset 0 -2px 0 var(--basalt-text-strong);
 }
 
+/* src: app/notices.css */
 /* --- Notices --------------------------------------------------------------- */
 
 /* Margin bar: echoes callouts. Obsidian only hard-codes the light-mode progress
@@ -1667,6 +1693,7 @@ select:focus,
   background-color: var(--basalt-text-strong);
 }
 
+/* src: app/empty-state.css */
 /* --- Empty state ----------------------------------------------------------- */
 
 /* Pill row. Obsidian renders the actions as plain `div.empty-state-action.tappable`
@@ -1744,6 +1771,7 @@ select:focus,
   background-color: var(--color-red);
 }
 
+/* src: app/tooltip.css */
 /* --- Tooltip --------------------------------------------------------------- */
 
 .tooltip {
@@ -1759,6 +1787,7 @@ select:focus,
   display: none;
 }
 
+/* src: app/scrollbars.css */
 /* --- Scrollbars ------------------------------------------------------------ */
 
 ::-webkit-scrollbar-thumb {
@@ -1775,6 +1804,7 @@ select:focus,
   background: transparent;
 }
 
+/* src: views/canvas.css */
 /* --- Canvas ---------------------------------------------------------------- */
 
 .canvas-node-container {
@@ -1797,6 +1827,7 @@ select:focus,
   color: var(--basalt-text-faint);
 }
 
+/* src: views/graph.css */
 /* --- Graph ----------------------------------------------------------------- */
 
 .graph-view.color-fill {
@@ -1955,6 +1986,7 @@ select:focus,
   background-color: var(--basalt-invert-bg-hover);
 }
 
+/* src: views/bases.css */
 /* --- Bases ----------------------------------------------------------------- */
 
 .bases-table-container,
@@ -1972,3 +2004,4 @@ select:focus,
   border-radius: 8px;
   background-color: var(--basalt-surface-1);
 }
+

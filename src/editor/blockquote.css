@@ -1,0 +1,30 @@
+/* --- Blockquote ------------------------------------------------------------ */
+
+.markdown-rendered blockquote {
+  font-family: var(--basalt-font-serif);
+  font-size: 1.1em;
+  line-height: 1.55;
+  padding-inline-start: 1.25em;
+}
+
+.markdown-rendered blockquote ul,
+.markdown-rendered blockquote ol {
+  font-family: inherit;
+}
+
+/* 1.1em would compound at every nesting level. */
+.markdown-rendered blockquote blockquote {
+  font-size: 1em;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
+  font-family: var(--basalt-font-serif);
+  font-size: 1.1em;
+  line-height: 1.55;
+  padding-inline-start: 1.25em;
+}
+
+.cm-s-obsidian span.cm-quote {
+  font-family: inherit;
+  color: var(--blockquote-color);
+}

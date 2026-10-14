@@ -1,0 +1,34 @@
+/* Options for the Style Settings community plugin; without it the defaults apply. */
+
+/* @settings
+
+name: Basalt
+id: basalt
+settings:
+  -
+    id: basalt-tab-style
+    title: Tab style
+    description: Look of the tab bar above notes. Sidebar and stacked tabs are unaffected.
+    type: class-select
+    allowEmpty: false
+    default: basalt-tabs-default
+    options:
+      -
+        label: Obsidian (default)
+        value: basalt-tabs-default
+      -
+        label: Underline
+        value: basalt-tabs-underline
+      -
+        label: Track
+        value: basalt-tabs-track
+      -
+        label: Ink
+        value: basalt-tabs-ink
+      -
+        label: Sheet
+        value: basalt-tabs-sheet
+      -
+        label: Indexed
+        value: basalt-tabs-indexed
+*/
