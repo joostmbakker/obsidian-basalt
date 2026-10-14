@@ -1653,6 +1653,73 @@ select:focus,
   background-color: var(--basalt-text-strong);
 }
 
+/* --- Empty state ----------------------------------------------------------- */
+
+/* Pill row. Obsidian styles the actions at 0,3,0, so the selectors match that and
+   win by load order. Layout changes are limited to wider containers; the
+   <=230px icon grid is Obsidian's own and must not be overridden. */
+.empty-state-title {
+  font-family: var(--basalt-font-serif);
+  font-size: 1.9em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--basalt-text-strong);
+}
+.empty-state-action-list > .text-icon-button.mod-pill {
+  --icon-color: var(--basalt-text-faint);
+  --icon-color-hover: var(--basalt-text-strong);
+  background-color: var(--basalt-surface-2);
+  border: 0;
+  box-shadow: 0 0 0 1px var(--basalt-border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  color: var(--basalt-text);
+}
+.empty-state-action-list > .text-icon-button.mod-pill:hover {
+  background-color: var(--basalt-surface-3);
+  box-shadow: 0 0 0 1px var(--basalt-border-strong);
+  color: var(--basalt-text-strong);
+}
+.empty-state-action-list > .text-icon-button.mod-pill:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+}
+.empty-state-action-list > .text-icon-button.mod-pill.mod-destructive {
+  background-color: transparent;
+  box-shadow: none;
+  color: var(--basalt-text-muted);
+}
+.empty-state-action-list > .text-icon-button.mod-pill.mod-destructive:hover {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--color-red);
+}
+.empty-state-hotkey {
+  padding: 0;
+  margin-inline: 4px 0;
+  background-color: transparent;
+  font-family: var(--basalt-font-mono);
+  font-size: 10.5px;
+  color: var(--basalt-text-faint);
+}
+@container empty-state (min-width: 231px) {
+  .empty-state-action-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .empty-state-action-list > .text-icon-button.mod-pill {
+    width: auto;
+  }
+  .empty-state-action-list > .text-icon-button.mod-pill.mod-destructive {
+    flex: 0 0 100%;
+    width: 100%;
+    justify-content: center;
+    margin-top: 4px;
+  }
+}
+
 /* --- Tooltip --------------------------------------------------------------- */
 
 .tooltip {
