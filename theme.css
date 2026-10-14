@@ -881,6 +881,15 @@ input.metadata-property-key-input,
   color: var(--basalt-text);
 }
 
+/* Keys and values stay flat; outranks the boxed input[type] rules in "Buttons & inputs". */
+.metadata-container .metadata-property input:not([type="checkbox"]),
+.metadata-container .metadata-property input:not([type="checkbox"]):hover,
+.metadata-container .metadata-property input:not([type="checkbox"]):focus {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
 /* --- Footnotes ------------------------------------------------------------- */
 
 .markdown-rendered .footnotes {
