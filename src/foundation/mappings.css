@@ -310,7 +310,8 @@
 
   /* Inputs, buttons, dropdowns, toggles */
   --input-radius: var(--basalt-radius-4);
-  --button-radius: var(--basalt-radius-pill);
+  --button-radius: var(--basalt-radius-3);
+  --input-height: 28px;
   --input-font-weight: 500;
   --input-focus-border-color: var(--basalt-border-strong);
   --input-hover-border-color: var(--basalt-border-strong);
