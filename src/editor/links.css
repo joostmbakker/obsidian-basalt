@@ -1,5 +1,9 @@
 /* --- Links ----------------------------------------------------------------- */
 
+/* Chromium supports the line, thickness, colour and style used here. doiuse's
+   grouped warning is about text-decoration-skip, which this theme never uses.
+   See https://caniuse.com/text-decoration (partial-support note 5). */
+/* doiuse-disable text-decoration */
 .markdown-rendered a.internal-link,
 .markdown-rendered a.external-link,
 .cm-s-obsidian span.cm-link,
@@ -25,6 +29,7 @@
   text-decoration-style: dashed;
   text-decoration-color: var(--basalt-text-faint);
 }
+/* doiuse-enable text-decoration */
 
 .markdown-rendered a.external-link {
   background-image: none;
