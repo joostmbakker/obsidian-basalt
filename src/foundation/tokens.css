@@ -126,6 +126,7 @@
    than a literal. */
 .theme-dark,
 .theme-light {
+  /* Radius */
   --basalt-radius-1: 2px;
   --basalt-radius-2: 4px;
   --basalt-radius-3: 6px;
@@ -134,4 +135,12 @@
   --basalt-radius-6: 12px;
   --basalt-radius-7: 16px;
   --basalt-radius-pill: 999px;
+
+  /* UI type (px: chrome doesn't scale with the note text size) */
+  --basalt-ui-size-1: 10.5px;
+  --basalt-ui-size-2: 11px;
+  --basalt-ui-size-3: 12px;
+  --basalt-ui-size-4: 12.5px;
+  --basalt-ui-size-5: 13px;
+  --basalt-ui-size-6: 14px;
 }

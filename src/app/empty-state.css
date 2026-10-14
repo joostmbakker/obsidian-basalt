@@ -24,7 +24,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   font-weight: 500;
   line-height: normal;
   padding: 7px 14px;

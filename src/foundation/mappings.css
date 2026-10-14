@@ -11,8 +11,8 @@
   --font-text-theme: var(--basalt-font-sans);
   --font-interface-theme: var(--basalt-font-sans);
   --font-monospace-theme: var(--basalt-font-mono);
-  --font-ui-small: 13px;
-  --font-ui-smaller: 12px;
+  --font-ui-small: var(--basalt-ui-size-5);
+  --font-ui-smaller: var(--basalt-ui-size-3);
 
   /* Layout & type scale */
   --line-height-normal: 1.65;
@@ -223,12 +223,12 @@
 
   /* Properties */
   --metadata-label-font: var(--basalt-font-sans);
-  --metadata-label-font-size: 13px;
+  --metadata-label-font-size: var(--basalt-ui-size-5);
   --metadata-label-font-weight: 400;
   --metadata-label-text-color: var(--basalt-text-muted);
   --metadata-label-text-color-hover: var(--basalt-text);
   --metadata-input-font: var(--basalt-font-sans);
-  --metadata-input-font-size: 13px;
+  --metadata-input-font-size: var(--basalt-ui-size-5);
   --metadata-input-text-color: var(--basalt-text);
   --metadata-border-width: 0;
   --metadata-border-radius: 0;
@@ -237,7 +237,7 @@
   --metadata-divider-color: transparent;
 
   /* Tabs */
-  --tab-font-size: 12.5px;
+  --tab-font-size: var(--basalt-ui-size-4);
   --tab-font-weight: 400;
   --tab-container-background: var(--basalt-bg-sidebar);
   --tab-background-active: var(--basalt-bg);
@@ -285,7 +285,7 @@
   --status-bar-background: transparent;
   --status-bar-border-width: 0;
   --status-bar-border-color: transparent;
-  --status-bar-font-size: 11px;
+  --status-bar-font-size: var(--basalt-ui-size-2);
   --status-bar-text-color: var(--basalt-text-faint);
 
   /* Modals, prompt, menus */
@@ -327,7 +327,7 @@
   --tooltip-background: var(--basalt-surface-3);
   --tooltip-color: var(--basalt-text);
   --tooltip-radius: var(--basalt-radius-3);
-  --tooltip-font-size: 12px;
+  --tooltip-font-size: var(--basalt-ui-size-3);
   --tooltip-shadow: 0 0 0 1px var(--basalt-border-strong), var(--basalt-shadow-float);
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: var(--basalt-scrollbar);

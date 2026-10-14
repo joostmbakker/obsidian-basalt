@@ -22,7 +22,7 @@
 .document-replace::before {
   flex: 0 0 64px;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--basalt-text-faint);
@@ -40,7 +40,7 @@
 .document-search-input input,
 .document-replace-input[type="text"] {
   height: 32px;
-  font-size: 14px;
+  font-size: var(--basalt-ui-size-6);
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -60,7 +60,7 @@
 }
 .document-search-count {
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
   color: var(--basalt-text-muted);
 }
 .document-search-buttons .document-search-button,

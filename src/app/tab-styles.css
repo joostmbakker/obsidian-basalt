@@ -203,7 +203,7 @@
   content: counter(basalt-tab);
   margin-inline-end: 8px;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   font-variant-numeric: tabular-nums;
   color: var(--basalt-text-faint);
 }

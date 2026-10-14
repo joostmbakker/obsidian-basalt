@@ -196,6 +196,7 @@ settings:
    than a literal. */
 .theme-dark,
 .theme-light {
+  /* Radius */
   --basalt-radius-1: 2px;
   --basalt-radius-2: 4px;
   --basalt-radius-3: 6px;
@@ -204,6 +205,14 @@ settings:
   --basalt-radius-6: 12px;
   --basalt-radius-7: 16px;
   --basalt-radius-pill: 999px;
+
+  /* UI type (px: chrome doesn't scale with the note text size) */
+  --basalt-ui-size-1: 10.5px;
+  --basalt-ui-size-2: 11px;
+  --basalt-ui-size-3: 12px;
+  --basalt-ui-size-4: 12.5px;
+  --basalt-ui-size-5: 13px;
+  --basalt-ui-size-6: 14px;
 }
 
 /* src: foundation/mappings.css */
@@ -220,8 +229,8 @@ settings:
   --font-text-theme: var(--basalt-font-sans);
   --font-interface-theme: var(--basalt-font-sans);
   --font-monospace-theme: var(--basalt-font-mono);
-  --font-ui-small: 13px;
-  --font-ui-smaller: 12px;
+  --font-ui-small: var(--basalt-ui-size-5);
+  --font-ui-smaller: var(--basalt-ui-size-3);
 
   /* Layout & type scale */
   --line-height-normal: 1.65;
@@ -432,12 +441,12 @@ settings:
 
   /* Properties */
   --metadata-label-font: var(--basalt-font-sans);
-  --metadata-label-font-size: 13px;
+  --metadata-label-font-size: var(--basalt-ui-size-5);
   --metadata-label-font-weight: 400;
   --metadata-label-text-color: var(--basalt-text-muted);
   --metadata-label-text-color-hover: var(--basalt-text);
   --metadata-input-font: var(--basalt-font-sans);
-  --metadata-input-font-size: 13px;
+  --metadata-input-font-size: var(--basalt-ui-size-5);
   --metadata-input-text-color: var(--basalt-text);
   --metadata-border-width: 0;
   --metadata-border-radius: 0;
@@ -446,7 +455,7 @@ settings:
   --metadata-divider-color: transparent;
 
   /* Tabs */
-  --tab-font-size: 12.5px;
+  --tab-font-size: var(--basalt-ui-size-4);
   --tab-font-weight: 400;
   --tab-container-background: var(--basalt-bg-sidebar);
   --tab-background-active: var(--basalt-bg);
@@ -494,7 +503,7 @@ settings:
   --status-bar-background: transparent;
   --status-bar-border-width: 0;
   --status-bar-border-color: transparent;
-  --status-bar-font-size: 11px;
+  --status-bar-font-size: var(--basalt-ui-size-2);
   --status-bar-text-color: var(--basalt-text-faint);
 
   /* Modals, prompt, menus */
@@ -536,7 +545,7 @@ settings:
   --tooltip-background: var(--basalt-surface-3);
   --tooltip-color: var(--basalt-text);
   --tooltip-radius: var(--basalt-radius-3);
-  --tooltip-font-size: 12px;
+  --tooltip-font-size: var(--basalt-ui-size-3);
   --tooltip-shadow: 0 0 0 1px var(--basalt-border-strong), var(--basalt-shadow-float);
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: var(--basalt-scrollbar);
@@ -792,7 +801,7 @@ a.tag:hover,
   box-shadow: none;
   color: var(--basalt-text-faint);
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
 }
 
 .markdown-rendered pre:hover .copy-code-button {
@@ -1003,7 +1012,7 @@ a.tag:hover,
 input.metadata-property-key-input,
 .metadata-properties-heading {
   font-family: var(--basalt-font-sans);
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   color: var(--basalt-text-muted);
 }
 
@@ -1021,7 +1030,7 @@ input.metadata-property-key-input:focus {
 .metadata-property-value input,
 .metadata-input-longtext {
   font-family: var(--basalt-font-sans);
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   color: var(--basalt-text);
 }
 
@@ -1304,7 +1313,7 @@ input.metadata-property-key-input:focus {
   content: counter(basalt-tab);
   margin-inline-end: 8px;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   font-variant-numeric: tabular-nums;
   color: var(--basalt-text-faint);
 }
@@ -1357,7 +1366,7 @@ input.metadata-property-key-input:focus {
 
 .tree-item-flair {
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   color: var(--basalt-text-faint);
   background-color: var(--basalt-surface-2);
 }
@@ -1367,7 +1376,7 @@ input.metadata-property-key-input:focus {
 
 .status-bar {
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
   font-variant-numeric: tabular-nums;
   color: var(--status-bar-text-color);
   background-color: transparent;
@@ -1581,7 +1590,7 @@ select:focus,
 .document-replace::before {
   flex: 0 0 64px;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--basalt-text-faint);
@@ -1599,7 +1608,7 @@ select:focus,
 .document-search-input input,
 .document-replace-input[type="text"] {
   height: 32px;
-  font-size: 14px;
+  font-size: var(--basalt-ui-size-6);
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -1619,7 +1628,7 @@ select:focus,
 }
 .document-search-count {
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
   color: var(--basalt-text-muted);
 }
 .document-search-buttons .document-search-button,
@@ -1667,7 +1676,7 @@ select:focus,
 .notice {
   background-color: var(--basalt-surface-2);
   color: var(--basalt-text);
-  font-size: 12.5px;
+  font-size: var(--basalt-ui-size-4);
   border: 0;
   border-inline-start: 4px solid var(--basalt-text-strong);
   border-radius: 0;
@@ -1679,7 +1688,7 @@ select:focus,
 .notice-cta {
   text-decoration: none;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--basalt-text-muted);
@@ -1734,7 +1743,7 @@ select:focus,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   font-weight: 500;
   line-height: normal;
   padding: 7px 14px;
@@ -1793,7 +1802,7 @@ select:focus,
   color: var(--tooltip-color);
   border: 1px solid var(--basalt-border-strong);
   border-radius: var(--basalt-radius-3);
-  font-size: 12px;
+  font-size: var(--basalt-ui-size-3);
   box-shadow: var(--tooltip-shadow);
 }
 
@@ -1836,7 +1845,7 @@ select:focus,
 
 .canvas-node-label {
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
   letter-spacing: 0.04em;
   color: var(--basalt-text-faint);
 }
@@ -1931,7 +1940,7 @@ select:focus,
 }
 
 .graph-control-section-header {
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   font-weight: 600;
   color: var(--basalt-text-strong);
 }

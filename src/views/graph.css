@@ -87,7 +87,7 @@
 }
 
 .graph-control-section-header {
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   font-weight: 600;
   color: var(--basalt-text-strong);
 }

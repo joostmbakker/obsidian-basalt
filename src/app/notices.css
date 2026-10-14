@@ -6,7 +6,7 @@
 .notice {
   background-color: var(--basalt-surface-2);
   color: var(--basalt-text);
-  font-size: 12.5px;
+  font-size: var(--basalt-ui-size-4);
   border: 0;
   border-inline-start: 4px solid var(--basalt-text-strong);
   border-radius: 0;
@@ -18,7 +18,7 @@
 .notice-cta {
   text-decoration: none;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--basalt-text-muted);

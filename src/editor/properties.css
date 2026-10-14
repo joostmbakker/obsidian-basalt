@@ -10,7 +10,7 @@
 input.metadata-property-key-input,
 .metadata-properties-heading {
   font-family: var(--basalt-font-sans);
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   color: var(--basalt-text-muted);
 }
 
@@ -28,7 +28,7 @@ input.metadata-property-key-input:focus {
 .metadata-property-value input,
 .metadata-input-longtext {
   font-family: var(--basalt-font-sans);
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   color: var(--basalt-text);
 }
 
