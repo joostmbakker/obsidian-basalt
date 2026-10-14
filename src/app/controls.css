@@ -35,7 +35,7 @@ button.mod-warning:hover {
 
 button:focus-visible,
 button:not(.clickable-icon):focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  box-shadow: var(--basalt-focus-ring);
 }
 
 input[type="text"],
@@ -76,7 +76,7 @@ textarea:focus,
 select:focus,
 .dropdown:focus {
   border-color: var(--basalt-border-strong);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  box-shadow: var(--basalt-focus-ring-soft);
 }
 
 /* --- Toggles --------------------------------------------------------------- */

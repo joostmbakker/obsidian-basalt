@@ -149,4 +149,10 @@
   --basalt-ui-size-4: 12.5px;
   --basalt-ui-size-5: 13px;
   --basalt-ui-size-6: 14px;
+
+  /* Accent halos: soft for pointer focus and hover, full for keyboard focus */
+  --basalt-accent-tint-soft: color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  --basalt-accent-tint: color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  --basalt-focus-ring-soft: 0 0 0 3px var(--basalt-accent-tint-soft);
+  --basalt-focus-ring: 0 0 0 3px var(--basalt-accent-tint);
 }

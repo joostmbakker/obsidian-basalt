@@ -219,6 +219,12 @@ settings:
   --basalt-ui-size-4: 12.5px;
   --basalt-ui-size-5: 13px;
   --basalt-ui-size-6: 14px;
+
+  /* Accent halos: soft for pointer focus and hover, full for keyboard focus */
+  --basalt-accent-tint-soft: color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  --basalt-accent-tint: color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  --basalt-focus-ring-soft: 0 0 0 3px var(--basalt-accent-tint-soft);
+  --basalt-focus-ring: 0 0 0 3px var(--basalt-accent-tint);
 }
 
 /* src: foundation/mappings.css */
@@ -1436,7 +1442,7 @@ button.mod-warning:hover {
 
 button:focus-visible,
 button:not(.clickable-icon):focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  box-shadow: var(--basalt-focus-ring);
 }
 
 input[type="text"],
@@ -1477,7 +1483,7 @@ textarea:focus,
 select:focus,
 .dropdown:focus {
   border-color: var(--basalt-border-strong);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  box-shadow: var(--basalt-focus-ring-soft);
 }
 
 /* --- Toggles --------------------------------------------------------------- */
@@ -1978,9 +1984,9 @@ select:focus,
   --slider-thumb-background-hover: var(--basalt-invert-bg-hover);
   --slider-thumb-border-color: transparent;
   --slider-thumb-shadow: 0 0 0 1px var(--basalt-border-strong);
-  --slider-thumb-shadow-hover: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  --slider-thumb-shadow-hover: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px var(--basalt-accent-tint-soft);
   --slider-thumb-shadow-active: var(--slider-thumb-shadow-hover);
-  --slider-thumb-shadow-focus: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  --slider-thumb-shadow-focus: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px var(--basalt-accent-tint);
 }
 
 .graph-color-group input[type="color"]::-webkit-color-swatch {
