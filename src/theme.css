@@ -868,6 +868,17 @@ a.tag:hover,
   border-inline-start: 4px solid var(--callout-color);
 }
 
+/* Obsidian's embed-block hover rounds the widget to 4px and rings it, which clips
+   the bar and boxes the callout. Keep it square and show hover as a field step. */
+.markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover > .callout {
+  background-color: color-mix(in srgb, var(--callout-color) 10%, var(--basalt-bg));
+}
+
 .callout-title {
   gap: 8px;
 }
