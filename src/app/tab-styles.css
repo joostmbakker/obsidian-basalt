@@ -1,0 +1,225 @@
+/* --- Tab styles ------------------------------------------------------------ */
+/* Body classes set by Style Settings (see @settings at the top). Each style is
+   scoped to the root split's tab bar, minus stacked tab groups, so sidebar tabs
+   keep Obsidian's icon strip. ".workspace-tabs.mod-active" is the focused tab
+   group: its active tab is marked more strongly than the active tab of an
+   unfocused split, so the user can see which pane has focus. */
+
+/* Shared: drop Obsidian's curved ears, active outline and inner dividers. */
+:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
+  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  transition: color var(--basalt-motion), background-color var(--basalt-motion), box-shadow var(--basalt-motion);
+}
+
+:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
+  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header::before,
+:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
+  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header::after,
+:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
+  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-inner::after {
+  display: none;
+}
+
+:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
+  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header .workspace-tab-header-inner {
+  background-color: transparent;
+}
+
+:is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
+  .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover .workspace-tab-header-inner-title {
+  color: var(--basalt-text-muted);
+}
+
+/* Underline: the bar takes the editor colour; a 1.5px rule marks the active tab
+   (accent in the focused pane, faint elsewhere). */
+.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container {
+  background-color: var(--basalt-bg);
+  border-bottom-color: var(--basalt-line);
+}
+
+.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-container-inner {
+  align-items: stretch;
+  margin-top: 0;
+  margin-bottom: -1px;
+  padding-top: 0;
+}
+
+/* Obsidian pads tabs 1px top / 3px bottom for the curved style; even it out so
+   titles centre on the new-tab and tab-list buttons. */
+.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
+  box-shadow: inset 0 -1px 0 var(--basalt-border-strong);
+}
+
+.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  box-shadow: inset 0 -1.5px 0 var(--basalt-text-faint);
+}
+
+.basalt-tabs-underline .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  box-shadow: inset 0 -1.5px 0 var(--basalt-accent);
+}
+
+/* Track: tabs sit in one bordered pill track, like a segmented control; the
+   active tab is a raised pill with a hairline ring. */
+.basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-container-inner {
+  flex: 0 1 auto;
+  align-items: stretch;
+  gap: 2px;
+  margin: 5px 0;
+  padding: 3px;
+  background-color: var(--basalt-surface-1);
+  border: 1px solid var(--basalt-border);
+  border-radius: var(--basalt-radius-pill);
+}
+
+.basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 72px;
+  max-width: 220px;
+  border-radius: var(--basalt-radius-pill);
+}
+
+.basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
+  background-color: var(--basalt-hover);
+}
+
+.basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: var(--basalt-surface-2);
+}
+
+.basalt-tabs-track .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: var(--basalt-surface-3);
+  box-shadow: inset 0 0 0 1px var(--basalt-border-strong);
+}
+
+/* Ink: ghost tabs; the focused pane's active tab takes the inverted primary-
+   button fill, so exactly one ink chip on screen follows focus. */
+.basalt-tabs-ink .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-container-inner {
+  align-items: center;
+  gap: 2px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+
+.basalt-tabs-ink .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+  flex: 0 1 auto;
+  width: auto;
+  height: 28px;
+  min-width: 72px;
+  max-width: 220px;
+  border-radius: var(--radius-m);
+}
+
+.basalt-tabs-ink .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
+  background-color: var(--basalt-hover);
+}
+
+.basalt-tabs-ink .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: var(--basalt-surface-3);
+}
+
+.basalt-tabs-ink .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  --icon-color: color-mix(in srgb, var(--basalt-invert-fg) 55%, transparent);
+  --icon-color-hover: var(--basalt-invert-fg);
+  --background-modifier-hover: color-mix(in srgb, var(--basalt-invert-fg) 12%, transparent);
+  background-color: var(--basalt-invert-bg);
+}
+
+.basalt-tabs-ink .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active .workspace-tab-header-inner-title,
+.basalt-tabs-ink .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
+  color: var(--basalt-invert-fg);
+}
+
+/* Sheet: the active tab is a bordered sheet that opens into the editor; an
+   accent cap marks the focused pane. */
+.basalt-tabs-sheet .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container {
+  border-bottom-color: var(--basalt-border);
+}
+
+.basalt-tabs-sheet .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-container-inner {
+  align-items: stretch;
+  gap: 2px;
+  margin-bottom: -1px;
+}
+
+.basalt-tabs-sheet .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: var(--radius-l) var(--radius-l) 0 0;
+}
+
+.basalt-tabs-sheet .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
+  background-color: var(--basalt-hover);
+}
+
+.basalt-tabs-sheet .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: var(--basalt-bg);
+  border-color: var(--basalt-border);
+}
+
+.basalt-tabs-sheet .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  box-shadow: inset 0 1.5px 0 var(--basalt-accent);
+}
+
+/* Indexed: compact bar on a dashed hairline; tabs 1-8 carry the mono numeral
+   of their Cmd/Ctrl+N "Go to tab" hotkey (9 jumps to the last tab, so 9+ get none). */
+.basalt-tabs-indexed .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container {
+  --header-height: 34px;
+  height: var(--header-height);
+  border-bottom: 1px dashed var(--basalt-border);
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header-container-inner {
+  align-items: stretch;
+  margin-top: 0;
+  margin-bottom: -1px;
+  padding-top: 0;
+  counter-reset: basalt-tab;
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 0;
+  max-width: 240px;
+  border-inline-end: 1px solid var(--basalt-line);
+  counter-increment: basalt-tab;
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:first-child {
+  border-inline-start: 1px solid var(--basalt-line);
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:nth-child(-n + 8) .workspace-tab-header-inner-title::before {
+  content: counter(basalt-tab);
+  margin-inline-end: 8px;
+  font-family: var(--basalt-font-mono);
+  font-size: var(--basalt-ui-size-1);
+  font-variant-numeric: tabular-nums;
+  color: var(--basalt-text-faint);
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
+  background-color: var(--basalt-hover);
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: var(--basalt-bg);
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+  color: var(--basalt-text-strong);
+}
+
+.basalt-tabs-indexed .mod-root .workspace-tabs.mod-active:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header.is-active .workspace-tab-header-inner-title::before {
+  color: var(--basalt-accent);
+}

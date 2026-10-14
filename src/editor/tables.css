@@ -1,0 +1,34 @@
+/* --- Tables ---------------------------------------------------------------- */
+
+.markdown-rendered table,
+.markdown-source-view.mod-cm6 .cm-table-widget table {
+  border-collapse: collapse;
+  border: 1px solid var(--table-border-color);
+  border-radius: 0;
+}
+
+.markdown-rendered th,
+.markdown-rendered td,
+.markdown-source-view.mod-cm6 .cm-table-widget th,
+.markdown-source-view.mod-cm6 .cm-table-widget td {
+  border: 1px solid var(--table-border-color);
+  padding: 10px 14px;
+}
+
+.markdown-rendered th,
+.markdown-source-view.mod-cm6 .cm-table-widget th {
+  background-color: var(--table-header-background);
+  color: var(--table-header-color);
+  font-weight: var(--table-header-weight);
+  font-family: inherit;
+}
+
+.markdown-rendered tbody tr:hover td,
+.markdown-source-view.mod-cm6 .cm-table-widget tbody tr:hover td {
+  background-color: var(--table-row-background-hover);
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget td .table-cell-wrapper,
+.markdown-source-view.mod-cm6 .cm-table-widget th .table-cell-wrapper {
+  padding: 0;
+}

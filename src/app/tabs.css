@@ -1,0 +1,14 @@
+/* --- Tabs ------------------------------------------------------------------ */
+
+.workspace-tab-header-inner-title {
+  font-family: var(--basalt-font-sans);
+}
+
+.workspace-tab-header.is-active .workspace-tab-header-inner-title {
+  color: var(--tab-text-color-active);
+}
+
+.mod-left-split .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
+.mod-right-split .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
+  color: var(--basalt-text-strong);
+}

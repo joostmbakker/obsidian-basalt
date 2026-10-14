@@ -1,0 +1,100 @@
+/* --- Find & replace -------------------------------------------------------- */
+
+/* Docked sheet: surface-1 band, mono eyebrow per row, underline-only fields.
+   Scoped under .document-search so the global search pane and graph inputs keep
+   their pill fields. Matches are monochrome: soft tint, current = strong underline. */
+.document-search-container,
+.mod-active .document-search-container {
+  margin: 0;
+  padding: 10px 16px;
+  gap: 4px;
+  background-color: var(--basalt-surface-1);
+  border-bottom: 1px solid var(--basalt-border);
+}
+.document-search,
+.document-replace {
+  max-width: none;
+  padding: 0;
+  align-items: center;
+  gap: 8px;
+}
+.document-search::before,
+.document-replace::before {
+  flex: 0 0 64px;
+  font-family: var(--basalt-font-mono);
+  font-size: var(--basalt-ui-size-1);
+  letter-spacing: var(--basalt-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--basalt-text-faint);
+}
+.document-search::before {
+  content: "Find";
+}
+.document-replace::before {
+  content: "Replace";
+}
+.document-search-input,
+.document-replace-input[type="text"] {
+  border-radius: 0;
+}
+.document-search-input input,
+.document-replace-input[type="text"] {
+  height: 32px;
+  font-size: var(--basalt-ui-size-6);
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid var(--basalt-line);
+  border-radius: 0;
+}
+.document-search-input input:hover,
+.document-replace-input[type="text"]:hover {
+  border-color: transparent;
+  border-bottom-color: var(--basalt-border-strong);
+}
+.document-search-input input:focus,
+.document-replace-input[type="text"]:focus {
+  border-color: transparent;
+  border-bottom-color: var(--basalt-text-strong);
+  box-shadow: none;
+}
+.document-search-count {
+  font-family: var(--basalt-font-mono);
+  font-size: var(--basalt-ui-size-2);
+  color: var(--basalt-text-muted);
+}
+.document-search-buttons .document-search-button,
+.document-search-close-button {
+  color: var(--basalt-text-muted);
+}
+.document-search-buttons .document-search-button:hover,
+.document-search-close-button:hover,
+.document-search-buttons .document-search-button.is-active {
+  color: var(--basalt-text-strong);
+}
+.document-replace-buttons button.document-search-button {
+  height: 28px;
+  padding: 0 12px;
+  background-color: var(--basalt-surface-2);
+  box-shadow: 0 0 0 1px var(--basalt-border);
+  color: var(--basalt-text);
+}
+.cm-s-obsidian span.obsidian-search-match-highlight {
+  background-color: var(--text-highlight-bg);
+  box-shadow: none;
+  mix-blend-mode: normal;
+}
+.cm-s-obsidian span.cm-highlight.obsidian-search-match-highlight {
+  background-color: var(--text-selection);
+  box-shadow: inset 0 -2px 0 var(--basalt-text-strong);
+}
+.markdown-rendered .search-highlight > div {
+  background-color: var(--text-highlight-bg);
+  box-shadow: none;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+.markdown-rendered .search-highlight > div.is-active {
+  background-color: var(--text-selection);
+  box-shadow: inset 0 -2px 0 var(--basalt-text-strong);
+}

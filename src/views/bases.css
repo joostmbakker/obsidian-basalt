@@ -1,0 +1,17 @@
+/* --- Bases ----------------------------------------------------------------- */
+
+.bases-table-container,
+.bases-embed {
+  border-color: var(--basalt-border);
+}
+
+.bases-thead,
+.bases-table-header {
+  font-weight: 400;
+}
+
+.bases-cards-item,
+.bases-cards-container .bases-cards-item {
+  border-radius: var(--basalt-radius-4);
+  background-color: var(--basalt-surface-1);
+}

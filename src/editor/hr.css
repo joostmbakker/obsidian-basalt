@@ -1,0 +1,17 @@
+/* --- HR -------------------------------------------------------------------- */
+
+.markdown-rendered hr,
+.markdown-source-view.mod-cm6 hr {
+  border: none;
+  border-top: var(--hr-thickness) dashed var(--hr-color);
+  background: none;
+  height: 0;
+}
+
+.markdown-rendered hr {
+  margin: 2.5em 0;
+}
+
+.markdown-source-view.mod-cm6 .hr {
+  margin: 1.25em 0;
+}
