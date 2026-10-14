@@ -443,9 +443,10 @@ settings:
 
   /* Callouts: 1.14 uses --callout-color as a colour value, not an rgb triple */
   --callout-radius: 0;
-  --callout-padding: 12px 16px 12px 18px;
+  --callout-padding: 0 0 0 16px;
   --callout-border-width: 0;
-  --callout-title-weight: 600;
+  --callout-title-size: var(--basalt-ui-size-2);
+  --callout-title-weight: 500;
   --callout-blend-mode: normal;
   --callout-default: rgb(var(--basalt-neutral-rgb));
   --callout-quote: rgb(var(--basalt-neutral-rgb));
@@ -929,45 +930,57 @@ a.tag:hover,
 /* Obsidian 1.14 mixes --callout-color as a colour. Registering it makes an
    invalid value (an old "52, 120, 246" triple) inherit the root's
    --callout-default, so such callouts look like a plain note instead of
-   losing their bar and field. */
+   losing their title colour. */
 @property --callout-color {
   syntax: "<color>";
   inherits: true;
   initial-value: currentcolor;
 }
 
-/* A 4px bar in the callout colour on a 7% field of it, square-cornered.
-   The field is mixed into the page ground (opaque) so nested callouts don't
-   stack their tints. */
+/* No field and a 1px neutral rule: the callout colour lives only in the
+   eyebrow title, so a page of callouts stays calm. */
 .callout {
-  background-color: color-mix(in srgb, var(--callout-color) 7%, var(--basalt-bg));
+  background-color: transparent;
   border: none;
-  border-inline-start: 4px solid var(--callout-color);
+  border-inline-start: 1px solid var(--basalt-border);
 }
 
 /* Obsidian's embed-block hover rounds the widget to 4px and rings it, which clips
-   the bar and boxes the callout. Keep it square and show hover as a field step. */
+   the rule and boxes the callout. Keep it square and show hover as a row state:
+   without a field the block needs a cue that it is one editable unit. */
 .markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover {
   border-radius: 0;
   box-shadow: none;
 }
 
 .markdown-source-view.mod-cm6 .cm-embed-block.cm-callout:hover > .callout {
-  background-color: color-mix(in srgb, var(--callout-color) 10%, var(--basalt-bg));
+  background-color: var(--basalt-hover);
 }
 
 .callout-title {
-  gap: 8px;
+  gap: 6px;
+  align-items: center;
 }
 
+/* Eyebrow in the callout colour. Tracking is tighter than the eyebrow token:
+   callout titles run longer than labels. text-transform also uppercases
+   user-written titles, so long titles read loud; short ones read well. */
 .callout-title-inner {
   color: var(--callout-color);
+  font-family: var(--basalt-font-mono);
   font-weight: var(--callout-title-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.callout-icon .svg-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .callout-content {
   color: var(--basalt-text);
-  padding-top: 6px;
+  padding-top: 4px;
 }
 
 .callout-content > :first-child {
