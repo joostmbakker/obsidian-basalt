@@ -16,6 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install build dependencies
+        run: npm ci
+
+      - name: Test minification
+        run: npm test
+
       - name: Check the tag matches manifest.json
         run: |
           tag="${GITHUB_REF#refs/tags/}"
