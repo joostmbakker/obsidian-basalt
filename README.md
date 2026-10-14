@@ -30,7 +30,7 @@ From Obsidian: **Settings → Appearance → Themes → Manage**, search for
 **Basalt**, then **Install and use**.
 
 Manually: download `theme.css` and `manifest.json` from the
-[latest release](https://github.com/joostmbakker/obsidian-theme/releases/latest) into
+[latest release](https://github.com/joostmbakker/obsidian-basalt/releases/latest) into
 `<your vault>/.obsidian/themes/Basalt/`, then select Basalt under
 **Settings → Appearance → Themes**.
 
