@@ -1299,7 +1299,6 @@ input.metadata-property-key-input:focus {
 
 button:not(.clickable-icon) {
   font-weight: 500;
-  color: var(--basalt-text);
   background-color: var(--basalt-surface-2);
   box-shadow: 0 0 0 1px var(--basalt-border);
 }
@@ -1331,7 +1330,8 @@ button.mod-warning:hover {
   box-shadow: none;
 }
 
-button:focus-visible {
+button:focus-visible,
+button:not(.clickable-icon):focus-visible {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
 }
 
