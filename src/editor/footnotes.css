@@ -1,0 +1,10 @@
+/* --- Footnotes ------------------------------------------------------------- */
+
+.markdown-rendered .footnotes {
+  font-size: var(--footnote-size);
+  color: var(--basalt-text-muted);
+}
+
+.markdown-rendered .footnotes hr {
+  margin: 2em 0 1em;
+}

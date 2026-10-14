@@ -1,0 +1,19 @@
+/* --- Fonts ----------------------------------------------------------------- */
+
+/* Placeholders are inlined as base64 by scripts/build.sh. */
+
+@font-face {
+  font-family: "Geist";
+  src: url("__GEIST_SANS__") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("__GEIST_MONO__") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,17 @@
+/* --- Tags ------------------------------------------------------------------ */
+
+a.tag,
+.cm-s-obsidian span.cm-hashtag {
+  font-family: var(--font-interface);
+}
+
+a.tag:hover,
+.cm-s-obsidian span.cm-hashtag:hover {
+  color: var(--tag-color-hover);
+  border-color: var(--tag-border-color-hover);
+}
+
+.cm-hashtag-begin:hover,
+.cm-hashtag-end:hover {
+  border-color: var(--tag-border-color-hover);
+}

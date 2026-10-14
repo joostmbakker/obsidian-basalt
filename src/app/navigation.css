@@ -1,0 +1,35 @@
+/* --- Navigation ------------------------------------------------------------ */
+
+.nav-folder-title,
+.nav-folder-title-content {
+  font-weight: 500;
+}
+
+.nav-file-title,
+.tree-item-self {
+  border-radius: var(--nav-item-radius);
+}
+
+.nav-file-title.is-active,
+.tree-item-self.is-active {
+  color: var(--nav-item-color-active);
+}
+
+.nav-file-title.is-active,
+.tree-item-self.is-active,
+.nav-file-title.is-selected,
+.tree-item-self.is-selected {
+  background-color: var(--nav-item-background-active);
+}
+
+.nav-header .nav-buttons-container .clickable-icon.is-active {
+  background-color: var(--basalt-active);
+  color: var(--basalt-text);
+}
+
+.tree-item-flair {
+  font-family: var(--basalt-font-mono);
+  font-size: var(--basalt-ui-size-1);
+  color: var(--basalt-text-faint);
+  background-color: var(--basalt-surface-2);
+}

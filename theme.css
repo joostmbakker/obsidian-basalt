@@ -1,4 +1,4 @@
-/* Basalt — generated from src/theme.css by scripts/build.sh. Do not edit. Geist fonts © Vercel, SIL OFL 1.1 */
+/* Basalt — generated from src/ by scripts/build.sh. Do not edit. Geist fonts © Vercel, SIL OFL 1.1 */
 /* ==========================================================================
    Basalt — a dark, clean, minimal Obsidian theme.
    Near-black canvas, light serif headings, sans body, hairline gray boxes,
@@ -6,6 +6,11 @@
    Target: Obsidian 1.14.x. Fonts: Geist + Geist Mono (OFL), embedded at build.
    ========================================================================== */
 
+/* Build entry. scripts/build.sh inlines these files in this order, which is
+   the cascade order: later files win specificity ties. Add a component as its
+   own file and import it where its rules should sit. */
+
+/* src: foundation/settings.css */
 /* Options for the Style Settings community plugin; without it the defaults apply. */
 
 /* @settings
@@ -41,9 +46,10 @@ settings:
         value: basalt-tabs-indexed
 */
 
-/* ==========================================================================
-   1. Fonts (placeholders are inlined as base64 by scripts/build.sh)
-   ========================================================================== */
+/* src: foundation/fonts.css */
+/* --- Fonts ----------------------------------------------------------------- */
+
+/* Placeholders are inlined as base64 by scripts/build.sh. */
 
 @font-face {
   font-family: "Geist";
@@ -61,9 +67,12 @@ settings:
   font-display: swap;
 }
 
-/* ==========================================================================
-   2. Tokens
-   ========================================================================== */
+/* src: foundation/tokens.css */
+/* --- Tokens ---------------------------------------------------------------- */
+
+/* Layers: palette and semantic colours per mode (the only place colours are
+   written), then shared scales and derived roles. mappings.css hands these to
+   Obsidian's variables; components read tokens, never literals. */
 
 .theme-dark {
   --basalt-bg: #0a0a0a;
@@ -80,7 +89,9 @@ settings:
   --basalt-text-strong: #f6f6f4;
   --basalt-text-muted: #a9aaa5;
   --basalt-text-faint: #6b6c68;
-  --basalt-accent: hsl(212 52% 66%);
+  --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
+  --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #ededeb;
   --basalt-invert-bg-hover: #ffffff;
   --basalt-invert-fg: #0a0a0a;
@@ -88,8 +99,11 @@ settings:
   --basalt-scrollbar: rgba(255, 255, 255, 0.08);
   --basalt-scrollbar-active: rgba(255, 255, 255, 0.16);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.65);
+  --basalt-scrim: rgba(0, 0, 0, 0.45);
   --basalt-neutral-rgb: 169, 170, 165;
 
+  /* Default accent. Obsidian sets these inline on body when the user picks an
+     accent in Settings -> Appearance, so theirs wins. */
   --accent-h: 212;
   --accent-s: 52%;
   --accent-l: 66%;
@@ -139,8 +153,10 @@ settings:
   --basalt-text: #141414;
   --basalt-text-strong: #0a0a0a;
   --basalt-text-muted: #5f5f5c;
-  --basalt-text-faint: #9a9a96;
-  --basalt-accent: hsl(212 45% 45%);
+  --basalt-text-faint: #8a8a86;
+  --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+  --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
+  --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #141414;
   --basalt-invert-bg-hover: #000000;
   --basalt-invert-fg: #ffffff;
@@ -148,6 +164,7 @@ settings:
   --basalt-scrollbar: rgba(0, 0, 0, 0.12);
   --basalt-scrollbar-active: rgba(0, 0, 0, 0.22);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.18);
+  --basalt-scrim: rgba(0, 0, 0, 0.45);
   --basalt-neutral-rgb: 95, 95, 92;
 
   --accent-h: 212;
@@ -179,27 +196,79 @@ settings:
   --color-base-30: #e9e9e9;
   --color-base-35: #dedede;
   --color-base-40: #c8c8c8;
-  --color-base-50: #9a9a96;
+  --color-base-50: #8a8a86;
   --color-base-60: #7a7a76;
   --color-base-70: #5f5f5c;
   --color-base-100: #141414;
 }
 
-/* ==========================================================================
-   3. Shared mapping: Obsidian variables -> Basalt tokens
-   ========================================================================== */
+/* Shared: scales and roles derived from the mode tokens above. */
+.theme-dark,
+.theme-light {
+  /* Font stacks (Settings font choices still win: *-override is untouched) */
+  --basalt-font-serif: "Tiempos Headline", "Test Tiempos Headline", "Source Serif 4", "Newsreader", Georgia, serif;
+  --basalt-font-sans: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  --basalt-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radius */
+  --basalt-radius-1: 2px;
+  --basalt-radius-2: 4px;
+  --basalt-radius-3: 6px;
+  --basalt-radius-4: 8px;
+  --basalt-radius-5: 10px;
+  --basalt-radius-6: 12px;
+  --basalt-radius-7: 16px;
+  --basalt-radius-pill: 999px;
+
+  /* UI type (px: chrome doesn't scale with the note text size) */
+  --basalt-ui-size-1: 10.5px;
+  --basalt-ui-size-2: 11px;
+  --basalt-ui-size-3: 12px;
+  --basalt-ui-size-4: 12.5px;
+  --basalt-ui-size-5: 13px;
+  --basalt-ui-size-6: 14px;
+
+  /* Accent halos: soft for pointer focus and hover, full for keyboard focus */
+  --basalt-accent-tint-soft: color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  --basalt-accent-tint: color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  --basalt-focus-ring-soft: 0 0 0 3px var(--basalt-accent-tint-soft);
+  --basalt-focus-ring: 0 0 0 3px var(--basalt-accent-tint);
+
+  /* Eyebrow: mono, uppercase, tracked (H6, find labels, notice actions) */
+  --basalt-tracking-eyebrow: 0.1em;
+
+  /* Motion */
+  --basalt-motion-fast: 120ms ease;
+  --basalt-motion: 150ms ease-out;
+
+  /* Graph. Hover is monochrome (ink): the hovered node and its ring take the
+     strongest text colour, its links the muted one. */
+  --basalt-graph-highlight: var(--basalt-text-strong);
+  --basalt-graph-highlight-line: var(--basalt-text-muted);
+  --basalt-graph-circle: var(--basalt-text-strong);
+  /* Default colours for new colour groups: the soft palette minus green and
+     yellow (tag and attachment nodes), with blue (focused node) last. */
+  --basalt-graph-group-1: var(--color-purple);
+  --basalt-graph-group-2: var(--color-cyan);
+  --basalt-graph-group-3: var(--color-orange);
+  --basalt-graph-group-4: var(--color-pink);
+  --basalt-graph-group-5: var(--color-red);
+  --basalt-graph-group-6: var(--color-blue);
+}
+
+/* src: foundation/mappings.css */
+/* --- Obsidian variables -> Basalt tokens ----------------------------------- */
+
+/* Specificity 0,1,0: beats Obsidian's body {} defaults. */
 
 .theme-dark,
 .theme-light {
   /* Fonts (user overrides in Settings still win: *-override is untouched) */
-  --basalt-font-serif: "Tiempos Headline", "Test Tiempos Headline", "Source Serif 4", "Newsreader", Georgia, serif;
-  --basalt-font-sans: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
-  --basalt-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-text-theme: var(--basalt-font-sans);
   --font-interface-theme: var(--basalt-font-sans);
   --font-monospace-theme: var(--basalt-font-mono);
-  --font-ui-small: 13px;
-  --font-ui-smaller: 12px;
+  --font-ui-small: var(--basalt-ui-size-5);
+  --font-ui-smaller: var(--basalt-ui-size-3);
 
   /* Layout & type scale */
   --line-height-normal: 1.65;
@@ -209,10 +278,10 @@ settings:
   --bold-color: var(--basalt-text-strong);
 
   /* Radii */
-  --radius-s: 4px;
-  --radius-m: 6px;
-  --radius-l: 10px;
-  --radius-xl: 16px;
+  --radius-s: var(--basalt-radius-2);
+  --radius-m: var(--basalt-radius-3);
+  --radius-l: var(--basalt-radius-5);
+  --radius-xl: var(--basalt-radius-7);
 
   /* Backgrounds */
   --background-primary: var(--basalt-bg);
@@ -246,7 +315,7 @@ settings:
   --interactive-normal: var(--basalt-surface-2);
   --interactive-hover: var(--basalt-surface-3);
   --interactive-accent: var(--basalt-accent);
-  --interactive-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, white);
+  --interactive-accent-hover: var(--basalt-accent-hover);
 
   /* Icons */
   --icon-color: var(--basalt-text-faint);
@@ -296,7 +365,7 @@ settings:
   --h6-size: 0.72em;
   --h6-weight: 400;
   --h6-line-height: 1.5;
-  --h6-letter-spacing: 0.1em;
+  --h6-letter-spacing: var(--basalt-tracking-eyebrow);
   --h6-color: var(--basalt-text-faint);
   --inline-title-font: var(--basalt-font-serif);
   --inline-title-size: 2.35em;
@@ -321,7 +390,7 @@ settings:
   --link-unresolved-decoration-color: var(--basalt-text-faint);
 
   /* Tags */
-  --tag-radius: 999px;
+  --tag-radius: var(--basalt-radius-pill);
   --tag-size: 0.8em;
   --tag-weight: 400;
   --tag-padding-x: 0.6em;
@@ -338,7 +407,7 @@ settings:
 
   /* Code */
   --code-size: 0.86em;
-  --code-radius: 4px;
+  --code-radius: var(--basalt-radius-2);
   --code-background: var(--basalt-surface-2);
   --code-normal: var(--basalt-text);
   --code-border-width: 1px;
@@ -383,7 +452,7 @@ settings:
 
   /* Checkbox, lists, rules, quotes */
   --checkbox-size: 15px;
-  --checkbox-radius: 4px;
+  --checkbox-radius: var(--basalt-radius-2);
   --checkbox-border-color: var(--basalt-text-faint);
   --checkbox-border-color-hover: var(--basalt-text-muted);
   --checkbox-color: var(--basalt-invert-bg);
@@ -410,12 +479,12 @@ settings:
 
   /* Properties */
   --metadata-label-font: var(--basalt-font-sans);
-  --metadata-label-font-size: 13px;
+  --metadata-label-font-size: var(--basalt-ui-size-5);
   --metadata-label-font-weight: 400;
   --metadata-label-text-color: var(--basalt-text-muted);
   --metadata-label-text-color-hover: var(--basalt-text);
   --metadata-input-font: var(--basalt-font-sans);
-  --metadata-input-font-size: 13px;
+  --metadata-input-font-size: var(--basalt-ui-size-5);
   --metadata-input-text-color: var(--basalt-text);
   --metadata-border-width: 0;
   --metadata-border-radius: 0;
@@ -424,7 +493,7 @@ settings:
   --metadata-divider-color: transparent;
 
   /* Tabs */
-  --tab-font-size: 12.5px;
+  --tab-font-size: var(--basalt-ui-size-4);
   --tab-font-weight: 400;
   --tab-container-background: var(--basalt-bg-sidebar);
   --tab-background-active: var(--basalt-bg);
@@ -448,7 +517,7 @@ settings:
   --workspace-background-translucent: color-mix(in srgb, var(--basalt-bg-sidebar) 85%, transparent);
 
   /* Navigation */
-  --nav-item-radius: 6px;
+  --nav-item-radius: var(--basalt-radius-3);
   --nav-item-color: var(--basalt-text-muted);
   --nav-item-color-hover: var(--basalt-text);
   --nav-item-color-active: var(--basalt-text-strong);
@@ -472,11 +541,11 @@ settings:
   --status-bar-background: transparent;
   --status-bar-border-width: 0;
   --status-bar-border-color: transparent;
-  --status-bar-font-size: 11px;
+  --status-bar-font-size: var(--basalt-ui-size-2);
   --status-bar-text-color: var(--basalt-text-faint);
 
   /* Modals, prompt, menus */
-  --modal-radius: 12px;
+  --modal-radius: var(--basalt-radius-6);
   --modal-background: var(--basalt-surface-1);
   --modal-border-color: var(--basalt-border);
   --modal-border-width: 1px;
@@ -487,7 +556,7 @@ settings:
   --menu-background: var(--basalt-surface-1);
   --menu-border-color: var(--basalt-border);
   --menu-border-width: 1px;
-  --menu-radius: 10px;
+  --menu-radius: var(--basalt-radius-5);
   --menu-shadow: 0 0 0 1px var(--basalt-border), var(--basalt-shadow-float);
   --menu-divider-color: var(--basalt-line);
   --dialog-bg-color: var(--basalt-surface-1);
@@ -498,24 +567,24 @@ settings:
   --setting-items-divider-color: var(--basalt-line);
 
   /* Inputs, buttons, dropdowns, toggles */
-  --input-radius: 8px;
-  --button-radius: 999px;
+  --input-radius: var(--basalt-radius-4);
+  --button-radius: var(--basalt-radius-pill);
   --input-font-weight: 500;
   --input-focus-border-color: var(--basalt-border-strong);
   --input-hover-border-color: var(--basalt-border-strong);
   --input-placeholder-color: var(--basalt-text-faint);
   --dropdown-background: var(--basalt-surface-1);
   --dropdown-background-hover: var(--basalt-surface-1);
-  --toggle-thumb-color: white;
+  --toggle-thumb-color: var(--basalt-toggle-thumb);
   --slider-track-background: var(--basalt-surface-3);
   --slider-thumb-border-color: var(--basalt-border-strong);
 
   /* Tooltip, scrollbars */
   --tooltip-background: var(--basalt-surface-3);
   --tooltip-color: var(--basalt-text);
-  --tooltip-radius: 6px;
-  --tooltip-font-size: 12px;
-  --tooltip-shadow: 0 0 0 1px var(--basalt-border-strong), var(--basalt-shadow-float);
+  --tooltip-radius: var(--basalt-radius-3);
+  --tooltip-font-size: var(--basalt-ui-size-3);
+  --tooltip-shadow: var(--basalt-shadow-float);
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: var(--basalt-scrollbar);
   --scrollbar-active-thumb-bg: var(--basalt-scrollbar-active);
@@ -539,19 +608,6 @@ settings:
   --graph-node-tag: var(--color-green);
   --graph-node-attachment: var(--color-yellow);
   --graph-line: var(--basalt-border);
-  /* Hover is monochrome (ink): the hovered node and its ring take the
-     strongest text colour, its links the muted one. */
-  --basalt-graph-highlight: var(--basalt-text-strong);
-  --basalt-graph-highlight-line: var(--basalt-text-muted);
-  --basalt-graph-circle: var(--basalt-text-strong);
-  /* Default colours for new colour groups: the soft palette minus green and
-     yellow (tag and attachment nodes), with blue (focused node) last. */
-  --basalt-graph-group-1: var(--color-purple);
-  --basalt-graph-group-2: var(--color-cyan);
-  --basalt-graph-group-3: var(--color-orange);
-  --basalt-graph-group-4: var(--color-pink);
-  --basalt-graph-group-5: var(--color-red);
-  --basalt-graph-group-6: var(--color-blue);
 
   /* Bases */
   --bases-table-header-background: var(--basalt-surface-2);
@@ -560,19 +616,16 @@ settings:
   --bases-table-border-color: var(--basalt-border);
   --bases-table-row-background-hover: var(--basalt-hover);
   --bases-cards-background: var(--basalt-surface-1);
-  --bases-cards-radius: 8px;
+  --bases-cards-radius: var(--basalt-radius-4);
   --bases-cards-shadow: 0 0 0 1px var(--basalt-border);
   --bases-cards-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
   --bases-kanban-card-background: var(--basalt-surface-1);
-  --bases-kanban-card-radius: 8px;
+  --bases-kanban-card-radius: var(--basalt-radius-4);
   --bases-kanban-card-shadow: 0 0 0 1px var(--basalt-border);
   --bases-kanban-card-shadow-hover: 0 0 0 1px var(--basalt-border-strong);
 }
 
-/* ==========================================================================
-   4. Components
-   ========================================================================== */
-
+/* src: editor/typography.css */
 /* --- Editor typography ---------------------------------------------------- */
 
 .markdown-rendered,
@@ -589,9 +642,10 @@ settings:
 .markdown-rendered mark,
 .cm-s-obsidian span.cm-highlight {
   color: inherit;
-  border-radius: 2px;
+  border-radius: var(--basalt-radius-1);
 }
 
+/* src: editor/headings.css */
 /* --- Headings -------------------------------------------------------------- */
 
 .markdown-rendered h1,
@@ -661,6 +715,7 @@ settings:
   color: var(--h6-color);
 }
 
+/* src: editor/links.css */
 /* --- Links ----------------------------------------------------------------- */
 
 .markdown-rendered a.internal-link,
@@ -672,7 +727,7 @@ settings:
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   text-decoration-color: color-mix(in srgb, var(--basalt-text-faint) 80%, transparent);
-  transition: color 120ms ease, text-decoration-color 120ms ease;
+  transition: color var(--basalt-motion-fast), text-decoration-color var(--basalt-motion-fast);
 }
 
 .markdown-rendered a.internal-link:hover,
@@ -699,6 +754,7 @@ settings:
   color: var(--basalt-text-faint);
 }
 
+/* src: editor/tags.css */
 /* --- Tags ------------------------------------------------------------------ */
 
 a.tag,
@@ -717,6 +773,7 @@ a.tag:hover,
   border-color: var(--tag-border-color-hover);
 }
 
+/* src: editor/code.css */
 /* --- Code ------------------------------------------------------------------ */
 
 .markdown-rendered code,
@@ -734,7 +791,7 @@ a.tag:hover,
 .markdown-rendered pre {
   background-color: var(--basalt-surface-1);
   border: 1px solid var(--basalt-border);
-  border-radius: 8px;
+  border-radius: var(--basalt-radius-4);
   padding: 14px 18px;
 }
 
@@ -754,13 +811,13 @@ a.tag:hover,
 }
 
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
-  border-start-start-radius: 8px;
-  border-start-end-radius: 8px;
+  border-start-start-radius: var(--basalt-radius-4);
+  border-start-end-radius: var(--basalt-radius-4);
 }
 
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
-  border-end-start-radius: 8px;
-  border-end-end-radius: 8px;
+  border-end-start-radius: var(--basalt-radius-4);
+  border-end-end-radius: var(--basalt-radius-4);
 }
 
 .markdown-rendered .copy-code-button {
@@ -769,7 +826,7 @@ a.tag:hover,
   box-shadow: none;
   color: var(--basalt-text-faint);
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
 }
 
 .markdown-rendered pre:hover .copy-code-button {
@@ -777,6 +834,7 @@ a.tag:hover,
   color: var(--basalt-text-muted);
 }
 
+/* src: editor/tables.css */
 /* --- Tables ---------------------------------------------------------------- */
 
 .markdown-rendered table,
@@ -812,6 +870,7 @@ a.tag:hover,
   padding: 0;
 }
 
+/* src: editor/blockquote.css */
 /* --- Blockquote ------------------------------------------------------------ */
 
 .markdown-rendered blockquote {
@@ -843,6 +902,7 @@ a.tag:hover,
   color: var(--blockquote-color);
 }
 
+/* src: editor/hr.css */
 /* --- HR -------------------------------------------------------------------- */
 
 .markdown-rendered hr,
@@ -861,6 +921,7 @@ a.tag:hover,
   margin: 1.25em 0;
 }
 
+/* src: editor/callouts.css */
 /* --- Callouts -------------------------------------------------------------- */
 
 /* Obsidian 1.14 mixes --callout-color as a colour. Registering it makes an
@@ -915,6 +976,7 @@ a.tag:hover,
   margin-bottom: 0;
 }
 
+/* src: editor/lists.css */
 /* --- Lists & tasks --------------------------------------------------------- */
 
 /* Bullets are drawn by .list-bullet::after (the native ::marker is transparent),
@@ -944,6 +1006,7 @@ a.tag:hover,
   color: var(--checklist-done-color);
 }
 
+/* src: editor/embeds.css */
 /* --- Embeds ---------------------------------------------------------------- */
 
 .markdown-embed {
@@ -958,9 +1021,10 @@ a.tag:hover,
 .markdown-rendered .image-embed img,
 .markdown-source-view.mod-cm6 .image-embed img,
 .markdown-rendered img {
-  border-radius: 6px;
+  border-radius: var(--basalt-radius-3);
 }
 
+/* src: editor/properties.css */
 /* --- Properties ------------------------------------------------------------ */
 
 .metadata-container {
@@ -973,7 +1037,7 @@ a.tag:hover,
 input.metadata-property-key-input,
 .metadata-properties-heading {
   font-family: var(--basalt-font-sans);
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   color: var(--basalt-text-muted);
 }
 
@@ -991,7 +1055,7 @@ input.metadata-property-key-input:focus {
 .metadata-property-value input,
 .metadata-input-longtext {
   font-family: var(--basalt-font-sans);
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   color: var(--basalt-text);
 }
 
@@ -1004,6 +1068,7 @@ input.metadata-property-key-input:focus {
   box-shadow: none;
 }
 
+/* src: editor/footnotes.css */
 /* --- Footnotes ------------------------------------------------------------- */
 
 .markdown-rendered .footnotes {
@@ -1015,6 +1080,7 @@ input.metadata-property-key-input:focus {
   margin: 2em 0 1em;
 }
 
+/* src: app/workspace.css */
 /* --- Workspace chrome ------------------------------------------------------ */
 
 .workspace-ribbon,
@@ -1050,6 +1116,7 @@ input.metadata-property-key-input:focus {
   background-color: var(--basalt-hover);
 }
 
+/* src: app/tabs.css */
 /* --- Tabs ------------------------------------------------------------------ */
 
 .workspace-tab-header-inner-title {
@@ -1065,9 +1132,10 @@ input.metadata-property-key-input:focus {
   color: var(--basalt-text-strong);
 }
 
+/* src: app/tab-styles.css */
 /* --- Tab styles ------------------------------------------------------------ */
 /* Underline applies without a style class. Style Settings can select another
-   style via an ancestor class (see @settings at the top). Each style is
+   style via an ancestor class (see foundation/settings.css). Each style is
    scoped to the root split's tab bar, minus stacked tab groups, so sidebar tabs
    keep Obsidian's icon strip. ".workspace-tabs.mod-active" is the focused tab
    group: its active tab is marked more strongly than the active tab of an
@@ -1083,7 +1151,7 @@ input.metadata-property-key-input:focus {
   background-color: transparent;
   box-shadow: none;
   border-radius: 0;
-  transition: color 150ms ease-out, background-color 150ms ease-out, box-shadow 150ms ease-out;
+  transition: color var(--basalt-motion), background-color var(--basalt-motion), box-shadow var(--basalt-motion);
 }
 
 :is(
@@ -1176,7 +1244,7 @@ input.metadata-property-key-input:focus {
   padding: 3px;
   background-color: var(--basalt-surface-1);
   border: 1px solid var(--basalt-border);
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
 }
 
 .basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
@@ -1184,7 +1252,7 @@ input.metadata-property-key-input:focus {
   width: auto;
   min-width: 72px;
   max-width: 220px;
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
 }
 
 .basalt-tabs-track .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
@@ -1303,7 +1371,7 @@ input.metadata-property-key-input:focus {
   content: counter(basalt-tab);
   margin-inline-end: 8px;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   font-variant-numeric: tabular-nums;
   color: var(--basalt-text-faint);
 }
@@ -1324,6 +1392,7 @@ input.metadata-property-key-input:focus {
   color: var(--basalt-accent);
 }
 
+/* src: app/navigation.css */
 /* --- Navigation ------------------------------------------------------------ */
 
 .nav-folder-title,
@@ -1355,16 +1424,17 @@ input.metadata-property-key-input:focus {
 
 .tree-item-flair {
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
+  font-size: var(--basalt-ui-size-1);
   color: var(--basalt-text-faint);
   background-color: var(--basalt-surface-2);
 }
 
+/* src: app/status-bar.css */
 /* --- Status bar ------------------------------------------------------------ */
 
 .status-bar {
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
   font-variant-numeric: tabular-nums;
   color: var(--status-bar-text-color);
   background-color: transparent;
@@ -1380,6 +1450,7 @@ input.metadata-property-key-input:focus {
   color: var(--basalt-text-muted);
 }
 
+/* src: app/controls.css */
 /* --- Buttons & inputs ------------------------------------------------------ */
 
 button:not(.clickable-icon) {
@@ -1417,7 +1488,7 @@ button.mod-warning:hover {
 
 button:focus-visible,
 button:not(.clickable-icon):focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  box-shadow: var(--basalt-focus-ring);
 }
 
 input[type="text"],
@@ -1433,7 +1504,7 @@ select,
 .dropdown {
   background-color: var(--basalt-surface-1);
   border: 1px solid var(--basalt-border);
-  border-radius: 8px;
+  border-radius: var(--basalt-radius-4);
   box-shadow: none;
 }
 
@@ -1458,7 +1529,7 @@ textarea:focus,
 select:focus,
 .dropdown:focus {
   border-color: var(--basalt-border-strong);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  box-shadow: var(--basalt-focus-ring-soft);
 }
 
 /* --- Toggles --------------------------------------------------------------- */
@@ -1478,6 +1549,7 @@ select:focus,
   box-shadow: none;
 }
 
+/* src: app/overlays.css */
 /* --- Modals / prompt / menus ----------------------------------------------- */
 
 .modal,
@@ -1489,7 +1561,7 @@ select:focus,
 }
 
 .modal-bg {
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: var(--basalt-scrim);
 }
 
 .modal-title,
@@ -1520,7 +1592,7 @@ select:focus,
 }
 
 .suggestion-item {
-  border-radius: 6px;
+  border-radius: var(--basalt-radius-3);
 }
 
 .suggestion-item.is-selected {
@@ -1531,7 +1603,7 @@ select:focus,
 .search-result-file-matched-text {
   background-color: var(--text-highlight-bg);
   color: inherit;
-  border-radius: 2px;
+  border-radius: var(--basalt-radius-1);
 }
 
 .menu {
@@ -1539,7 +1611,7 @@ select:focus,
 }
 
 .menu-item {
-  border-radius: 6px;
+  border-radius: var(--basalt-radius-3);
 }
 
 .menu-item:hover,
@@ -1551,6 +1623,7 @@ select:focus,
   border-color: var(--basalt-line);
 }
 
+/* src: app/find.css */
 /* --- Find & replace -------------------------------------------------------- */
 
 /* Docked sheet: surface-1 band, mono eyebrow per row, underline-only fields.
@@ -1575,8 +1648,8 @@ select:focus,
 .document-replace::before {
   flex: 0 0 64px;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
+  font-size: var(--basalt-ui-size-1);
+  letter-spacing: var(--basalt-tracking-eyebrow);
   text-transform: uppercase;
   color: var(--basalt-text-faint);
 }
@@ -1593,7 +1666,7 @@ select:focus,
 .document-search-input input,
 .document-replace-input[type="text"] {
   height: 32px;
-  font-size: 14px;
+  font-size: var(--basalt-ui-size-6);
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -1613,7 +1686,7 @@ select:focus,
 }
 .document-search-count {
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
   color: var(--basalt-text-muted);
 }
 .document-search-buttons .document-search-button,
@@ -1652,6 +1725,7 @@ select:focus,
   box-shadow: inset 0 -2px 0 var(--basalt-text-strong);
 }
 
+/* src: app/notices.css */
 /* --- Notices --------------------------------------------------------------- */
 
 /* Margin bar: echoes callouts. Obsidian only hard-codes the light-mode progress
@@ -1660,7 +1734,7 @@ select:focus,
 .notice {
   background-color: var(--basalt-surface-2);
   color: var(--basalt-text);
-  font-size: 12.5px;
+  font-size: var(--basalt-ui-size-4);
   border: 0;
   border-inline-start: 4px solid var(--basalt-text-strong);
   border-radius: 0;
@@ -1672,8 +1746,8 @@ select:focus,
 .notice-cta {
   text-decoration: none;
   font-family: var(--basalt-font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
+  font-size: var(--basalt-ui-size-1);
+  letter-spacing: var(--basalt-tracking-eyebrow);
   text-transform: uppercase;
   color: var(--basalt-text-muted);
 }
@@ -1700,6 +1774,7 @@ select:focus,
   background-color: var(--basalt-text-strong);
 }
 
+/* src: app/empty-state.css */
 /* --- Empty state ----------------------------------------------------------- */
 
 /* Pill row. Obsidian renders the actions as plain `div.empty-state-action.tappable`
@@ -1726,11 +1801,11 @@ select:focus,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   font-weight: 500;
   line-height: normal;
   padding: 7px 14px;
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
   background-color: var(--basalt-surface-2);
   box-shadow: 0 0 0 1px var(--basalt-border);
   color: var(--basalt-text);
@@ -1777,14 +1852,15 @@ select:focus,
   background-color: var(--color-red);
 }
 
+/* src: app/tooltip.css */
 /* --- Tooltip --------------------------------------------------------------- */
 
 .tooltip {
   background-color: var(--tooltip-background);
   color: var(--tooltip-color);
   border: 1px solid var(--basalt-border-strong);
-  border-radius: 6px;
-  font-size: 12px;
+  border-radius: var(--basalt-radius-3);
+  font-size: var(--basalt-ui-size-3);
   box-shadow: var(--tooltip-shadow);
 }
 
@@ -1792,11 +1868,12 @@ select:focus,
   display: none;
 }
 
+/* src: app/scrollbars.css */
 /* --- Scrollbars ------------------------------------------------------------ */
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--basalt-scrollbar);
-  border-radius: 999px;
+  border-radius: var(--basalt-radius-pill);
 }
 
 ::-webkit-scrollbar-thumb:hover,
@@ -1808,12 +1885,13 @@ select:focus,
   background: transparent;
 }
 
+/* src: views/canvas.css */
 /* --- Canvas ---------------------------------------------------------------- */
 
 .canvas-node-container {
   background-color: var(--basalt-surface-1);
   border: 1px solid var(--basalt-border);
-  border-radius: 8px;
+  border-radius: var(--basalt-radius-4);
   box-shadow: none;
 }
 
@@ -1825,11 +1903,12 @@ select:focus,
 
 .canvas-node-label {
   font-family: var(--basalt-font-mono);
-  font-size: 11px;
+  font-size: var(--basalt-ui-size-2);
   letter-spacing: 0.04em;
   color: var(--basalt-text-faint);
 }
 
+/* src: views/graph.css */
 /* --- Graph ----------------------------------------------------------------- */
 
 .graph-view.color-fill {
@@ -1919,7 +1998,7 @@ select:focus,
 }
 
 .graph-control-section-header {
-  font-size: 13px;
+  font-size: var(--basalt-ui-size-5);
   font-weight: 600;
   color: var(--basalt-text-strong);
 }
@@ -1951,9 +2030,9 @@ select:focus,
   --slider-thumb-background-hover: var(--basalt-invert-bg-hover);
   --slider-thumb-border-color: transparent;
   --slider-thumb-shadow: 0 0 0 1px var(--basalt-border-strong);
-  --slider-thumb-shadow-hover: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px color-mix(in srgb, var(--basalt-accent) 22%, transparent);
+  --slider-thumb-shadow-hover: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px var(--basalt-accent-tint-soft);
   --slider-thumb-shadow-active: var(--slider-thumb-shadow-hover);
-  --slider-thumb-shadow-focus: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px color-mix(in srgb, var(--basalt-accent) 30%, transparent);
+  --slider-thumb-shadow-focus: 0 0 0 1px var(--basalt-border-strong), 0 0 0 4px var(--basalt-accent-tint);
 }
 
 .graph-color-group input[type="color"]::-webkit-color-swatch {
@@ -1973,7 +2052,7 @@ select:focus,
 
 .graph-controls .tree-item-self:focus-visible,
 .graph-controls .clickable-icon:focus-visible {
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--basalt-accent) 45%, transparent);
+  box-shadow: var(--basalt-focus-ring);
 }
 
 /* "New group" and "Animate": the inverted primary fill. Text colour is set
@@ -1988,6 +2067,7 @@ select:focus,
   background-color: var(--basalt-invert-bg-hover);
 }
 
+/* src: views/bases.css */
 /* --- Bases ----------------------------------------------------------------- */
 
 .bases-table-container,
@@ -2002,6 +2082,7 @@ select:focus,
 
 .bases-cards-item,
 .bases-cards-container .bases-cards-item {
-  border-radius: 8px;
+  border-radius: var(--basalt-radius-4);
   background-color: var(--basalt-surface-1);
 }
+
