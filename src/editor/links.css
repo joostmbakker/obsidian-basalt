@@ -9,7 +9,7 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   text-decoration-color: color-mix(in srgb, var(--basalt-text-faint) 80%, transparent);
-  transition: color 120ms ease, text-decoration-color 120ms ease;
+  transition: color var(--basalt-motion-fast), text-decoration-color var(--basalt-motion-fast);
 }
 
 .markdown-rendered a.internal-link:hover,

@@ -155,4 +155,8 @@
   --basalt-accent-tint: color-mix(in srgb, var(--basalt-accent) 30%, transparent);
   --basalt-focus-ring-soft: 0 0 0 3px var(--basalt-accent-tint-soft);
   --basalt-focus-ring: 0 0 0 3px var(--basalt-accent-tint);
+
+  /* Motion */
+  --basalt-motion-fast: 120ms ease;
+  --basalt-motion: 150ms ease-out;
 }

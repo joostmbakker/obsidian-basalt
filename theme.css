@@ -225,6 +225,10 @@ settings:
   --basalt-accent-tint: color-mix(in srgb, var(--basalt-accent) 30%, transparent);
   --basalt-focus-ring-soft: 0 0 0 3px var(--basalt-accent-tint-soft);
   --basalt-focus-ring: 0 0 0 3px var(--basalt-accent-tint);
+
+  /* Motion */
+  --basalt-motion-fast: 120ms ease;
+  --basalt-motion: 150ms ease-out;
 }
 
 /* src: foundation/mappings.css */
@@ -714,7 +718,7 @@ settings:
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   text-decoration-color: color-mix(in srgb, var(--basalt-text-faint) 80%, transparent);
-  transition: color 120ms ease, text-decoration-color 120ms ease;
+  transition: color var(--basalt-motion-fast), text-decoration-color var(--basalt-motion-fast);
 }
 
 .markdown-rendered a.internal-link:hover,
@@ -1133,7 +1137,7 @@ input.metadata-property-key-input:focus {
   background-color: transparent;
   box-shadow: none;
   border-radius: 0;
-  transition: color 150ms ease-out, background-color 150ms ease-out, box-shadow 150ms ease-out;
+  transition: color var(--basalt-motion), background-color var(--basalt-motion), box-shadow var(--basalt-motion);
 }
 
 :is(.basalt-tabs-underline, .basalt-tabs-track, .basalt-tabs-ink, .basalt-tabs-sheet, .basalt-tabs-indexed)
