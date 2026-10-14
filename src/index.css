@@ -1,8 +1,9 @@
 /* ==========================================================================
    Basalt — a dark, clean, minimal Obsidian theme.
    Near-black canvas, light serif headings, sans body, hairline gray boxes,
-   mono tracked eyebrows, dashed hairlines, pill buttons, flat content.
-   Target: Obsidian 1.14.x. Fonts: Geist + Geist Mono (OFL), embedded at build.
+   mono tracked eyebrows, dashed hairlines, quiet rect buttons, flat content.
+   Target: Obsidian 1.14.x. Fonts: Geist, Geist Mono and Basalt Serif (OFL),
+   embedded at build.
    ========================================================================== */
 
 /* Build entry. scripts/build.sh inlines these files in this order, which is
