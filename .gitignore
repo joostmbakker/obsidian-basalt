@@ -2,3 +2,6 @@
 test-vault/
 .serena/
 preview-out/
+SPEC.md
+PRODUCT.md
+audit/
