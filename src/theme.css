@@ -1062,6 +1062,13 @@ input.metadata-property-key-input:focus {
   padding-top: 0;
 }
 
+/* Obsidian pads tabs 1px top / 3px bottom for the curved style; even it out so
+   titles centre on the new-tab and tab-list buttons. */
+.basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
 .basalt-tabs-underline .mod-root .workspace-tabs:not(.mod-stacked) > .workspace-tab-header-container .workspace-tab-header:not(.is-active):hover {
   box-shadow: inset 0 -1px 0 var(--basalt-border-strong);
 }
