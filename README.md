@@ -14,10 +14,10 @@ src/theme.css        authored CSS (edit this)
 src/fonts/           Geist and Geist Mono variable WOFF2 (OFL, see OFL.txt)
 theme.css            build output, do not edit
 manifest.json        Obsidian theme manifest
-scripts/build.sh     src -> theme.css with fonts inlined; refreshes test-vault copy
+scripts/build.sh     src -> theme.css with fonts inlined; refreshes local test-vault copy if present
 scripts/install.sh   builds, then installs into a vault
 scripts/preview/     DOM-replica screenshot harness (see Preview harness)
-test-vault/          fixture vault for visual checks (theme copy is generated)
+test-vault/          optional local vault for visual checks (gitignored, not in the repo)
 screenshots/         verification screenshots
 ```
 
@@ -28,8 +28,9 @@ scripts/build.sh
 ```
 
 Replaces `__GEIST_SANS__` and `__GEIST_MONO__` in `src/theme.css` with base64
-WOFF2 data URIs, writes `theme.css` at the repo root, and copies it plus
-`manifest.json` into `test-vault/.obsidian/themes/Basalt/`.
+WOFF2 data URIs, writes `theme.css` at the repo root, and, when a local
+`test-vault/.obsidian` exists, copies it plus `manifest.json` into
+`test-vault/.obsidian/themes/Basalt/`. Without a local vault the copy is skipped.
 
 ## Install
 
@@ -91,9 +92,9 @@ Notes:
 
 ## Verification workflow
 
-1. Run `scripts/build.sh`. It refreshes `test-vault/`.
+1. Run `scripts/build.sh`. It refreshes a local `test-vault/` when present.
 2. Optionally run the preview harness for the components it covers.
-3. Open `test-vault/` in Obsidian and select Basalt.
+3. Open your local `test-vault/` (or a vault you name) in Obsidian and select Basalt.
 4. Check dark and light modes, the reading and live-preview views, and the
    core chrome (sidebars, tabs, modals, menus, callouts, tables, code blocks).
 5. Save screenshots to `screenshots/` and compare them against the reference

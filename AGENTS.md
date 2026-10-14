@@ -3,7 +3,7 @@
 Dark, minimal Obsidian theme (CSS only, no plugin code). Design contract: `SPEC.md`. Human docs: `README.md`.
 
 ## Commands
-- `scripts/build.sh`: `src/theme.css` -> root `theme.css` with Geist fonts inlined as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Basalt/`. Only automated check this repo has; run it after every CSS change.
+- `scripts/build.sh`: `src/theme.css` -> root `theme.css` with Geist fonts inlined as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Basalt/` only when a local `test-vault/.obsidian` exists (otherwise skipped, never created). Only automated check this repo has; run it after every CSS change.
 - `BASALT_SRC=/path/to/file.css scripts/build.sh`: build from an alternate source (experiments).
 - `scripts/install.sh <vault-path>`: build, then copy into a real vault. Writes outside the repo; run it only when the user names the vault.
 - `node scripts/preview/preview.mjs <path/to/app.css>` (or `OBSIDIAN_APP_CSS=…`): screenshots DOM replicas of the tab bar, graph view + controls, find/replace bar, notices and empty state with Obsidian's `app.css` + built `theme.css`, dark and light, hover/focus forced via CDP. Output in gitignored `preview-out/<fixture>/`. Flags: `--only graph,find`, `--modes dark`, `--theme file.css`, `--out dir`, `--scale 2`. Run `scripts/build.sh` first.
@@ -13,9 +13,9 @@ Dark, minimal Obsidian theme (CSS only, no plugin code). Design contract: `SPEC.
 - Edit `src/theme.css`, never root `theme.css`; the build overwrites it.
 - Keep `url("__GEIST_SANS__")` and `url("__GEIST_MONO__")` in `src/theme.css`; the build fails when a placeholder is missing.
 - Root `theme.css` is generated but committed: Obsidian installs themes from `theme.css` + `manifest.json` at the repo root of the default branch. Rebuild and commit it in the same commit as the `src/theme.css` change, so the two never diverge in history.
-- `test-vault/.obsidian/themes/` is gitignored build output. Everything else in `test-vault/` is a committed fixture.
-- `test-vault/.obsidian/snippets/*.css` mirror the user's real vault (custom callouts, card styles). Fix the theme so they render; don't edit the snippets to hide a theme bug.
-- Build passing proves syntax and inlining, not looks. The preview harness renders replicas, not the app: no layout JS, CodeMirror, plugins or PixiJS graph, and markup marked `GUESS:` in `scripts/preview/fixtures.mjs` is inferred from `app.css` selectors. Use it to check a change, say it's a replica, and still ask the user to check `test-vault/` in Obsidian (dark + light, reading + live preview) before calling a visual change done.
+- `test-vault/` is local-only and gitignored; it may be absent. Don't commit or recreate it.
+- When present, `test-vault/.obsidian/snippets/*.css` mirror the user's real vault (custom callouts, card styles). Fix the theme so they render; don't edit the snippets to hide a theme bug.
+- Build passing proves syntax and inlining, not looks. The preview harness renders replicas, not the app: no layout JS, CodeMirror, plugins or PixiJS graph, and markup marked `GUESS:` in `scripts/preview/fixtures.mjs` is inferred from `app.css` selectors. Use it to check a change, say it's a replica, and still ask the user to check in Obsidian (local `test-vault/` or a vault they name) (dark + light, reading + live preview) before calling a visual change done.
 - `app.css` is Obsidian's file: pass its path to the harness, keep it outside the repo, never commit it. When a component isn't covered, add a fixture to `scripts/preview/fixtures.mjs` with selectors taken from `app.css`.
 
 ## Conventions
@@ -50,7 +50,7 @@ Repo is private on GitHub (`origin` = `git@github.com:joostmbakker/obsidian-them
 
 ### Push and PR
 - Push only after the build passes and the user has visually verified the change, or when they ask. `git push -u origin HEAD`.
-- `gh pr create --base develop`; title in Conventional Commit form; body: what changed, why, how verified (build output, which `test-vault/` notes and modes were checked, screenshots in `screenshots/` if taken).
+- `gh pr create --base develop`; title in Conventional Commit form; body: what changed, why, how verified (build output, which notes and modes were checked, screenshots in `screenshots/` if taken).
 - Never merge PRs, force-push shared branches, or rewrite history on `develop`/`main` without an explicit request.
 
 ### Release
