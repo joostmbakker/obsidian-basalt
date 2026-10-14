@@ -40,6 +40,13 @@ Copies the built theme into `~/Vaults/X/.obsidian/themes/Basalt/`. It does not
 change `appearance.json`. Activate it in Obsidian: Settings → Appearance →
 Themes → Basalt.
 
+## Options
+
+With the [Style Settings](https://github.com/obsidian-community/obsidian-style-settings)
+community plugin installed, Settings → Style Settings → Basalt offers a **Tab style**
+for the tab bar above notes: Obsidian (default), Underline, Track, Ink, Sheet, or
+Indexed. Without the plugin the default applies.
+
 ## Fonts
 
 - Geist and Geist Mono are embedded (variable weights) under the SIL Open Font
