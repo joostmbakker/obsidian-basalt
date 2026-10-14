@@ -1,10 +1,10 @@
-# Folio
+# Basalt
 
 Dark, minimal Obsidian theme (CSS only, no plugin code). Design contract: `SPEC.md`. Human docs: `README.md`.
 
 ## Commands
-- `scripts/build.sh`: `src/theme.css` -> root `theme.css` with Geist fonts inlined as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Folio/`. Only automated check this repo has; run it after every CSS change.
-- `FOLIO_SRC=/path/to/file.css scripts/build.sh`: build from an alternate source (experiments).
+- `scripts/build.sh`: `src/theme.css` -> root `theme.css` with Geist fonts inlined as base64, then copies `theme.css` + `manifest.json` into `test-vault/.obsidian/themes/Basalt/`. Only automated check this repo has; run it after every CSS change.
+- `BASALT_SRC=/path/to/file.css scripts/build.sh`: build from an alternate source (experiments).
 - `scripts/install.sh <vault-path>`: build, then copy into a real vault. Writes outside the repo; run it only when the user names the vault.
 - `grep -n '!important' src/theme.css`: every hit needs a reason (see Conventions).
 
@@ -17,7 +17,7 @@ Dark, minimal Obsidian theme (CSS only, no plugin code). Design contract: `SPEC.
 - No visual test harness. Build passing proves syntax and inlining, not looks. Say so, and ask the user to check `test-vault/` in Obsidian (dark + light, reading + live preview) before calling a visual change done.
 
 ## Conventions
-- Token-driven: raw hex/rgb only inside `.theme-dark` / `.theme-light` token blocks; components use `--folio-*` tokens. Token values and component specs live in `SPEC.md`; follow it, and update it in the same branch when a design decision changes.
+- Token-driven: raw hex/rgb only inside `.theme-dark` / `.theme-light` token blocks; components use `--basalt-*` tokens. Token values and component specs live in `SPEC.md`; follow it, and update it in the same branch when a design decision changes.
 - Obsidian variable mappings go in `.theme-dark, .theme-light { … }` (specificity 0,1,0 beats Obsidian's `body {}` defaults).
 - Never set `--font-text-size` or any `*-override` variable; user font settings must win.
 - `!important` only to beat an inline or plugin style that can't be beaten otherwise, with a comment saying which.
