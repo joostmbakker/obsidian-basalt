@@ -182,9 +182,10 @@
 
   /* Callouts: 1.14 uses --callout-color as a colour value, not an rgb triple */
   --callout-radius: 0;
-  --callout-padding: 12px 16px 12px 18px;
+  --callout-padding: 0 0 0 16px;
   --callout-border-width: 0;
-  --callout-title-weight: 600;
+  --callout-title-size: var(--basalt-ui-size-2);
+  --callout-title-weight: 500;
   --callout-blend-mode: normal;
   --callout-default: rgb(var(--basalt-neutral-rgb));
   --callout-quote: rgb(var(--basalt-neutral-rgb));
