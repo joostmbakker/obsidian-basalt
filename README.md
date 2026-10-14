@@ -136,6 +136,10 @@ The harness renders replicas, not the app: layout JS, CodeMirror, plugins and
 the graph renderer don't run. Confirm visual changes in Obsidian itself, in
 dark and light mode, reading and live preview.
 
+## Credits
+
+The look started from Anthropic's Claude documentation (near-black ground, light serif headings, hairline boxes) and borrows editorial details from the Antimetal design system (mono labels, dashed hairlines). Basalt is not affiliated with either.
+
 ## License
 
 The theme code is released under the [MIT License](LICENSE). The embedded fonts
