@@ -1,6 +1,8 @@
 /* --- Tokens ---------------------------------------------------------------- */
 
-/* Raw values live only in these two blocks (one per mode). */
+/* Layers: palette and semantic colours per mode (the only place colours are
+   written), then shared scales and derived roles. mappings.css hands these to
+   Obsidian's variables; components read tokens, never literals. */
 
 .theme-dark {
   --basalt-bg: #0a0a0a;
@@ -130,10 +132,14 @@
   --color-base-100: #141414;
 }
 
-/* Scales, the same in both modes. Components take a step from here rather
-   than a literal. */
+/* Shared: scales and roles derived from the mode tokens above. */
 .theme-dark,
 .theme-light {
+  /* Font stacks (Settings font choices still win: *-override is untouched) */
+  --basalt-font-serif: "Tiempos Headline", "Test Tiempos Headline", "Source Serif 4", "Newsreader", Georgia, serif;
+  --basalt-font-sans: "Geist", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  --basalt-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
   /* Radius */
   --basalt-radius-1: 2px;
   --basalt-radius-2: 4px;
@@ -164,4 +170,18 @@
   /* Motion */
   --basalt-motion-fast: 120ms ease;
   --basalt-motion: 150ms ease-out;
+
+  /* Graph. Hover is monochrome (ink): the hovered node and its ring take the
+     strongest text colour, its links the muted one. */
+  --basalt-graph-highlight: var(--basalt-text-strong);
+  --basalt-graph-highlight-line: var(--basalt-text-muted);
+  --basalt-graph-circle: var(--basalt-text-strong);
+  /* Default colours for new colour groups: the soft palette minus green and
+     yellow (tag and attachment nodes), with blue (focused node) last. */
+  --basalt-graph-group-1: var(--color-purple);
+  --basalt-graph-group-2: var(--color-cyan);
+  --basalt-graph-group-3: var(--color-orange);
+  --basalt-graph-group-4: var(--color-pink);
+  --basalt-graph-group-5: var(--color-red);
+  --basalt-graph-group-6: var(--color-blue);
 }
