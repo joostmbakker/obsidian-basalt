@@ -141,7 +141,7 @@
 
 .graph-controls .tree-item-self:focus-visible,
 .graph-controls .clickable-icon:focus-visible {
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--basalt-accent) 45%, transparent);
+  box-shadow: var(--basalt-focus-ring);
 }
 
 /* "New group" and "Animate": the inverted primary fill. Text colour is set
