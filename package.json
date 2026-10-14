@@ -1,0 +1,14 @@
+{
+  "name": "basalt-theme",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "scripts/build.sh",
+    "test": "node --test scripts/minify.test.mjs"
+  },
+  "devDependencies": {
+    "cssnano-preset-lite": "4.0.3",
+    "postcss": "8.5.30"
+  }
+}

@@ -1,4 +1,5 @@
 .DS_Store
+node_modules/
 test-vault/
 .serena/
 preview-out/

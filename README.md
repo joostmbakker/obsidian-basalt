@@ -30,7 +30,7 @@ From Obsidian: **Settings → Appearance → Themes → Manage**, search for
 **Basalt**, then **Install and use**.
 
 Manually: download `theme.css` and `manifest.json` from the
-[latest release](https://github.com/joostmbakker/obsidian-theme/releases/latest) into
+[latest release](https://github.com/joostmbakker/obsidian-basalt/releases/latest) into
 `<your vault>/.obsidian/themes/Basalt/`, then select Basalt under
 **Settings → Appearance → Themes**.
 
@@ -74,7 +74,8 @@ src/views/           canvas, graph, bases
 src/fonts/           Geist, Geist Mono and Basalt Serif variable WOFF2 + licences
 theme.css            build output, committed because Obsidian installs it
 manifest.json        Obsidian theme manifest
-scripts/build.sh     src/ -> theme.css, modules and fonts inlined
+scripts/build.sh     src/ -> theme.css, modules and fonts inlined, CSS minified
+scripts/minify.mjs   formatting/comment minifier; retains licences, settings and scan directives
 scripts/check.py     design-system check, run by build.sh
 scripts/install.sh   build, then copy into a vault
 scripts/preview/     DOM-replica screenshot harness
@@ -82,15 +83,24 @@ scripts/preview/     DOM-replica screenshot harness
 
 ### Build
 
+Requires Python 3 and Node.js 22 or later. Install the locked build dependencies
+once with `npm ci` (and again when `package-lock.json` changes).
+
 ```sh
+npm ci
 scripts/build.sh
+npm test
 ```
 
 Runs `scripts/check.py` first and stops if it fails. The check keeps colours
 inside the token blocks, radii and UI type on their scales, every token defined
 and used, and text above its contrast floor. The build then inlines the modules
 `src/index.css` imports, in order, replaces the font placeholders in
-`src/foundation/fonts.css` with base64 WOFF2 data URIs, and writes `theme.css`.
+`src/foundation/fonts.css` with base64 WOFF2 data URIs, and minifies `theme.css`
+with cssnano's lite preset. Minification removes formatting and ordinary
+comments while retaining font copyright notices and licences, Style Settings,
+and compatibility-scan directives. It does not merge rules or rewrite the
+design's declarations; the source modules remain readable.
 When a local `test-vault/.obsidian` exists (gitignored), it also copies the
 theme there.
 
@@ -125,6 +135,10 @@ one). `app.css` is Obsidian's file: pass its path, never commit it.
 The harness renders replicas, not the app: layout JS, CodeMirror, plugins and
 the graph renderer don't run. Confirm visual changes in Obsidian itself, in
 dark and light mode, reading and live preview.
+
+## Credits
+
+The look started from Anthropic's Claude documentation (near-black ground, light serif headings, hairline boxes) and borrows editorial details from the Antimetal design system (mono labels, dashed hairlines). Basalt is not affiliated with either.
 
 ## License
 
