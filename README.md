@@ -1,27 +1,53 @@
-# Basalt
+<h3 align="center">A dark, minimal theme for Obsidian.</h3>
 
-A dark, minimal theme for Obsidian, with a matching light mode.
+<p align="center"><em>Quiet by default, with a matching light mode.</em></p>
 
-![Basalt in dark and light mode](./images/basalt.png)
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#options">Options</a> ·
+  <a href="https://github.com/joostmbakker/obsidian-basalt/releases/latest">Latest release</a>
+</p>
 
-Basalt keeps a near-black ground and white text, and puts the character in the
-details: light serif headings, a clean sans body, small mono labels, hairline
-boxes and warm stone grays. Colour is a signal, not a fill: a clay accent marks
-focus and the active tab, and little else.
+## Overview
+
+**Basalt** keeps a near-black ground and white text, and puts the character in
+the details: serif headings, a clean sans body, small mono labels,
+hairline boxes and graphite grays.
+
+**Colour is a signal, not a fill.** A red accent marks focus, the active tab
+and the current note in the graph, and little else. Soft hues appear only where
+they carry meaning: callouts, canvas groups and graph colour groups.
+
+![Basalt in dark and light mode](./images/listing/05-dark-and-light.png)
+
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="./images/listing/02-dark.png" alt="A note in dark mode, with the file explorer, graph view and outline"></td>
+    <td><img src="./images/listing/03-light.png" alt="The same note in light mode"></td>
+  </tr>
+  <tr>
+    <td><img src="./images/listing/04-canvas.png" alt="A canvas with coloured groups, mono labels and dashed frames"></td>
+    <td><img src="./images/listing/01-hero.png" alt="The Basalt wordmark beside a note in dark mode"></td>
+  </tr>
+</table>
 
 ## Features
 
-- **Dark and light modes** from one set of tokens. Body, muted and faint text
-  all meet WCAG AA contrast on the surfaces they sit on.
-- **Bundled fonts**: Geist, Geist Mono and Basalt Serif (a subset of Source
+- **Dark and light from one set of tokens.** Body, muted and faint text all meet
+  WCAG AA contrast on the surfaces they sit on.
+- **Bundled type.** Geist, Geist Mono and Basalt Serif (a subset of Source
   Serif 4) are embedded. The theme makes no network requests.
-- **Callouts as annotations**: a mono title in the callout colour and a hairline
-  bar, without a tinted box.
-- **Canvas**: mono group labels with a colour swatch, dashed group frames, and
+- **Callouts as annotations.** A mono title in the callout colour and a hairline
+  rule, without a tinted box.
+- **Canvas.** Mono group labels with a colour swatch, dashed group frames, and
   labels that line up with Advanced Canvas's collapse toggle.
-- **Quiet controls**: 28px buttons with a hairline ring, an ink primary button,
+- **Graph.** Monochrome nodes and links, with the accent on the current note.
+- **Quiet controls.** 28px buttons with a hairline ring, an ink primary button,
   and an editorial empty state.
-- **Snippet friendly**: no `!important`, styling through Obsidian's CSS
+- **Snippet friendly.** No `!important`, styling through Obsidian's CSS
   variables, and your own font settings always win.
 
 ## Install
@@ -63,6 +89,9 @@ Obsidian, Underline (default), Track, Ink, Sheet or Indexed.
 
 ## Development
 
+<details>
+<summary>Build from source, install into a vault, preview harness</summary>
+
 `theme.css` is generated; edit the modules under `src/` and rebuild.
 
 ```
@@ -74,6 +103,8 @@ src/views/           canvas, graph, bases
 src/fonts/           Geist, Geist Mono and Basalt Serif variable WOFF2 + licences
 theme.css            build output, committed because Obsidian installs it
 manifest.json        Obsidian theme manifest
+screenshot.png       cover image for the community listing
+images/listing/      listing and README screenshots
 scripts/build.sh     src/ -> theme.css, modules and fonts inlined, CSS minified
 scripts/minify.mjs   formatting/comment minifier; retains licences, settings and scan directives
 scripts/check.py     design-system check, run by build.sh
@@ -136,9 +167,14 @@ The harness renders replicas, not the app: layout JS, CodeMirror, plugins and
 the graph renderer don't run. Confirm visual changes in Obsidian itself, in
 dark and light mode, reading and live preview.
 
+</details>
+
 ## Credits
 
-The look started from Anthropic's Claude documentation (near-black ground, light serif headings, hairline boxes) and borrows editorial details from the Antimetal design system (mono labels, dashed hairlines). Basalt is not affiliated with either.
+Early versions started from Anthropic's Claude documentation (near-black
+ground, serif headings, hairline boxes); Basalt has since moved to its own
+palette and accent. Editorial details (mono labels, dashed hairlines) come from
+the Antimetal design system. Basalt is not affiliated with either.
 
 ## License
 

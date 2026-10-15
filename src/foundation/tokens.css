@@ -1,136 +1,137 @@
 /* --- Tokens ---------------------------------------------------------------- */
 
 /* Layers: palette and semantic colours per mode (the only place colours are
-   written), then shared scales and derived roles. Ground and body text are
-   neutral; surfaces, hairlines and the gray text steps are warm stone
-   (hue 30-45, saturation 5-7%). mappings.css hands these to
+   written), then shared scales and derived roles. Ground, surfaces,
+   hairlines and text are near-neutral graphite with a faint violet lean
+   (saturation under 3%); the sidebar sits below the note ground in dark mode. mappings.css hands these to
    Obsidian's variables; components read tokens, never literals. */
 
 .theme-dark {
   --basalt-bg: #0a0a0a;
-  --basalt-bg-sidebar: #0d0d0c;
-  --basalt-surface-1: #121110;
-  --basalt-surface-2: #171614;
-  --basalt-surface-3: #1e1d1a;
-  --basalt-hover: rgba(255, 246, 230, 0.045);
-  --basalt-active: rgba(255, 246, 230, 0.075);
-  --basalt-line: #232120;
-  --basalt-border: #33302c;
-  --basalt-border-strong: #48453f;
+  --basalt-bg-sidebar: #040405;
+  --basalt-surface-1: #111112;
+  --basalt-surface-2: #19191a;
+  --basalt-surface-3: #212122;
+  --basalt-hover: rgba(255, 255, 255, 0.045);
+  --basalt-active: rgba(255, 255, 255, 0.075);
+  --basalt-line: #1a1a1b;
+  --basalt-border: #242425;
+  --basalt-border-strong: #383839;
   --basalt-text: #ededeb;
-  --basalt-text-strong: #f6f6f4;
-  --basalt-text-muted: #aba79e;
-  --basalt-text-faint: #86827a;
+  --basalt-text-strong: #fafafb;
+  --basalt-text-muted: #9e9e9f;
+  --basalt-text-faint: #828183;
   --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
   --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
   --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #ededeb;
   --basalt-invert-bg-hover: #ffffff;
   --basalt-invert-fg: #0a0a0a;
-  --basalt-highlight: rgba(217, 201, 131, 0.2);
-  --basalt-scrollbar: rgba(255, 246, 230, 0.08);
-  --basalt-scrollbar-active: rgba(255, 246, 230, 0.16);
+  --basalt-highlight: #393049;
+  --basalt-scrollbar: rgba(255, 255, 255, 0.08);
+  --basalt-scrollbar-active: rgba(255, 255, 255, 0.16);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.65);
   --basalt-scrim: rgba(0, 0, 0, 0.45);
-  --basalt-neutral-rgb: 171, 167, 158;
+  --basalt-neutral-rgb: 158, 158, 159;
 
-  /* Default accent. Obsidian sets these inline on body when the user picks an
-     accent in Settings -> Appearance, so theirs wins. */
-  --accent-h: 15;
-  --accent-s: 63%;
-  --accent-l: 60%;
+  /* Default accent: red #ef4444 in both modes. Obsidian sets these inline
+     on body when the user picks an accent in Settings -> Appearance, so
+     theirs wins. */
+  --accent-h: 0;
+  --accent-s: 84.2%;
+  --accent-l: 60.2%;
 
-  --color-red: #e08585;
-  --color-orange: #dfa874;
-  --color-yellow: #d9c983;
-  --color-green: #93c29a;
-  --color-cyan: #85c3c3;
-  --color-blue: #7ea7d8;
-  --color-purple: #ab9fda;
-  --color-pink: #d79fbe;
-  --color-red-rgb: 224, 133, 133;
-  --color-orange-rgb: 223, 168, 116;
-  --color-yellow-rgb: 217, 201, 131;
-  --color-green-rgb: 147, 194, 154;
-  --color-cyan-rgb: 133, 195, 195;
-  --color-blue-rgb: 126, 167, 216;
-  --color-purple-rgb: 171, 159, 218;
-  --color-pink-rgb: 215, 159, 190;
+  --color-red: #e09790;
+  --color-orange: #d89d74;
+  --color-yellow: #bea865;
+  --color-green: #7db788;
+  --color-cyan: #59b7c1;
+  --color-blue: #83ade2;
+  --color-purple: #b59fdd;
+  --color-pink: #d996b5;
+  --color-red-rgb: 224, 151, 144;
+  --color-orange-rgb: 216, 157, 116;
+  --color-yellow-rgb: 190, 168, 101;
+  --color-green-rgb: 125, 183, 136;
+  --color-cyan-rgb: 89, 183, 193;
+  --color-blue-rgb: 131, 173, 226;
+  --color-purple-rgb: 181, 159, 221;
+  --color-pink-rgb: 217, 150, 181;
 
   --color-base-00: #0a0a0a;
-  --color-base-05: #0d0d0c;
-  --color-base-10: #121110;
-  --color-base-20: #151413;
-  --color-base-25: #191816;
-  --color-base-30: #232120;
-  --color-base-35: #33302c;
-  --color-base-40: #48453f;
-  --color-base-50: #86827a;
-  --color-base-60: #98948c;
-  --color-base-70: #aba79e;
+  --color-base-05: #040405;
+  --color-base-10: #111112;
+  --color-base-20: #151516;
+  --color-base-25: #19191a;
+  --color-base-30: #1a1a1b;
+  --color-base-35: #242425;
+  --color-base-40: #383839;
+  --color-base-50: #828183;
+  --color-base-60: #8e8e8f;
+  --color-base-70: #9e9e9f;
   --color-base-100: #ededeb;
 }
 
 .theme-light {
   --basalt-bg: #ffffff;
-  --basalt-bg-sidebar: #fafaf8;
-  --basalt-surface-1: #f7f6f3;
-  --basalt-surface-2: #f1efeb;
-  --basalt-surface-3: #e9e6e1;
-  --basalt-hover: rgba(40, 30, 10, 0.04);
-  --basalt-active: rgba(40, 30, 10, 0.065);
-  --basalt-line: #ecebe7;
-  --basalt-border: #dedbd5;
-  --basalt-border-strong: #c8c4bc;
+  --basalt-bg-sidebar: #f7f6f8;
+  --basalt-surface-1: #f8f7f9;
+  --basalt-surface-2: #f0f0f1;
+  --basalt-surface-3: #e9e9ea;
+  --basalt-hover: rgba(0, 0, 0, 0.04);
+  --basalt-active: rgba(0, 0, 0, 0.065);
+  --basalt-line: #ebebec;
+  --basalt-border: #dfdfe0;
+  --basalt-border-strong: #c7c7c8;
   --basalt-text: #141414;
-  --basalt-text-strong: #0a0a0a;
-  --basalt-text-muted: #5e5b55;
-  --basalt-text-faint: #6f6c66;
+  --basalt-text-strong: #060606;
+  --basalt-text-muted: #545456;
+  --basalt-text-faint: #6e6d70;
   --basalt-accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
   --basalt-accent-hover: color-mix(in srgb, var(--basalt-accent) 85%, #ffffff);
   --basalt-toggle-thumb: #ffffff;
   --basalt-invert-bg: #141414;
   --basalt-invert-bg-hover: #000000;
   --basalt-invert-fg: #ffffff;
-  --basalt-highlight: rgba(217, 190, 90, 0.28);
-  --basalt-scrollbar: rgba(40, 30, 10, 0.12);
-  --basalt-scrollbar-active: rgba(40, 30, 10, 0.22);
+  --basalt-highlight: #eee7ff;
+  --basalt-scrollbar: rgba(0, 0, 0, 0.12);
+  --basalt-scrollbar-active: rgba(0, 0, 0, 0.22);
   --basalt-shadow-float: 0 16px 48px -12px rgba(0, 0, 0, 0.18);
   --basalt-scrim: rgba(0, 0, 0, 0.45);
-  --basalt-neutral-rgb: 94, 91, 85;
+  --basalt-neutral-rgb: 84, 84, 86;
 
-  --accent-h: 16;
-  --accent-s: 59%;
-  --accent-l: 45%;
+  --accent-h: 0;
+  --accent-s: 84.2%;
+  --accent-l: 60.2%;
 
-  --color-red: #b85454;
-  --color-orange: #996635;
-  --color-yellow: #81712e;
-  --color-green: #487d52;
-  --color-cyan: #397c7c;
-  --color-blue: #4a74a8;
-  --color-purple: #7464a8;
-  --color-pink: #a5577f;
-  --color-red-rgb: 184, 84, 84;
-  --color-orange-rgb: 153, 102, 53;
-  --color-yellow-rgb: 129, 113, 46;
-  --color-green-rgb: 72, 125, 82;
-  --color-cyan-rgb: 57, 124, 124;
-  --color-blue-rgb: 74, 116, 168;
-  --color-purple-rgb: 116, 100, 168;
-  --color-pink-rgb: 165, 87, 127;
+  --color-red: #9f4541;
+  --color-orange: #974e0c;
+  --color-yellow: #765f04;
+  --color-green: #197037;
+  --color-cyan: #056c76;
+  --color-blue: #2d62a4;
+  --color-purple: #70529f;
+  --color-pink: #974570;
+  --color-red-rgb: 159, 69, 65;
+  --color-orange-rgb: 151, 78, 12;
+  --color-yellow-rgb: 118, 95, 4;
+  --color-green-rgb: 25, 112, 55;
+  --color-cyan-rgb: 5, 108, 118;
+  --color-blue-rgb: 45, 98, 164;
+  --color-purple-rgb: 112, 82, 159;
+  --color-pink-rgb: 151, 69, 112;
 
   --color-base-00: #ffffff;
-  --color-base-05: #fafaf8;
-  --color-base-10: #f7f6f3;
-  --color-base-20: #f1efeb;
-  --color-base-25: #ecebe7;
-  --color-base-30: #e9e6e1;
-  --color-base-35: #dedbd5;
-  --color-base-40: #c8c4bc;
-  --color-base-50: #6f6c66;
-  --color-base-60: #67645e;
-  --color-base-70: #5e5b55;
+  --color-base-05: #f7f6f8;
+  --color-base-10: #f8f7f9;
+  --color-base-20: #f0f0f1;
+  --color-base-25: #ebebec;
+  --color-base-30: #e9e9ea;
+  --color-base-35: #dfdfe0;
+  --color-base-40: #c7c7c8;
+  --color-base-50: #6e6d70;
+  --color-base-60: #626164;
+  --color-base-70: #545456;
   --color-base-100: #141414;
 }
 
@@ -179,11 +180,12 @@
   --basalt-graph-highlight-line: var(--basalt-text-muted);
   --basalt-graph-circle: var(--basalt-text-strong);
   /* Default colours for new colour groups: the soft palette minus green and
-     yellow (tag and attachment nodes), with blue (focused node) last. */
-  --basalt-graph-group-1: var(--color-purple);
+     yellow (tag and attachment nodes), with red (near the accent, which
+     marks the focused node) last. */
+  --basalt-graph-group-1: var(--color-blue);
   --basalt-graph-group-2: var(--color-cyan);
-  --basalt-graph-group-3: var(--color-orange);
-  --basalt-graph-group-4: var(--color-pink);
-  --basalt-graph-group-5: var(--color-red);
-  --basalt-graph-group-6: var(--color-blue);
+  --basalt-graph-group-3: var(--color-purple);
+  --basalt-graph-group-4: var(--color-orange);
+  --basalt-graph-group-5: var(--color-pink);
+  --basalt-graph-group-6: var(--color-red);
 }
