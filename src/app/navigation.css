@@ -16,10 +16,13 @@
 }
 
 .nav-file-title.is-active,
-.tree-item-self.is-active,
+.tree-item-self.is-active {
+  background-color: var(--nav-item-background-active);
+}
+
 .nav-file-title.is-selected,
 .tree-item-self.is-selected {
-  background-color: var(--nav-item-background-active);
+  background-color: var(--nav-item-background-selected);
 }
 
 .nav-header .nav-buttons-container .clickable-icon.is-active {
@@ -32,4 +35,75 @@
   font-size: var(--basalt-ui-size-1);
   color: var(--basalt-text-faint);
   background-color: var(--basalt-surface-2);
+}
+
+/* File explorer: no row fills. Hover brightens the text and the open note is
+   marked by an accent dot; multi-select keeps its fill. Scoped to the explorer
+   so outline, search, bookmarks and graph controls keep theirs. Colours go
+   through Obsidian's --nav-item-* variables so drag-over and selected states
+   still apply. */
+.nav-files-container {
+  --nav-item-background-hover: transparent;
+  --nav-item-background-active: transparent;
+}
+
+.nav-files-container .nav-folder-title {
+  --nav-item-color: var(--basalt-text);
+}
+
+/* Obsidian 1.14 indents rows with inline !important padding, so the dot is a
+   zero-width flex item before the text rather than an absolute offset: it
+   lands in the chevron column at every depth. ::before is taken (Obsidian's
+   zero-width space for baseline alignment). */
+.nav-files-container .nav-file-title.is-active::after {
+  content: "";
+  order: -1;
+  flex: none;
+  align-self: center;
+  width: 5px;
+  height: 5px;
+  margin-inline: -14.5px 9.5px;
+  border-radius: var(--basalt-radius-pill);
+  background-color: var(--basalt-accent);
+}
+
+/* Top-level folders read as section labels: small faint sans, chevron moved to
+   the end. Obsidian 1.14 puts top-level items straight into the container's
+   inner div (no mod-root folder on desktop), and its inline row padding lines
+   the label up with the chevrons below it. Spacing is padding, not margin: the
+   explorer is a virtual list that measures item heights, which leave margins
+   out. */
+.nav-files-container > div > .nav-folder {
+  padding-top: 6px;
+}
+
+.nav-files-container > div > .nav-folder:not(.is-collapsed) {
+  padding-bottom: 12px;
+}
+
+.nav-files-container > div > .nav-folder > .nav-folder-title {
+  --nav-item-color: var(--basalt-text-faint);
+  font-size: var(--basalt-ui-size-3);
+  letter-spacing: 0.01em;
+}
+
+.nav-files-container > div > .nav-folder > .nav-folder-title .collapse-icon {
+  position: static;
+  order: 1;
+  margin-inline-start: auto;
+  transition: opacity var(--basalt-motion);
+}
+
+/* No first guide. The border stays, transparent: rows offset themselves by the
+   container's full margin + border + padding, so removing it would shift them. */
+.nav-files-container > div > .nav-folder > .tree-item-children {
+  border-inline-start-color: transparent;
+}
+
+/* An open section shows its chevron on hover or keyboard focus only; a closed
+   one always shows it. Touch screens keep it visible. */
+@media (hover: hover) {
+  .nav-files-container > div > .nav-folder:not(.is-collapsed) > .nav-folder-title:not(:hover):not(.has-focus) .collapse-icon {
+    opacity: 0;
+  }
 }
