@@ -1,25 +1,55 @@
-<h3 align="center">A dark, minimal theme for Obsidian.</h3>
+<div align="center">
 
-<p align="center"><em>Quiet by default, with a matching light mode.</em></p>
+![Basalt, a dark, minimal theme for Obsidian](./images/listing/00-banner.png)
 
-<p align="center">
-  <a href="#install">Install</a> ·
-  <a href="#features">Features</a> ·
-  <a href="#options">Options</a> ·
-  <a href="https://github.com/joostmbakker/obsidian-basalt/releases/latest">Latest release</a>
-</p>
+### Quiet by default.
+
+_A dark, minimal theme for Obsidian, with a matching light mode._
+
+<a href="https://community.obsidian.md/themes/basalt"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Add_to_Obsidian-ededeb?style=for-the-badge&logo=obsidian&logoColor=0a0a0a"><img alt="Add to Obsidian" src="https://img.shields.io/badge/Add_to_Obsidian-141414?style=for-the-badge&logo=obsidian&logoColor=ffffff"></picture></a>
+<a href="https://github.com/joostmbakker/obsidian-basalt/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/joostmbakker/obsidian-basalt?style=for-the-badge&label=release&labelColor=141414&color=ef4444"></a>
+
+</div>
 
 ## Overview
 
-**Basalt** keeps a near-black ground and white text, and puts the character in
-the details: serif headings, a clean sans body, small mono labels,
-hairline boxes and graphite grays.
+### basalt (_n._) Lava that cooled quickly: dark, dense and quiet.
 
-**Colour is a signal, not a fill.** A red accent marks focus, the active tab
-and the current note in the graph, and little else. Soft hues appear only where
-they carry meaning: callouts, canvas groups and graph colour groups.
+Basalt keeps a near-black ground and white text, and puts the character in the
+details: serif headings, a clean sans body, small mono labels, hairline boxes
+and graphite grays.
+
+**Colour is a signal, not a fill.** A red accent marks focus, the active tab,
+the open file and the current note in the graph, and little else. Soft hues
+appear only where they carry meaning: callouts, canvas groups and graph colour
+groups.
 
 ![Basalt in dark and light mode](./images/listing/05-dark-and-light.png)
+
+**One set of tokens, two modes.** Light mode is the same design on a white
+page, not an afterthought. Body, muted and faint text all meet WCAG AA contrast
+on the surfaces they sit on.
+
+![A canvas with coloured groups, mono labels and dashed frames](./images/listing/04-canvas.png)
+
+## Principles
+
+### Less, but on purpose.
+
+- **The ground stays out of the way**
+
+  Near-neutral graphite surfaces and lines, with the sidebar set just below the
+  note. The page belongs to your writing.
+
+- **Type does the work**
+
+  Basalt Serif for headings, Geist for text, Geist Mono for labels and code.
+  Hierarchy comes from type and hairlines, not from boxes and fills.
+
+- **Your vault wins**
+
+  No `!important`, styling through Obsidian's own CSS variables, and your font
+  and accent settings always take precedence. Snippets keep working.
 
 ## Screenshots
 
@@ -34,58 +64,75 @@ they carry meaning: callouts, canvas groups and graph colour groups.
   </tr>
 </table>
 
-## Features
-
-- **Dark and light from one set of tokens.** Body, muted and faint text all meet
-  WCAG AA contrast on the surfaces they sit on.
-- **Bundled type.** Geist, Geist Mono and Basalt Serif (a subset of Source
-  Serif 4) are embedded. The theme makes no network requests.
-- **Callouts as annotations.** A mono title in the callout colour and a hairline
-  rule, without a tinted box.
-- **Canvas.** Mono group labels with a colour swatch, dashed group frames, and
-  labels that line up with Advanced Canvas's collapse toggle.
-- **Graph.** Monochrome nodes and links, with the accent on the current note.
-- **Quiet controls.** 28px buttons with a hairline ring, an ink primary button,
-  and an editorial empty state.
-- **Snippet friendly.** No `!important`, styling through Obsidian's CSS
-  variables, and your own font settings always win.
-
 ## Install
 
-From Obsidian: **Settings → Appearance → Themes → Manage**, search for
-**Basalt**, then **Install and use**.
+**From Obsidian.** Open **Settings → Appearance → Themes → Manage**, search for
+**Basalt**, then choose **Install and use**. Or use the **Add to Obsidian**
+button above.
 
-Manually: download `theme.css` and `manifest.json` from the
-[latest release](https://github.com/joostmbakker/obsidian-basalt/releases/latest) into
-`<your vault>/.obsidian/themes/Basalt/`, then select Basalt under
+**Manually.** Download `theme.css` and `manifest.json` from the
+[latest release](https://github.com/joostmbakker/obsidian-basalt/releases/latest)
+into `<your vault>/.obsidian/themes/Basalt/`, then select Basalt under
 **Settings → Appearance → Themes**.
 
 Requires Obsidian 1.6 or later. Tested on Obsidian 1.14 (desktop).
 
-## Options
+## Features
 
-The tab bar above notes uses **Underline** by default, with no plugin or setup
-needed. With the [Style Settings](https://github.com/obsidian-community/obsidian-style-settings)
-plugin installed, **Settings → Style Settings → Basalt** offers a **Tab style**:
-Obsidian, Underline (default), Track, Ink, Sheet or Indexed.
+### Components
+
+| Component        | Treatment                                                                      |
+| :--------------- | :----------------------------------------------------------------------------- |
+| Headings         | Basalt Serif at a medium weight; the inline title matches                       |
+| File explorer    | Top-level folders as quiet section labels, and a red dot on the open file      |
+| Tabs             | A 1.5px accent rule under the active tab, or one of five other [tab styles](#options) |
+| Callouts         | A mono title in the callout colour and a hairline rule, without a tinted box   |
+| Canvas           | Mono group labels with a colour swatch and dashed group frames                 |
+| Graph            | Monochrome nodes and links, with the accent on the current note                |
+| Tables and Bases | Square hairline borders and a quiet header row                                 |
+| Properties       | Muted keys above a dashed hairline                                             |
+| Controls         | 28px buttons with a hairline ring and an ink primary button                    |
+| Empty state      | An editorial new-tab page                                                      |
+
+### Options
+
+With the [Style Settings](https://github.com/obsidian-community/obsidian-style-settings)
+plugin installed, **Settings → Style Settings → Basalt** offers a **Tab style**
+for the tab bar above notes. Without the plugin, Underline applies.
+
+| Tab style             | Description                                                                 |
+| :-------------------- | :-------------------------------------------------------------------------- |
+| Underline (default)   | The bar takes the editor colour; a rule marks the active tab                |
+| Obsidian              | Obsidian's own tabs                                                         |
+| Track                 | Tabs in one bordered track, like a segmented control                        |
+| Ink                   | Ghost tabs; the focused pane's active tab takes the ink fill                |
+| Sheet                 | The active tab is a bordered sheet that opens into the editor               |
+| Indexed               | A compact bar on a dashed hairline, with each tab's Cmd/Ctrl+N numeral     |
+
+### Plugin support
+
+- [Style Settings](https://github.com/obsidian-community/obsidian-style-settings):
+  tab style option.
+- [Advanced Canvas](https://github.com/Developer-Mike/obsidian-advanced-canvas):
+  group labels line up with its collapse toggle.
 
 ## Fonts
 
-- Geist and Geist Mono are subsets covering Latin (including extended Latin),
+Bundled and embedded, so the theme makes no network requests. Fonts you set in
+Obsidian override these; the theme doesn't touch the `*-override` variables.
+
+- **Geist and Geist Mono**: subsets covering Latin (including extended Latin),
   combining accents, common punctuation, currencies, arrows, maths and keyboard
-  symbols.
-  Other scripts use the fallback fonts in Obsidian. The full weight range and
-  OpenType features of retained glyphs are preserved.
-  © Vercel, under the SIL Open Font License 1.1. See
-  [`src/fonts/OFL.txt`](src/fonts/OFL.txt).
-- Basalt Serif is a Latin subset of Source Serif 4 (© Adobe, SIL Open Font
+  symbols. Other scripts use Obsidian's fallback fonts. The full weight range
+  and OpenType features of retained glyphs are preserved. © Vercel, SIL Open
+  Font License 1.1, see [`src/fonts/OFL.txt`](src/fonts/OFL.txt).
+- **Basalt Serif**: a Latin subset of Source Serif 4 (© Adobe, SIL Open Font
   License 1.1; weights 400–700, optical sizes 16–48), used for headings, the
   inline title and blockquotes. Subsetting makes it a Modified Version, and
   "Source" is a Reserved Font Name, so it ships under its own name. See
   [`src/fonts/OFL-SourceSerif4.txt`](src/fonts/OFL-SourceSerif4.txt).
-- `theme.css` carries both copyright notices and the licence text.
-- Fonts you set in Obsidian override these. The theme doesn't touch the
-  `*-override` variables.
+
+`theme.css` carries both copyright notices and the licence text.
 
 ## Development
 
@@ -103,8 +150,7 @@ src/views/           canvas, graph, bases
 src/fonts/           Geist, Geist Mono and Basalt Serif variable WOFF2 + licences
 theme.css            build output, committed because Obsidian installs it
 manifest.json        Obsidian theme manifest
-screenshot.png       cover image for the community listing
-images/listing/      listing and README screenshots
+images/listing/      community listing banner (00-banner.png) and screenshots
 scripts/build.sh     src/ -> theme.css, modules and fonts inlined, CSS minified
 scripts/minify.mjs   formatting/comment minifier; retains licences, settings and scan directives
 scripts/check.py     design-system check, run by build.sh
@@ -171,10 +217,24 @@ dark and light mode, reading and live preview.
 
 ## Credits
 
-Early versions started from Anthropic's Claude documentation (near-black
-ground, serif headings, hairline boxes); Basalt has since moved to its own
-palette and accent. Editorial details (mono labels, dashed hairlines) come from
-the Antimetal design system. Basalt is not affiliated with either.
+### Inspiration
+
+- [**Claude documentation**](https://docs.anthropic.com/) by Anthropic: the
+  starting point for early versions (near-black ground, serif headings, hairline
+  boxes). Basalt has since moved to its own palette and accent.
+- [**Antimetal**](https://antimetal.com/) design system: editorial details such
+  as mono labels and dashed hairlines.
+- [**Minimal**](https://github.com/kepano/obsidian-minimal) and
+  [**Baseline**](https://github.com/svnaxis/obsidian-baseline): the shape of
+  this README and the listing.
+
+Basalt is not affiliated with any of these.
+
+### Fonts
+
+- [**Geist**](https://vercel.com/font) by Vercel
+- [**Source Serif 4**](https://github.com/adobe-fonts/source-serif) by Adobe,
+  shipped as Basalt Serif
 
 ## License
 
