@@ -515,4 +515,90 @@ const links = {
   ],
 };
 
-export const FIXTURES = [tabbar, graph, find, notice, empty, links];
+/* ------------------------------------------------------------------------ */
+/* File explorer                                                            */
+/* ------------------------------------------------------------------------ */
+
+// Row classes, the collapse icon and .nav-file-tag come from app.css's
+// .tree-item-self, .collapse-icon and .nav-file-* rules.
+// Nesting checked against Obsidian 1.14.4's live explorer: top-level items sit
+// in .nav-files-container's inner div after an empty spacer div (no mod-root
+// folder on desktop), each .tree-item-children starts with a spacer too, and
+// collapsed folders render no children, and each row carries inline
+// !important indent: 17px per level, as margin-start -17d and padding 24+17d.
+// GUESS: the leaf holds .nav-header and .nav-files-container directly.
+const indent = (d) => `margin-inline-start: ${-17 * d}px !important; padding-inline-start: ${24 + 17 * d}px !important;`;
+
+function navFolder(name, children, { open = false, path = name } = {}) {
+  const c = open ? "" : " is-collapsed";
+  const d = path.split("/").length - 1;
+  return `
+    <div class="tree-item nav-folder${c}">
+      <div class="tree-item-self nav-folder-title is-clickable mod-collapsible" data-path="${path}" style="${indent(d)}">
+        <div class="tree-item-icon collapse-icon${c}">${icon("right-triangle")}</div>
+        <div class="tree-item-inner nav-folder-title-content">${name}</div>
+      </div>
+      ${open ? `<div class="tree-item-children nav-folder-children"><div></div>${children.join("")}</div>` : ""}
+    </div>`;
+}
+
+function navFile(name, { ext = "md", active = false, selected = false, dir = "" } = {}) {
+  const cls = `${active ? " is-active" : ""}${selected ? " is-selected" : ""}`;
+  return `
+    <div class="tree-item nav-file">
+      <div class="tree-item-self nav-file-title tappable is-clickable${cls}" data-path="${dir}${name}.${ext}" style="${indent(dir.split("/").length - 1)}">
+        <div class="tree-item-inner nav-file-title-content">${name}</div>
+        ${ext === "md" ? "" : `<div class="nav-file-tag">${ext}</div>`}
+      </div>
+    </div>`;
+}
+
+function explorer({ selected = false } = {}) {
+  const principles = ["Colour as signal", "Contrast floors", "Hairlines", "Quiet controls", "Reading comfort", "Restraint"]
+    .map((n, i) => navFile(n, { dir: "Basalt/Principles/", selected: selected && i < 2 }));
+  const basalt = [
+    navFolder("Components", [navFile("Buttons")], { path: "Basalt/Components" }),
+    navFolder("Principles", principles, { open: true, path: "Basalt/Principles" }),
+    navFolder("Type", [navFile("Scale")], { path: "Basalt/Type" }),
+    navFile("Basalt map", { ext: "canvas", active: true, dir: "Basalt/" }),
+    ...["Callouts", "Canvas", "Graph", "Meet Basalt", "Stone grays", "Writing"].map((n) => navFile(n, { dir: "Basalt/" })),
+  ];
+  const top = [
+    navFolder("Basalt", basalt, { open: true }),
+    ...["Field notes", "Inbox", "Journal", "Projects", "Reading"].map((n) => navFolder(n, [navFile("Untitled", { dir: `${n}/` })])),
+    navFile("Welcome"),
+  ];
+  return `
+  <div class="workspace-split mod-horizontal mod-sidedock mod-left-split">
+    <div class="workspace-tabs mod-top">
+      <div class="workspace-tab-container">
+        <div class="workspace-leaf mod-active">
+          <div class="workspace-leaf-content" data-type="file-explorer">
+            <div class="nav-header">
+              <div class="nav-buttons-container">
+                <div class="clickable-icon nav-action-button" aria-label="New note">${icon("file-plus")}</div>
+                <div class="clickable-icon nav-action-button" aria-label="Change sort order">${icon("arrow-down")}</div>
+              </div>
+            </div>
+            <div class="nav-files-container node-insert-event">
+              <div><div></div>${top.join("")}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const explorerFixture = {
+  id: "explorer",
+  title: "File explorer",
+  frames: [
+    { label: "Sections, open note", width: 300, height: 700, html: explorer() },
+    { label: "Hover open section and a note", width: 300, height: 700, html: explorer(),
+      force: [{ sel: ".nav-folder-title[data-path='Basalt'], .nav-file-title[data-path='Basalt/Graph.md']", states: ["hover"] }] },
+    { label: "Multi-select", width: 300, height: 700, html: explorer({ selected: true }) },
+  ],
+};
+
+export const FIXTURES = [tabbar, graph, find, notice, empty, links, explorerFixture];
