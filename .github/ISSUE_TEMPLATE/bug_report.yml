@@ -1,0 +1,103 @@
+name: Bug report
+description: Report a visual or usability problem with Basalt.
+labels: [bug, "status: needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please report one problem per issue. Basalt targets Obsidian desktop;
+        mobile is not currently tested. Update Basalt and Obsidian first when possible.
+        Do not include private notes, vault paths or personal data in debug information or screenshots.
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Before reporting
+      options:
+        - label: I searched existing open and closed issues for this problem.
+          required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened, and what did you expect?
+      description: Describe the affected UI and the impact on your work.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include a small Markdown example if relevant; use sample content instead of private notes.
+      placeholder: |
+        1. Open a note containing...
+        2. Switch to...
+        3. Observe...
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Basalt and Obsidian versions
+      description: Basalt version is in Appearance → Themes; Obsidian app and installer versions are in About.
+      placeholder: "Basalt: …; Obsidian app: …; installer: …"
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Mobile (currently untested)
+        - Other (describe below)
+    validations:
+      required: true
+  - type: dropdown
+    id: appearance
+    attributes:
+      label: Appearance
+      multiple: true
+      options:
+        - Dark
+        - Light
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Affected note modes
+      multiple: true
+      options:
+        - Reading view
+        - Live Preview
+        - Source mode
+        - Not applicable (workspace or another view)
+    validations:
+      required: true
+  - type: dropdown
+    id: isolation
+    attributes:
+      label: Does it happen with community plugins and CSS snippets disabled?
+      description: Test in a sandbox vault when convenient; you do not need to change your working vault.
+      options:
+        - "Yes"
+        - "No (list the required plugins or snippets below)"
+        - Not tested yet
+    validations:
+      required: true
+  - type: dropdown
+    id: default-theme
+    attributes:
+      label: Does it also happen with the default Obsidian theme?
+      options:
+        - "No (only Basalt)"
+        - "Yes"
+        - Not tested yet
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots and additional context
+      description: Attach cropped screenshots if helpful. Include OS version, zoom, custom fonts/accent, Basalt tab style, and relevant plugins or snippets. Redact private content.
