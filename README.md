@@ -134,6 +134,24 @@ Obsidian override these; the theme doesn't touch the `*-override` variables.
 
 `theme.css` carries both copyright notices and the licence text.
 
+## Reporting issues
+
+Use [GitHub Issues](https://github.com/joostmbakker/obsidian-basalt/issues/new/choose)
+to report a bug or request a feature. Search open and closed issues first, and
+keep each report focused on one problem. Include Basalt and Obsidian versions,
+your operating system, dark or light mode, affected note modes, reproduction
+steps and a screenshot when useful. Remove private content before sharing.
+
+For bugs, compare with the default Obsidian theme and, when possible, test with
+community plugins and CSS snippets disabled in a sandbox vault. If a plugin or
+snippet is needed to reproduce the problem, include a minimal example. Reports
+that have not been isolated yet are welcome; say what remains untested.
+Basalt targets desktop; mobile is currently untested.
+
+New reports receive `status: needs triage`. Maintainer review sets priority
+and an area, then marks the report accepted or needing reproduction. Priority
+reflects user impact, not a promised release date.
+
 ## Development
 
 <details>

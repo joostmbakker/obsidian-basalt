@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Installation, options and supported platforms
+    url: https://github.com/joostmbakker/obsidian-basalt#readme
+    about: Check the README for installation, theme options and desktop support.
+  - name: Search existing reports and requests
+    url: https://github.com/joostmbakker/obsidian-basalt/issues?q=is%3Aissue
+    about: Search both open and closed issues before filing a new report.

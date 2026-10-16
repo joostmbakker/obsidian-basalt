@@ -1,0 +1,43 @@
+name: Feature or UI coverage request
+description: Suggest an improvement or a core Obsidian surface that needs attention.
+labels: [enhancement, "status: needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep each request focused on one user problem. Basalt is a minimal desktop
+        theme with dark and light modes. A default Obsidian component is not
+        automatically a defect because Basalt has no dedicated selector for it.
+  - type: checkboxes
+    id: search
+    attributes:
+      label: Before requesting
+      options:
+        - label: I searched existing open and closed issues for this request.
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the workflow, affected UI, and who benefits. For plugin support, name the plugin and link its repository.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain how this fits Basalt. Include links or screenshots from other themes when useful.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: How would we know it works?
+      description: Suggest observable outcomes, including affected appearance and note modes.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and context
+      description: Mention workarounds, relevant versions, and any accessibility considerations.
